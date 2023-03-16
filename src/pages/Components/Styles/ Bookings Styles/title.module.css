@@ -1,0 +1,13 @@
+.titleText {
+  font-family: "FS Me Light", sans-serif;
+  font-size: 30px;
+  color: #b06464;
+  padding-right: 15px;
+}
+
+.titleContainer {
+  width: fit-content;
+  max-width: 350px;
+  display: flex;
+  align-items: center;
+}

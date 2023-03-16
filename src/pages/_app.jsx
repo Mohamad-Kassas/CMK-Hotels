@@ -1,8 +1,6 @@
 import "@/styles/globals.css";
-import NavigationBar from "./Components/Landing Page/navigationBar";
+import Title from "./Components/Bookings/title";
 
 export default function App({ Component, pageProps }) {
-  return (
-    <NavigationBar></NavigationBar>
-  );
+  return <Title titleText="Paradise Hotels" rating={-1}></Title>;
 }
