@@ -1,0 +1,41 @@
+@font-face {
+    font-family: "FS Me Regular";
+    src: url(../Font/Regular/FS\ Me-Regular.otf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "FS Me Regular";
+    src: url(../Font/Regular/FS\ Me-Italic.otf);
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "FS Me Regular";
+    src: url(../Font/Regular/FS\ Me-Bold.otf);
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "FS Me Regular";
+    src: url(../Font/Regular/FS\ Me-Bold\ Italic.otf);
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "FS Me Light";
+    src: url(../Font/Light/FS\ Me-Light.otf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "FS Me Light";
+    src: url(../Font/Light/FS\ Me-Light\ Italic.otf);
+    font-weight: normal;
+    font-style: italic;
+}

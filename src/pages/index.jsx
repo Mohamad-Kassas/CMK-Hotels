@@ -1,7 +1,9 @@
+import Logo from "./Components/Landing Page/logo";
+
 export default function Home() {
   return (
     <>
-    <div>Hello World!</div>
+    <Logo></Logo>
     </>
-  );
+    );
 }

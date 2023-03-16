@@ -1,0 +1,32 @@
+.navigationBarContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #B06464;
+    overflow: hidden;
+}
+
+.navigationButtonsContainer{
+    flex: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.authenticationButtonsContainer{
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+
+.lineBreak{
+    border: 1px solid white;
+    height: 7vh;
+    
+}
