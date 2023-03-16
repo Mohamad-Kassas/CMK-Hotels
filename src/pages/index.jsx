@@ -1,9 +1,9 @@
-import Logo from "./Components/Landing Page/logo";
+import Logo from "./Components/Navigation Bar/logo";
 
 export default function Home() {
   return (
     <>
-    <Logo></Logo>
+      <Logo></Logo>
     </>
-    );
+  );
 }

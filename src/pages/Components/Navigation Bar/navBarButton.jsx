@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "../Styles/Landing Page Styles/navBarButton.module.css"
+import styles from "../Styles/Navigation Bar Styles/navBarButton.module.css"
 
 class navBarButtons extends Component {
   state = {

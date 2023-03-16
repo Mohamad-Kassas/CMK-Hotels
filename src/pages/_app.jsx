@@ -1,8 +1,12 @@
 import "@/styles/globals.css";
-import NavigationBar from "./Components/Landing Page/navigationBar";
+import NavigationBar from "./Components/Navigation Bar/navigationBar";
+import CardGroup from "./Components/Card Group/cardGroup";
 
 export default function App({ Component, pageProps }) {
   return (
-    <NavigationBar></NavigationBar>
-  );
+  <>
+  <NavigationBar />
+  <CardGroup />
+  </>);
 }
+

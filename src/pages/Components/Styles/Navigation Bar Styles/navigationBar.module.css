@@ -1,8 +1,12 @@
 .navigationBarContainer {
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-around;
     background-color: #B06464;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 
 .navigationButtonsContainer{
