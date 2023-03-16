@@ -4,7 +4,7 @@
     padding: 10px;
     background-color: #d3756b;
     border: none;
-    color: white;
+    color: #ffe4d6;
     margin-right: 5px;
     border-radius: 20px;
     min-height: 45px;
@@ -47,8 +47,8 @@
 
 .authenticationButton:after, .authenticationButton:before {
     backface-visibility: hidden;
-    border: 1px solid rgba(255, 255, 255, 0);
-    bottom: 0px;
+    border: 1px solid rgba(255, 228, 214, 0);
+    bottom: -1px;
     content: " ";
     display: block;
     margin: 0 auto;
@@ -58,9 +58,9 @@
 }
 .authenticationButton:hover:after, .authenticationButton:hover:before {
     backface-visibility: hidden;
-    border-color: #fff;
+    border-color: white;
     transition: width 300ms ease-in-out;
-    width: 90%;
+    width: 100%;
 }
 
 .authenticationButton:active{
