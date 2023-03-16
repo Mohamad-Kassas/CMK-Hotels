@@ -8,5 +8,7 @@ export default function App({ Component, pageProps }) {
   <NavigationBar />
   <CardGroup />
   </>);
+  return <NavigationBar />;
 }
+
 
