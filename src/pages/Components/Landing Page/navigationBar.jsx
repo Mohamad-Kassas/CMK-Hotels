@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Login from "../Login/login";
 import styles from "../Styles/Landing Page Styles/navigationBar.module.css";
 
 import Logo from "./logo";
@@ -54,6 +55,7 @@ class NavigationBar extends Component {
             onClickFunction={() => this.loginButtonOnClick()}
           ></NavBarButton>
         </div>
+        <div> <Login> </Login></div>
       </div>
     );
   }
