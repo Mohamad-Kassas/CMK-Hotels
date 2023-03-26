@@ -10,11 +10,11 @@
   font-family: "FS Me Light", sans-serif;
   width: 100%;
   border: 0;
-  border-bottom: 2px solid #FFFFFF;
+  border-bottom: 2px solid #2C3333;
   background: transparent;
   outline: 0;
   font-size: 1.2rem;
-  color: #b06464;
+  color: #2C3333;
   padding: 5px 0;
   transition: border-color 0.2s;
 }
@@ -45,14 +45,14 @@
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-  color: #FFFFFF;
+  color: #2C3333;
   user-select: none;
 }
 
 .inputBox:focus {
   padding-bottom: 5px;
   border-width: 3px;
-  border-image: linear-gradient(to right, #ffb703, #fb8500);
+  border-image: linear-gradient(to right, #B06464, #D3756B);
   border-image-slice: 1;
 }
 
@@ -62,5 +62,5 @@
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-  color: #fb8500;
+  color: #D3756B;
 }
