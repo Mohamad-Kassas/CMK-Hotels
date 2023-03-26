@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import styles from "../Styles/Navigation Bar Styles/navBarButton.module.css"
+import styles from "../Styles/Navigation Bar Styles/NavBarButton.module.css"
 
-class navBarButtons extends Component {
+class NavBarButtons extends Component {
   state = {
     styles : styles,
     buttonText: this.props.buttonText,
@@ -38,4 +38,4 @@ class navBarButtons extends Component {
   }
 }
 
-export default navBarButtons;
+export default NavBarButtons;

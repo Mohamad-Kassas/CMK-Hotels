@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import NavigationBar from "../Navigation Bar/NavigationBar";
 import CardGroup from "../Card Group/CardGroup";
-import Title from "../Bookings/title";
-import styles from "../Styles/Landing Page Styles/landingPage.module.css";
+import Title from "../Bookings/Title";
+import styles from "../Styles/Landing Page Styles/LandingPage.module.css";
 import Popup from "../Popup/Popup";
 
-class landingPage extends Component {
+class LandingPage extends Component {
   state = {
     seen: false,
     login: false,
@@ -64,4 +64,4 @@ class landingPage extends Component {
   }
 }
 
-export default landingPage;
+export default LandingPage;

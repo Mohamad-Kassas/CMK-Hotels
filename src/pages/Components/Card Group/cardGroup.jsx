@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import styles from "../Styles/Card Group Styles/cardGroup.module.css";
-import CardGroupContent from "./cardGroupContent";
+import styles from "../Styles/Card Group Styles/CardGroup.module.css";
+import CardGroupContent from "./CardGroupContent";
 
-class cardGroup extends Component {
+class CardGroup extends Component {
   render() {
     return (
       <div className={styles.cardGroupHolder}>
@@ -28,4 +28,4 @@ class cardGroup extends Component {
   }
 }
 
-export default cardGroup;
+export default CardGroup;

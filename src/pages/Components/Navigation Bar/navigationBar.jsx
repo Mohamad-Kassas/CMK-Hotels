@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import styles from "../Styles/Navigation Bar Styles/navigationBar.module.css";
-import Logo from "./logo";
-import NavBarButton from "./navBarButton";
+import styles from "../Styles/Navigation Bar Styles/NavigationBar.module.css";
+import Logo from "./Logo";
+import NavBarButton from "./NavBarButton";
 
 class NavigationBar extends Component {
   homeButtonOnClick = () => {

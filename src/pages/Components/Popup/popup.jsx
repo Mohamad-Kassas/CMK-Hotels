@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import styles from "../Styles/Popup/popup.module.css";
+import styles from "../Styles/Popup/Popup.module.css";
 import { AiOutlineClose } from "react-icons/ai";
 import { RiErrorWarningFill } from "react-icons/ri";
-import PopupInput from "./popupInput";
+import PopupInput from "./PopupInput";
 
 class Popup extends Component {
   state = {

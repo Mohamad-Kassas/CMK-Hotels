@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import styles from "../Styles/Popup/popupInput.module.css";
+import styles from "../Styles/Popup/PopupInput.module.css";
 
-class popupInput extends Component {
+class PopupInput extends Component {
   state = {
     inputType: this.props.inputType,
   };
@@ -27,4 +27,4 @@ class popupInput extends Component {
   }
 }
 
-export default popupInput;
+export default PopupInput;
