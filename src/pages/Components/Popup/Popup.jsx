@@ -19,6 +19,7 @@ class Popup extends Component {
     });
   }
 
+  //Onlick of login/sign up button
   handleMainButtonClick() {
     const emailInputField = document.getElementById("emailInput");
     const passwordInputField = document.getElementById("passwordInput");
@@ -118,6 +119,7 @@ class Popup extends Component {
       }
     } else {
       // authentication database code, check that email and password are in db and the user checks out
+      
     }
 
     if (!errorStatus) {
