@@ -30,30 +30,34 @@
 }
 
 .bigCard:nth-child(1) {
-  background-image: url("https://via.placeholder.com/453x605/272f36?text=placeholder+div");
+  background-color: #fcf3f0;
+  border: #ec9980 3px solid;
   transform: translateX(-10%) rotate(-1deg);
 }
 
 .bigCard:nth-child(2) {
-  background-image: url("https://via.placeholder.com/453x605/FFFFFF?text=placeholder+div");
+  background-color: #fcf3f0;
+  border: #ec9980 3px solid;
   transform: rotate(2deg);
 }
 
 .bigCard:nth-child(3) {
-  background-image: url("https://via.placeholder.com/453x605/c9a88c/000000?text=placeholder+div");
+  background-color: #fcf3f0;
+  border: #ec9980 3px solid;
   transform: translateX(-6%) rotate(-3deg);
 }
 
 .bigCard:nth-child(4) {
-  background-image: url("https://via.placeholder.com/453x605/e46c2c/000000?text=placeholder+div");
+  background-color: #fcf3f0;
+  border: #ec9980 3px solid;
   transform: translate(6%, 3%) rotate(-1deg);
 }
 
 .bigCard:nth-child(5) {
-  background-image: url("https://via.placeholder.com/453x605/d42c4c/000000?text=placeholder+div");
+  background-color: #fcf3f0;
+  border: #ec9980 3px solid;
   transform: translate(5%, 3%) rotate(7deg);
 }
-
 
 .cardGroup:hover > .bigCard {
   box-shadow: -2vmin 2vmin 3vmin rgba(0, 0, 0, 0.4);

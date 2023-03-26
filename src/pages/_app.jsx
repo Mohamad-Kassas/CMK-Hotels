@@ -1,14 +1,9 @@
 import "@/styles/globals.css";
-import NavigationBar from "./Components/Navigation Bar/navigationBar";
-import CardGroup from "./Components/Card Group/cardGroup";
+import LandingPage from "./Components/Landing Page/landingPage";
+import Popup from "./Components/Popup/popup";
 
 export default function App({ Component, pageProps }) {
   return (
-  <>
-  <NavigationBar />
-  <CardGroup />
-  </>);
-  return <NavigationBar />;
+  // <Popup login={false} signUp={false} employeePopup={true}/>
+  <LandingPage />);
 }
-
-

@@ -11,15 +11,12 @@ class navBarButtons extends Component {
   getButtonStyleClass(buttonText) {
     switch (buttonText) {
       case "Login":
-        console.log("Login Case")
         return "authenticationButton"
 
       case "Sign Up":
-        console.log("Sign Up Case")
           return "authenticationButton"
         
       default:
-        console.log("Default Case")
         return "navigationButton"
     }
   }

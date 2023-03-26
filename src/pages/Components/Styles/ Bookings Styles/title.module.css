@@ -1,6 +1,20 @@
-.titleText {
+.titleTextSmall {
+  font-family: "FS Me Light", sans-serif;
+  font-size: 20px;
+  color: #b06464;
+  padding-right: 15px;
+}
+
+.titleTextMedium {
   font-family: "FS Me Light", sans-serif;
   font-size: 30px;
+  color: #b06464;
+  padding-right: 15px;
+}
+
+.titleTextLarge {
+  font-family: "FS Me Light", sans-serif;
+  font-size: 50px;
   color: #b06464;
   padding-right: 15px;
 }
