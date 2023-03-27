@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../Styles/ Bookings Styles/ate.module.css";
+import styles from "../Styles/Bookings Styles/Date.module.css";
 import { TbEdit } from "react-icons/tb";
 
 function Date(props) {

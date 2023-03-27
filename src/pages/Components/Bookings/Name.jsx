@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../Styles/ Bookings Styles/Date.module.css";
+import styles from "../Styles/Bookings Styles/Date.module.css";
 
 function Name(props) {
 

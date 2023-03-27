@@ -12,11 +12,11 @@ function UserDropdown(props) {
   return (
     <div className={styles.userDropdownContainer}>
       <div className={styles.dropdownTrigger}>
-        <UserProfile name={this.state.name} />
+        <UserProfile name={name} />
       </div>
 
       <div className={styles.dropdownMenu}>
-        {this.state.customer ? (
+        {customer ? (
           <ul>
           <DropdownItem text={"My Profile"} />
           <DropdownItem text={"My Bookings"} />

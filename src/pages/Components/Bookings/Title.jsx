@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../Styles/ Bookings Styles/Title.module.css";
+import styles from "../Styles/Bookings Styles/Title.module.css";
 import { AiFillStar } from "react-icons/ai";
 
 function Title(props) {

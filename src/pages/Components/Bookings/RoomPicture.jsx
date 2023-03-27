@@ -9,7 +9,7 @@ import room6 from "../../../images/CMK Hotels Rooms/room_6.jpeg";
 import room7 from "../../../images/CMK Hotels Rooms/room_7.jpeg";
 import room8 from "../../../images/CMK Hotels Rooms/room_8.jpeg";
 import room9 from "../../../images/CMK Hotels Rooms/room_9.jpeg";
-import styles from "../Styles/ Bookings Styles/RoomPicture.module.css";
+import styles from "../Styles/Bookings Styles/RoomPicture.module.css";
 
 function RoomPicture(props) {
   const [roomNumber] = useState(props.roomNumber);

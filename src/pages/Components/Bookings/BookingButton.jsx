@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import styles from "../Styles/ Bookings Styles/BookingButton.module.css";
+import React, { useState } from "react";
+import styles from "../Styles/Bookings Styles/BookingButton.module.css";
 
 function BookingButton(props) {
 
