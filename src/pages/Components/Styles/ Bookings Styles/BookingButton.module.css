@@ -1,0 +1,27 @@
+.bookingButton {
+  font-family: "FS Me Regular", sans-serif;
+  font-size: 16px;
+  padding: 10px;
+  background-color: #d3756b;
+  border: none;
+  color: #ffe4d6;
+  margin-right: 5px;
+  border-radius: 20px;
+  min-height: 45px;
+  min-width: 75px;
+  width: fit-content;
+  cursor: pointer;
+  transition: all 0.3s;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.bookingButton:hover {
+  transform: scale(1.02);
+  box-shadow: 0 3px 2px #864646;
+  filter: brightness(100%);
+}
+
+.bookingButton:active {
+  transform: scale(0.97);
+}

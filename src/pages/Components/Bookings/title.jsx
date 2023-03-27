@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import styles from "../Styles/ Bookings Styles/title.module.css";
+import styles from "../Styles/ Bookings Styles/Title.module.css";
 import { AiFillStar } from "react-icons/ai";
 
-class title extends Component {
+class Title extends Component {
   state = {
     rating: this.props.rating,
     titleText: this.props.titleText,
@@ -29,4 +29,4 @@ class title extends Component {
     }
   }
 }
-export default title;
+export default Title;
