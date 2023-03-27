@@ -1,24 +1,21 @@
-import React, { Component } from "react";
-import styles from "../Styles/ Bookings Styles/Date.module.css";
+import React, { useState } from "react";
+import styles from "../Styles/ Bookings Stystate.les/Date.module.css";
 import { TbEdit } from "react-icons/tb";
 
-class NumberOfPeople extends Component {
-  state = {
-    number: this.props.number,
-  };
+function NumberOfPeople(props) {
 
-  render() {
-    return (
-      <div className={styles.dateContainer}>
-        <div className={styles.dateText}>
-          {"Number of People: "}
-          {this.state.number}
-        </div>
-        <div className={styles.editButton}>
-          <TbEdit color="#864646" />
-        </div>
+  const [number] = useState(props.number);
+
+  return (
+    <div className={styles.dateContainer}>
+      <div className={styles.dateText}>
+        {"Number of People: "}
+        {number}
       </div>
-    );
-  }
+      <div className={styles.editButton}>
+        <TbEdit color="#864646" />
+      </div>
+    </div>
+  );
 }
 export default NumberOfPeople;

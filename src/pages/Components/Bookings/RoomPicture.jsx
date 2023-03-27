@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import room0 from "../../../images/CMK Hotels Rooms/room_0.jpeg";
 import room1 from "../../../images/CMK Hotels Rooms/room_1.jpeg";
@@ -11,12 +11,10 @@ import room8 from "../../../images/CMK Hotels Rooms/room_8.jpeg";
 import room9 from "../../../images/CMK Hotels Rooms/room_9.jpeg";
 import styles from "../Styles/ Bookings Styles/RoomPicture.module.css";
 
-class RoomPicture extends Component {
-  state = {
-    roomNumber: this.props.roomNumber,
-  };
+function RoomPicture(props) {
+  const [roomNumber] = useState(props.roomNumber);
 
-  getImage(roomNumber) {
+  const getImage = (roomNumber) => {
     switch (roomNumber) {
       case 0:
         return room0;
@@ -41,15 +39,13 @@ class RoomPicture extends Component {
     }
   }
 
-  render() {
-    return (
-      <Image
-        src={this.getImage(this.state.roomNumber)}
-        alt="Room Picture"
-        className={styles.roomPicture}
-      ></Image>
-    );
-  }
+  return (
+    <Image
+      src={getImage(roomNumber)}
+      alt="Room Picture"
+      className={styles.roomPicture}
+    ></Image>
+  );
 }
 
 export default RoomPicture;

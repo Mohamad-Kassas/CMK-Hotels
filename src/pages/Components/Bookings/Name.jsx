@@ -1,18 +1,15 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import styles from "../Styles/ Bookings Styles/Date.module.css";
 
-class Name extends Component {
-  state = {
-    name: this.props.name,
-  };
+function Name(props) {
 
-  render() {
-    return (
-      <div className={styles.dateText}>
-        {"Name: "}
-        {this.state.name}
-      </div>
-    );
-  }
+  const [name] = useState(props.name);
+
+  return (
+    <div className={styles.dateText}>
+      {"Name: "}
+      {name}
+    </div>
+  );
 }
 export default Name;

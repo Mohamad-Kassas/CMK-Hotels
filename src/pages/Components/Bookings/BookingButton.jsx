@@ -1,23 +1,19 @@
 import React, { Component } from "react";
 import styles from "../Styles/ Bookings Styles/BookingButton.module.css";
 
-class BookingButton extends Component {
-  state = {
-    styles: styles,
-    buttonText: this.props.buttonText,
-    onClickFunction: this.props.onClickFunction,
-  };
+function BookingButton(props) {
 
-  render() {
-    return (
-      <button
-        className={this.state.styles.bookingButton}
-        onClick={() => this.state.onClickFunction()}
-      >
-        {this.state.buttonText}
-      </button>
-    );
-  }
+  const [styling] = useState(styles);
+  const [buttonText] = useState(props.buttonText);
+
+  return (
+    <button
+      className={styling.bookingButton}
+      onClick={() => props.onClickFunction()}
+    >
+      {buttonText}
+    </button>
+  );
 }
 
 export default BookingButton;

@@ -1,29 +1,31 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import styles from "../Styles/ Bookings Styles/Subtitle.module.css";
 import { RxDotFilled } from "react-icons/rx";
 
-class Subtitle extends Component {
+function Subtitle(props) {
   state = {
-    city: this.props.city,
-    numberOfNights: this.props.numberOfNights,
-    price: this.props.price,
+    city: props.city,
+    numberOfNights: props.numberOfNights,
+    price: props.price,
   };
 
-  render() {
-    return (
-      <div className={styles.subtitleContainer}>
-        <div className={styles.subtitleText}>{this.state.city} </div>
+  const [city] = useState(props.city);
+  const [numberOfNights] = useState(props.numberOfNights);
+  const [price] = useState(props.price);
 
-        <RxDotFilled />
-        <div className={styles.subtitleText}>
-          {this.state.numberOfNights == 1
-            ? this.state.numberOfNights + "  Night"
-            : this.state.numberOfNights + "  Nights"}
-        </div>
-        <RxDotFilled />
-        <div className={styles.subtitleText}>$ {this.state.price}</div>
+  return (
+    <div className={styles.subtitleContainer}>
+      <div className={styles.subtitleText}>{city} </div>
+
+      <RxDotFilled />
+      <div className={styles.subtitleText}>
+        {numberOfNights == 1
+          ? numberOfNights + "  Night"
+          : numberOfNights + "  Nights"}
       </div>
-    );
-  }
+      <RxDotFilled />
+      <div className={styles.subtitleText}>$ {price}</div>
+    </div>
+  );
 }
 export default Subtitle;

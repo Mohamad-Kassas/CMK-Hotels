@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import Date from "./date";
 import BookingButton from "./BookingButton";
-import Name from "./Name";
-import NumberOfPeople from "./NumberOfPeople";
 import RoomPicture from "./RoomPicture";
-import Status from "./Status";
 import Subtitle from "./subtitle";
 import Title from "./title";
 import styles from "../Styles/ Bookings Styles/Booking.module.css";

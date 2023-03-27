@@ -1,15 +1,14 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import styles from "../Styles/ Bookings Styles/ate.module.css";
 import { TbEdit } from "react-icons/tb";
 
-class Date extends Component {
-  state = {
-    isCheckIn: this.props.isCheckIn,
-    isEditable: this.props.isEditable,
-    dateText: this.props.dateText,
-  };
+function Date(props) {
 
-  getCheckInOrCheckOut(isCheckIn) {
+  const [isCheckIn] = useState(props.isCheckIn);
+  const [isEditable] = useState(props.isEditable);
+  const [dateText] = useState(props.dateText);
+
+  const getCheckInOrCheckOut = (isCheckIn) => {
     if (isCheckIn == true) {
       return "Check In:  ";
     } else {
@@ -17,27 +16,25 @@ class Date extends Component {
     }
   }
 
-  render() {
-    if (this.state.isEditable == false) {
-      return (
+  if (isEditable == false) {
+    return (
+      <div className={styles.dateText}>
+        {getCheckInOrCheckOut(isCheckIn)}
+        {dateText}
+      </div>
+    );
+  } else {
+    return (
+      <div className={styles.dateContainer}>
         <div className={styles.dateText}>
-          {this.getCheckInOrCheckOut(this.state.isCheckIn)}
-          {this.state.dateText}
+          {getCheckInOrCheckOut(isCheckIn)}
+          {dateText}
         </div>
-      );
-    } else {
-      return (
-        <div className={styles.dateContainer}>
-          <div className={styles.dateText}>
-            {this.getCheckInOrCheckOut(this.state.isCheckIn)}
-            {this.state.dateText}
-          </div>
-          <div className={styles.editButton}>
-            <TbEdit color="#864646" />
-          </div>
+        <div className={styles.editButton}>
+          <TbEdit color="#864646" />
         </div>
-      );
-    }
+      </div>
+    );
   }
 }
 export default Date;
