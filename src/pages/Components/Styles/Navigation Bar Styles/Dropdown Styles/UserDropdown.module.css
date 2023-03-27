@@ -1,0 +1,30 @@
+.dropdownMenu{
+    position: absolute;
+    top: 100px;
+    right: 20px;
+    left: auto;
+    float: left;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 0.35rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.175);
+}
+
+.dropdownMenu::before{
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    color: white;
+    left: auto;
+    display: inline-block;
+    margin-right: 0.5rem;
+    vertical-align: 0.255em;
+    content: "";
+    border-right: 0.3em solid transparent;
+    border-bottom: 0.3em solid;
+    border-left: 0.3em solid transparent;
+    
+}

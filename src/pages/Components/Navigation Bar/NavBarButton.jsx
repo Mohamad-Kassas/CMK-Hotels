@@ -1,41 +1,39 @@
-import React, { Component } from "react";
-import styles from "../Styles/Navigation Bar Styles/NavBarButton.module.css"
+import React, { useState } from "react";
+import styles from "../Styles/Navigation Bar Styles/NavBarButton.module.css";
 
-class NavBarButtons extends Component {
-  state = {
-    styles : styles,
-    buttonText: this.props.buttonText,
-    onClickFunction: this.props.onClickFunction
-  };
-  
-  getButtonStyleClass(buttonText) {
+function NavBarButtons(props) {
+  const [styling] = useState(styles);
+  const [buttonText] = useState(props.buttonText);
+
+  const getButtonStyleClass = (buttonText) => {
     switch (buttonText) {
       case "Login":
-        return "authenticationButton"
+        return "authenticationButton";
 
       case "Sign Up":
-          return "authenticationButton"
-        
+        return "authenticationButton";
+
       default:
-        return "navigationButton"
+        return "navigationButton";
     }
-  }
+  };
 
   // If you need additional functionality for the onClickFunction that can only be done inside this specific component, then use the following:
 
   // handleOnClick() {
-  //     this.props.loginOnClick();
+  //     props.loginOnClick();
   //     const popupContainer = document.getElementById("popupContainer");
   //     popupContainer.style.display = "flex";
   //   }
 
-  render() {
-    return (
-      <button className={eval("this.state.styles." + this.getButtonStyleClass(this.state.buttonText))} onClick={() => this.state.onClickFunction()}>
-        {this.state.buttonText}
-      </button>
-    );
-  }
+  return (
+    <button
+      className={eval("styling." + getButtonStyleClass(buttonText))}
+      onClick={() => props.onClickFunction()}
+    >
+      {buttonText}
+    </button>
+  );
 }
 
 export default NavBarButtons;

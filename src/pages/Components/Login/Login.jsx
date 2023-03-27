@@ -49,3 +49,55 @@ class Login extends Component {
 }
 
 export default Login;
+
+
+
+// To function change, should work but not tested
+
+// import React, { useState } from "react";
+
+// function Login() {
+//   // Define state variables for the input values
+//   const [Username, setUsername] = useState("");
+//   const [Password, setPassword] = useState("");
+
+//   // Define a function to handle the input change event
+//   // const handleInputChange = (e) => {
+//   //   this.setState({ [e.target.name]: e.target.value });
+//   // };
+
+//   // Define a function to handle the button click event
+//   const handleClick = () => {
+//     // Do something with the input values (e.g. log them to the console)
+//     console.log(`Username: ${Username}`);
+//     console.log(`Password: ${Password}`);
+//   };
+
+//   return (
+//     <div>
+//       <label>
+//         Username:
+//         <input
+//           type="text"
+//           name="Username"
+//           value={Username}
+//           onChange={setUsername(event.target.value)}
+//         />
+//       </label>
+//       <br />
+//       <label>
+//         Password:
+//         <input
+//           type="text"
+//           name="Password"
+//           value={Password}
+//           onChange={setPassword(event.target.value)}
+//         />
+//       </label>
+//       <br />
+//       <button onClick={handleClick}>Sign in</button>
+//     </div>
+//   );
+// }
+
+// export default Login;

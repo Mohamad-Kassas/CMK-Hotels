@@ -1,25 +1,25 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../Styles/Popup/Popup.module.css";
 import { AiOutlineClose } from "react-icons/ai";
 import { RiErrorWarningFill } from "react-icons/ri";
 import PopupInput from "./PopupInput";
 
-class Popup extends Component {
-  state = {
-    login: this.props.login,
-    signUp: this.props.signUp,
-    employeePopup: this.props.employeePopup,
-  };
+function Popup(props) {
+  const [login, setLogin] = useState(props.login);
+  const [signUp, setSignUp] = useState(props.signUp);
+  const [employeePopup, setEmployeePopup] = useState(props.employeePopup);
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      login: nextProps.login,
-      signUp: nextProps.signUp,
-      employeePopup: nextProps.employeePopup,
-    });
-  }
+  useEffect(() => {
+    setLogin(props.login);
+    setSignUp(props.signUp);
+    setEmployeePopup(props.employeePopup);
+  }, []);
 
-  handleMainButtonClick() {
+
+
+  
+
+  const handleMainButtonClick = () => {
     const emailInputField = document.getElementById("emailInput");
     const passwordInputField = document.getElementById("passwordInput");
 
@@ -35,63 +35,62 @@ class Popup extends Component {
     // Default values
     errorMessagesDiv.style.display = "none";
 
-    if (this.state.signUp) {
-        const firstNameInputField = document.getElementById("first NameInput");
-        const lastNameInputField = document.getElementById("last NameInput");
-        const addressInputField = document.getElementById("addressInput");
-        const cityInputField = document.getElementById("cityInput");
-        const countryInputField = document.getElementById("countryInput");
-        const postalCodeInputField = document.getElementById("postal CodeInput");
-    
-        const firstNameInput = firstNameInputField.value;
-        const lastNameInput = lastNameInputField.value;
-        const addressInput = addressInputField.value;
-        const cityInput = cityInputField.value;
-        const countryInput = countryInputField.value;
-        const postalCodeInput = postalCodeInputField.value;
+    if (signUp) {
+      const firstNameInputField = document.getElementById("first NameInput");
+      const lastNameInputField = document.getElementById("last NameInput");
+      const addressInputField = document.getElementById("addressInput");
+      const cityInputField = document.getElementById("cityInput");
+      const countryInputField = document.getElementById("countryInput");
+      const postalCodeInputField = document.getElementById("postal CodeInput");
 
-    
-        if (firstNameInput === "") {
-            errorMessages.innerText = "First name cannot be empty";
-            errorMessagesDiv.style.display = "flex";
-            errorStatus = true;
-        }
-    
-        if (lastNameInput === "") {
-            errorMessages.innerText = "Last name cannot be empty";
-            errorMessagesDiv.style.display = "flex";
-            errorStatus = true;
-        }
-    
-        if (addressInput === "") {
-            errorMessages.innerText = "Address cannot be empty";
-            errorMessagesDiv.style.display = "flex";
-            errorStatus = true;
-        }
+      const firstNameInput = firstNameInputField.value;
+      const lastNameInput = lastNameInputField.value;
+      const addressInput = addressInputField.value;
+      const cityInput = cityInputField.value;
+      const countryInput = countryInputField.value;
+      const postalCodeInput = postalCodeInputField.value;
 
-        if (cityInput === "") {
-            errorMessages.innerText = "City cannot be empty";
-            errorMessagesDiv.style.display = "flex";
-            errorStatus = true;
-        }
+      if (firstNameInput === "") {
+        errorMessages.innerText = "First name cannot be empty";
+        errorMessagesDiv.style.display = "flex";
+        errorStatus = true;
+      }
 
-        if (countryInput === "") {
-            errorMessages.innerText = "Country cannot be empty";
-            errorMessagesDiv.style.display = "flex";
-            errorStatus = true;
-        }
+      if (lastNameInput === "") {
+        errorMessages.innerText = "Last name cannot be empty";
+        errorMessagesDiv.style.display = "flex";
+        errorStatus = true;
+      }
 
-        if (postalCodeInput === "") {
-            errorMessages.innerText = "Postal code cannot be empty";
-            errorMessagesDiv.style.display = "flex";
-            errorStatus = true;
-        }
+      if (addressInput === "") {
+        errorMessages.innerText = "Address cannot be empty";
+        errorMessagesDiv.style.display = "flex";
+        errorStatus = true;
+      }
 
-        if (postalCodeInput.length < 5 || postalCodeInput.length > 10) {
-            errorMessages.innerText = "Invalid postal code";
-            errorMessagesDiv.style.display = "flex";
-            errorStatus = true;
-        }
+      if (cityInput === "") {
+        errorMessages.innerText = "City cannot be empty";
+        errorMessagesDiv.style.display = "flex";
+        errorStatus = true;
+      }
+
+      if (countryInput === "") {
+        errorMessages.innerText = "Country cannot be empty";
+        errorMessagesDiv.style.display = "flex";
+        errorStatus = true;
+      }
+
+      if (postalCodeInput === "") {
+        errorMessages.innerText = "Postal code cannot be empty";
+        errorMessagesDiv.style.display = "flex";
+        errorStatus = true;
+      }
+
+      if (postalCodeInput.length < 5 || postalCodeInput.length > 10) {
+        errorMessages.innerText = "Invalid postal code";
+        errorMessagesDiv.style.display = "flex";
+        errorStatus = true;
+      }
     }
 
     if (passwordInput.length < 8 || passwordInput.length > 20) {
@@ -123,17 +122,17 @@ class Popup extends Component {
     if (!errorStatus) {
       // authentication database code
     }
-  }
+  };
 
-  handleChangeAuthenticationMethodButtonClick(numButton) {
+  const handleChangeAuthenticationMethodButtonClick = (numButton) => {
     if (numButton === 1) {
-      if (this.state.login || this.state.signUp) {
-        this.setState({
-          login: !this.state.login,
-          signUp: !this.state.signUp,
-        });
+      if (login || signUp) {
+        setLogin(!login);
+        setSignUp(!signUp);
       } else {
-        this.setState({ login: true, signUp: false, employeePopup: false });
+        setLogin(true);
+        setSignUp(false);
+        setEmployeePopup(false);
       }
 
       const employeeBottomMessage = document.getElementById(
@@ -143,7 +142,9 @@ class Popup extends Component {
     }
 
     if (numButton === 2) {
-      this.setState({ login: false, signUp: false, employeePopup: true });
+      setLogin(false);
+      setSignUp(false);
+      setEmployeePopup(true);
 
       const employeeBottomMessage = document.getElementById(
         "employeeBottomMessage"
@@ -151,99 +152,86 @@ class Popup extends Component {
       employeeBottomMessage.style.display = "none";
     }
 
-    const errorMessagesDiv = document.getElementById(
-      "errorMessagesDiv"
-    );
+    const errorMessagesDiv = document.getElementById("errorMessagesDiv");
 
     errorMessagesDiv.style.display = "none";
-  }
+  };
 
-  handleExitButtonClick() {
-    this.props.closePopup();
-  }
+  const handleExitButtonClick = () => {
+    props.closePopup();
+  };
 
-  render() {
-    return (
-      <div className={styles.popupContainer}>
-        <div className={styles.popupWindow}>
-          <div
-            className={styles.closeButtonDiv}
-            onClick={() => this.handleExitButtonClick()}
-          >
-            <AiOutlineClose className={styles.closeButton} />
-          </div>
-          <h1 className={styles.header}>
-            {this.state.login ? "Login" : ""}
-            {this.state.signUp ? "Sign Up" : ""}
-            {this.state.employeePopup ? "Employee Access" : ""}
-          </h1>
+  return (
+    <div className={styles.popupContainer}>
+      <div className={styles.popupWindow}>
+        <div
+          className={styles.closeButtonDiv}
+          onClick={() => handleExitButtonClick()}
+        >
+          <AiOutlineClose className={styles.closeButton} />
+        </div>
+        <h1 className={styles.header}>
+          {login ? "Login" : ""}
+          {signUp ? "Sign Up" : ""}
+          {employeePopup ? "Employee Access" : ""}
+        </h1>
 
-          <PopupInput inputType="email" />
-          <PopupInput inputType="password" />
+        <PopupInput inputType="email" />
+        <PopupInput inputType="password" />
 
-          {this.state.signUp ? <PopupInput inputType="first Name" /> : null}
+        {signUp ? <PopupInput inputType="first Name" /> : null}
 
-          {this.state.signUp ? <PopupInput inputType="last Name" /> : null}
+        {signUp ? <PopupInput inputType="last Name" /> : null}
 
-          {this.state.signUp ? <PopupInput inputType="address" /> : null}
+        {signUp ? <PopupInput inputType="address" /> : null}
 
-          {this.state.signUp ? <PopupInput inputType="city" /> : null}
+        {signUp ? <PopupInput inputType="city" /> : null}
 
-          {this.state.signUp ? <PopupInput inputType="country" /> : null}
+        {signUp ? <PopupInput inputType="country" /> : null}
 
-          {this.state.signUp ? <PopupInput inputType="postal Code" /> : null}
+        {signUp ? <PopupInput inputType="postal Code" /> : null}
 
-          <div className={styles.errorMessagesDiv} id="errorMessagesDiv">
-            <RiErrorWarningFill className={styles.errorIcon} />
-            <p className={styles.errorMessages} id="errorMessages">
-              {" "}
-              Hello world
-            </p>
-          </div>
+        <div className={styles.errorMessagesDiv} id="errorMessagesDiv">
+          <RiErrorWarningFill className={styles.errorIcon} />
+          <p className={styles.errorMessages} id="errorMessages">
+            {" "}
+            Hello world
+          </p>
+        </div>
 
-          <button
-            className={styles.mainButton}
-            onClick={() => this.handleMainButtonClick()}
-          >
-            {this.state.login ? "Login" : ""}
-            {this.state.signUp ? "Sign Up" : ""}
-            {this.state.employeePopup ? "Gain Access" : ""}
-          </button>
+        <button
+          className={styles.mainButton}
+          onClick={() => handleMainButtonClick()}
+        >
+          {login ? "Login" : ""}
+          {signUp ? "Sign Up" : ""}
+          {employeePopup ? "Gain Access" : ""}
+        </button>
 
-          <hr className={styles.lineBreak}></hr>
-          <div>
-            <p className={styles.popupBottomMessages}>
-              {this.state.login
-                ? "Don't have an account? "
-                : "Already a customer? "}{" "}
-              <button
-                className={styles.ChangeAuthenticationMethodButton}
-                onClick={() =>
-                  this.handleChangeAuthenticationMethodButtonClick(1)
-                }
-              >
-                <u>{this.state.login ? "Sign Up" : "Login"}</u>
-              </button>
-            </p>
-            <p
-              className={styles.popupBottomMessages}
-              id="employeeBottomMessage"
+        <hr className={styles.lineBreak}></hr>
+        <div>
+          <p className={styles.popupBottomMessages}>
+            {login ? "Don't have an account? " : "Already a customer? "}{" "}
+            <button
+              className={styles.ChangeAuthenticationMethodButton}
+              onClick={() => handleChangeAuthenticationMethodButtonClick(1)}
             >
-              Employee?
-              <button
-                className={styles.ChangeAuthenticationMethodButton}
-                onClick={() =>
-                  this.handleChangeAuthenticationMethodButtonClick(2)
-                }
-              >
-                <u>Gain Access</u>
-              </button>
-            </p>
-          </div>
+              <u>{login ? "Sign Up" : "Login"}</u>
+            </button>
+          </p>
+          <p className={styles.popupBottomMessages} id="employeeBottomMessage">
+            Employee?
+            <button
+              className={styles.ChangeAuthenticationMethodButton}
+              onClick={() => handleChangeAuthenticationMethodButtonClick(2)}
+            >
+              <u>Gain Access</u>
+            </button>
+          </p>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Popup;

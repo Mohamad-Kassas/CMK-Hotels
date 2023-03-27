@@ -1,0 +1,34 @@
+.userProfileContainer{
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.userProfileTextContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 15%;
+}
+
+.userProfileIcon{
+    color: white;
+    scale: 2.5;
+    padding-left: 5%;
+}
+
+.welcomeSpan{
+    color: white;
+    font-family: "FS ME Light", sans-serif;
+    font-size: 100%;
+}
+
+.nameSpan{
+    color: white;
+    font-family: "FS ME Regular", sans-serif;
+    font-size: 160%;
+}

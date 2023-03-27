@@ -1,67 +1,56 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import NavigationBar from "../Navigation Bar/NavigationBar";
 import CardGroup from "../Card Group/CardGroup";
 import Title from "../Bookings/Title";
 import styles from "../Styles/Landing Page Styles/LandingPage.module.css";
 import Popup from "../Popup/Popup";
 
-class LandingPage extends Component {
-  state = {
-    seen: false,
-    login: false,
-    signUp: false,
+function LandingPage() {
+
+  const [seen, setSeen] = useState(false);
+  const [login, setLogin] = useState(false);
+  const [signUp, setSignUp] = useState(false);
+
+  const closePopup = () => {
+    setSeen(!seen);
+    setLogin(false);
+    setSignUp(false);
   };
 
-  closePopup = () => {
-    this.setState({
-      seen: !this.state.seen,
-      login: false,
-      signUp: false,
-    });
+  const toggleLoginPopup = () => {
+    setSeen(!seen);
+    setLogin(!login);
+    setSignUp(false);
   };
 
-  toggleLoginPopup = () => {
-    console.log("Login button clicked");
-    this.setState({
-      seen: !this.state.seen,
-      login: !this.state.login,
-      signUp: false,
-    });
+  const toggleSignUpPopup = () => {
+    setSeen(!seen);
+    setSignUp(!signUp);
+    setLogin(false);
   };
 
-  toggleSignUpPopup = () => {
-    console.log("Sign Up button clicked");
-    this.setState({
-      seen: !this.state.seen,
-      signUp: !this.state.signUp,
-      login: false,
-    });
-  };
-
-  render() {
-    return (
-      <>
-        <NavigationBar
-          toggleLoginPopup={this.toggleLoginPopup}
-          toggleSignUpPopup={this.toggleSignUpPopup}
-        />
-        <CardGroup />
-        <div className={styles.titleContainer}>
-          <Title size="large" rating={-1} titleText="Our Brands"></Title>
-        </div>
-        <div>
-          {this.state.seen ? (
-            <Popup
-              login={this.state.login}
-              signUp={this.state.signUp}
-              employeePopup={false}
-              closePopup={this.closePopup}
-            />
-          ) : null}
-        </div>
-      </>
-    );
-  }
+  return (
+    <>
+      <NavigationBar
+        toggleLoginPopup={toggleLoginPopup}
+        toggleSignUpPopup={toggleSignUpPopup}
+      />
+      <CardGroup />
+      <div className={styles.titleContainer}>
+        <Title size="large" rating={-1} titleText="Our Brands"></Title>
+      </div>
+      <div>
+        {seen ? (
+          <Popup
+            login={login}
+            signUp={signUp}
+            employeePopup={false}
+            closePopup={closePopup}
+          />
+        ) : null}
+      </div>
+    </>
+  );
 }
 
 export default LandingPage;

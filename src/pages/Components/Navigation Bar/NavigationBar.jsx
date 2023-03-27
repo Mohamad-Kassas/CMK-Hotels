@@ -1,53 +1,63 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import styles from "../Styles/Navigation Bar Styles/NavigationBar.module.css";
 import Logo from "./Logo";
 import NavBarButton from "./NavBarButton";
+import UserProfile from "./Dropdown Menu/UserProfile";
 
-class NavigationBar extends Component {
-  homeButtonOnClick = () => {
+function NavigationBar(props) {
+  const [loggedIn, setLoggedIn] = useState(props.loggedIn);
+  const [name, setName] = useState(props.name);
+
+  const toggleLogin = () => {
+    setLoggedIn(!loggedIn);
+  };
+
+  const homeButtonOnClick = () => {
     console.log("Home button clicked");
   };
 
-  aboutUsButtonOnClick = () => {
+  const aboutUsButtonOnClick = () => {
     console.log("About Us button clicked");
   };
 
-  contactUsButtonOnClick = () => {
+  const contactUsButtonOnClick = () => {
     console.log("Contact Us button clicked");
   };
 
-  render() {
-    return (
-      <div className={styles.navigationBarContainer}>
-        <Logo></Logo>
-        <div className={styles.navigationButtonsContainer}>
-          <NavBarButton
-            buttonText="Home"
-            onClickFunction={() => this.homeButtonOnClick()}
-          ></NavBarButton>
-          <NavBarButton
-            buttonText="About Us"
-            onClickFunction={() => this.aboutUsButtonOnClick()}
-          ></NavBarButton>
-          <NavBarButton
-            buttonText="Contact Us"
-            onClickFunction={() => this.contactUsButtonOnClick()}
-          ></NavBarButton>
-        </div>
+  return (
+    <div className={styles.navigationBarContainer}>
+      <Logo></Logo>
+      <div className={styles.navigationButtonsContainer}>
+        <NavBarButton
+          buttonText="Home"
+          onClickFunction={homeButtonOnClick}
+        ></NavBarButton>
+        <NavBarButton
+          buttonText="About Us"
+          onClickFunction={aboutUsButtonOnClick}
+        ></NavBarButton>
+        <NavBarButton
+          buttonText="Contact Us"
+          onClickFunction={contactUsButtonOnClick}
+        ></NavBarButton>
+      </div>
+      {loggedIn ? (
+        <UserProfile name={name} />
+      ) : (
         <div className={styles.authenticationButtonsContainer}>
           <NavBarButton
             buttonText="Sign Up"
-            onClickFunction={() => this.props.toggleSignUpPopup()}
+            onClickFunction={() => props.toggleSignUpPopup()}
           ></NavBarButton>
           <div className={styles.lineBreak}></div>
           <NavBarButton
             buttonText="Login"
-            onClickFunction={() => this.props.toggleLoginPopup()}
+            onClickFunction={() => props.toggleLoginPopup()}
           ></NavBarButton>
         </div>
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
 }
 
 export default NavigationBar;
