@@ -1,3 +1,5 @@
+//Create Connection to the database
+//don't touch
 const { createPool } = require("mysql");
 const pool = createPool({
 

@@ -1,5 +1,7 @@
 import nc from "next-connect";
-import {getAllHotelChains} from '../../../controller/HotelChain/HotelChain'
+//importing function to getAllHotelChains
+import {getAllHotelChains} from '../../../controller/HotelChain/GetHotelChain'
 const handler = nc();
+//calling the method
 handler.get(getAllHotelChains);
 export default handler;
