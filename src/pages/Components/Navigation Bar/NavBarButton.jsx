@@ -1,26 +1,23 @@
 import React, { Component } from "react";
-import styles from "../Styles/Landing Page Styles/navBarButton.module.css";
+import styles from "../Styles/Navigation Bar Styles/NavBarButton.module.css"
 
-class navBarButtons extends Component {
+class NavBarButtons extends Component {
   state = {
-    styles: styles,
+    styles : styles,
     buttonText: this.props.buttonText,
-    onClickFunction: this.props.onClickFunction,
+    onClickFunction: this.props.onClickFunction
   };
-
+  
   getButtonStyleClass(buttonText) {
     switch (buttonText) {
       case "Login":
-        console.log("Login Case");
-        return "authenticationButton";
+        return "authenticationButton"
 
       case "Sign Up":
-        console.log("Sign Up Case");
-        return "authenticationButton";
-
+          return "authenticationButton"
+        
       default:
-        console.log("Default Case");
-        return "navigationButton";
+        return "navigationButton"
     }
   }
 
@@ -34,16 +31,11 @@ class navBarButtons extends Component {
 
   render() {
     return (
-      <button
-        className={eval(
-          "this.state.styles." + this.getButtonStyleClass(this.state.buttonText)
-        )}
-        onClick={() => this.state.onClickFunction()}
-      >
+      <button className={eval("this.state.styles." + this.getButtonStyleClass(this.state.buttonText))} onClick={() => this.state.onClickFunction()}>
         {this.state.buttonText}
       </button>
     );
   }
 }
 
-export default navBarButtons;
+export default NavBarButtons;

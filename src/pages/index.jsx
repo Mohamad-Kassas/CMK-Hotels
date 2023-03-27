@@ -1,4 +1,4 @@
-import Logo from "./Components/Landing Page/logo";
+import Logo from "./Components/Navigation Bar/Logo";
 
 export default function Home() {
   return (

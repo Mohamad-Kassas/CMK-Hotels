@@ -1,0 +1,38 @@
+.titleImageContainer{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+.paradiseHotels, .hyattHotels, .hotelGrandeur, .eliteHotels, .capitalHotels{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 70%;
+    width: 80%;
+    border-radius: 2vmin;
+    margin-bottom: 2vmin;
+    box-shadow: 0vmin 0vmin 2vmin 1vmin rgba(0, 0, 0, 0.3);
+}
+
+.paradiseHotels{
+    background-image: url("../../../../images/CMK\ Hotel\ Chains/paradise_hotels.jpeg");
+}
+
+.hyattHotels{
+    background-image: url("../../../../images/CMK\ Hotel\ Chains/hyatt_hotel.jpeg");
+}
+
+.hotelGrandeur{
+    background-image: url("../../../../images/CMK\ Hotel\ Chains/hotel_grandeur.jpeg");
+}
+
+.eliteHotels{
+    background-image: url("../../../../images/CMK\ Hotel\ Chains/elite_hotels.jpeg");
+}
+
+.capitalHotels{
+    background-image: url("../../../../images/CMK\ Hotel\ Chains/capital_hotels.png");
+}

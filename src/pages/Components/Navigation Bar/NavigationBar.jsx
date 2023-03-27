@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import styles from "../Styles/Landing Page Styles/navigationBar.module.css";
-
-import Logo from "./logo";
-import NavBarButton from "./navBarButton";
+import styles from "../Styles/Navigation Bar Styles/NavigationBar.module.css";
+import Logo from "./Logo";
+import NavBarButton from "./NavBarButton";
 
 class NavigationBar extends Component {
   homeButtonOnClick = () => {
@@ -15,14 +14,6 @@ class NavigationBar extends Component {
 
   contactUsButtonOnClick = () => {
     console.log("Contact Us button clicked");
-  };
-
-  signUpButtonOnClick = () => {
-    console.log("Sign Up button clicked");
-  };
-
-  loginButtonOnClick = () => {
-    console.log("Login button clicked");
   };
 
   render() {
@@ -46,12 +37,12 @@ class NavigationBar extends Component {
         <div className={styles.authenticationButtonsContainer}>
           <NavBarButton
             buttonText="Sign Up"
-            onClickFunction={() => this.signUpButtonOnClick()}
+            onClickFunction={() => this.props.toggleSignUpPopup()}
           ></NavBarButton>
           <div className={styles.lineBreak}></div>
           <NavBarButton
             buttonText="Login"
-            onClickFunction={() => this.loginButtonOnClick()}
+            onClickFunction={() => this.props.toggleLoginPopup()}
           ></NavBarButton>
         </div>
       </div>
