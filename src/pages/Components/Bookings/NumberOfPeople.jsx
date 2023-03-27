@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import styles from "../Styles/Bookings Stystate.les/Date.module.css";
+import styles from "../Styles/Bookings Styles/Date.module.css";
 import { TbEdit } from "react-icons/tb";
 
 function NumberOfPeople(props) {
-
   const [number] = useState(props.number);
 
   return (
