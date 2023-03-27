@@ -117,6 +117,7 @@ function Popup(props) {
       }
     } else {
       // authentication database code, check that email and password are in db and the user checks out
+      
     }
 
     if (!errorStatus) {

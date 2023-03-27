@@ -1,0 +1,9 @@
+.roomPicture {
+  width: 50%;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+  margin-left: 10px;
+  padding: 30px;
+  border-radius: 50px;
+}

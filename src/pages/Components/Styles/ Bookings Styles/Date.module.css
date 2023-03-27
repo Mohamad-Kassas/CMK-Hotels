@@ -1,0 +1,18 @@
+.dateText {
+  font-family: "FS Me Regular", sans-serif;
+  font-size: 18px;
+  color: #2c3333;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.dateContainer {
+  width: fit-content;
+  max-width: 350px;
+  display: flex;
+  align-items: center;
+}
+
+.editButton {
+  cursor: pointer;
+}
