@@ -3,14 +3,21 @@
   font-size: 18px;
   color: #2c3333;
   padding-right: 15px;
-  padding-left: 15px;
+}
+
+.dateTextBold {
+  font-family: "FS Me Regular", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: #2c3333;
+  padding-right: 15px;
 }
 
 .dateContainer {
   width: fit-content;
   max-width: 350px;
   display: flex;
-  align-items: center;
+  justify-content: flex-start;
 }
 
 .editButton {
