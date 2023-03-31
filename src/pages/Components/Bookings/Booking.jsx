@@ -8,6 +8,7 @@ import Name from "./Name";
 import NumberOfPeople from "./NumberOfPeople";
 import Status from "./Status";
 import styles from "../Styles/Bookings Styles/Booking.module.css";
+import Amenities from "./Amenities";
 
 function Booking(props) {
   const [isCustomer, setIsCustomer] = useState(props.isCustomer);
@@ -25,6 +26,7 @@ function Booking(props) {
   const [checkInDate, setCheckInDate] = useState(props.checkInDate);
   const [checkOutDate, setCheckOutDate] = useState(props.checkOutDate);
   const [roomNumber, setRoomNumber] = useState(props.roomNumber);
+  const [amenities, setAmenities] = useState(props.amenities);
 
   const [name, setName] = useState(props.name);
   const [numberOfPeople, setNumberOfPeople] = useState(props.numberOfPeople);
@@ -38,6 +40,7 @@ function Booking(props) {
         <Subtitle city={city} numberOfNights={numberOfNights} price={price} />
         <Date isCheckIn={true} isEditable={false} dateText={checkInDate} />
         <Date isCheckIn={false} isEditable={false} dateText={checkOutDate} />
+        <Amenities list={amenities} />
         <div className={styles.button}>
           <BookingButton buttonText="Book Now" />
         </div>
@@ -54,6 +57,7 @@ function Booking(props) {
         <Date isCheckIn={true} isEditable={true} dateText={checkInDate} />
         <Date isCheckIn={false} isEditable={true} dateText={checkOutDate} />
         <Status isCheckedIn={isCheckedIn} />
+        <Amenities list={amenities} />
         <div className={styles.button}>
           <BookingButton buttonText="Cancel" />
         </div>
@@ -67,6 +71,7 @@ function Booking(props) {
         <Subtitle city={city} numberOfNights={numberOfNights} price={price} />
         <Date isCheckIn={true} isEditable={false} dateText={checkInDate} />
         <Date isCheckIn={false} isEditable={false} dateText={checkOutDate} />
+        <Amenities list={amenities} />
         <div className={styles.button}>
           <BookingButton buttonText="Make Booking" />
         </div>

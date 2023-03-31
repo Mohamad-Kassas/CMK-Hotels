@@ -1,0 +1,30 @@
+.listText {
+  font-family: "FS Me Regular", sans-serif;
+  font-size: 18px;
+  color: #2c3333;
+  padding-right: 5px;
+  padding-bottom: 5px;
+}
+
+.textBold {
+  font-family: "FS Me Regular", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: #2c3333;
+  padding-right: 15px;
+}
+
+.amenitiesContainer {
+  width: fit-content;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.listContainer {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
