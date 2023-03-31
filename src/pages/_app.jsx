@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }) {
       price={350}
       checkInDate="07-09-2023"
       checkOutDate="09-09-2023"
-      roomNumber={1}
+      roomNumber={8}
       amenities={[
         { id: 1, text: "Wifi" },
         { id: 2, text: "Pool" },
