@@ -1,0 +1,79 @@
+.searchBarContainer {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  justify-content: center;
+}
+
+.inputsWithButtonContainerBookRooms,
+.inputsWithButtonContainerEmptyRooms,
+.inputsWithButtonContainerOccupiedRooms {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: fit-content;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.inputsWithButtonContainerBookRooms{
+  width: 80%;
+}
+
+.inputsWithButtonContainerEmptyRooms{
+  width: 70%;
+}
+
+.inputsWithButtonContainerOccupiedRooms{
+  width: 40%
+}
+
+.searchButton {
+  font-family: "FS Me Regular", sans-serif;
+  font-size: 18px;
+  padding: 10px;
+  background-color: #d3756b;
+  border: none;
+  color: #ffe4d6;
+  margin-right: 5px;
+  border-radius: 20px;
+  min-height: 45px;
+  min-width: 85px;
+  width: fit-content;
+  cursor: pointer;
+  transition: all 0.3s;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.searchButton:hover {
+  transform: scale(1.02);
+  box-shadow: 0 3px 2px #864646;
+  filter: brightness(100%);
+}
+
+.searchButton:active {
+  transform: scale(0.97);
+}
+
+.inputsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: rgba(240, 153, 125, 1) 0px 0px 17px 3px;
+}
+
+.DateRangeContainer {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  top: 12%;
+  left: calc(45vw - 350px);
+  box-shadow: 3px 5px 10px 0 rgba(0, 0, 0, 0.2);
+}
