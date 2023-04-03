@@ -1,0 +1,28 @@
+.starUnfilled {
+  color: #ffd6c2;
+  cursor: pointer;
+}
+.starUnfilled:hover {
+  color: #b06464;
+  transform: scale(1.02);
+}
+
+.starFilled {
+  color: #b06464;
+  cursor: pointer;
+}
+
+.ratingContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2vw;
+}
+
+.ratingText {
+  font-family: "FS Me Light", sans-serif;
+  font-size: 18pt;
+  color: #b06464;
+  padding-left: 10px;
+}
