@@ -3,10 +3,18 @@ import styles from "../Styles/Navigation Bar Styles/NavigationBar.module.css";
 import Logo from "./Logo";
 import NavBarButton from "./NavBarButton";
 import UserProfile from "./Dropdown Menu/UserProfile";
+import DropdownMenu from "./Dropdown Menu/DropdownMenu";
 
 function NavigationBar(props) {
+  const [showDropdown, setShowDropdown] = useState(false);
   const [loggedIn, setLoggedIn] = useState(props.loggedIn);
   const [name, setName] = useState(props.name);
+  const [customer, setCustomer] = useState(props.customer);
+  const [employee, setEmployee] = useState(props.employee);
+
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
 
   const toggleLogin = () => {
     setLoggedIn(!loggedIn);
@@ -42,7 +50,12 @@ function NavigationBar(props) {
         ></NavBarButton>
       </div>
       {loggedIn ? (
-        <UserProfile name={name} />
+        <>
+          <UserProfile name={name} onClickFunction={toggleDropdown}/>
+          {showDropdown ? (
+            <DropdownMenu customer={customer} employee={employee} />
+          ) : null}
+        </>
       ) : (
         <div className={styles.authenticationButtonsContainer}>
           <NavBarButton
