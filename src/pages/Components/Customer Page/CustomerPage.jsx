@@ -7,10 +7,6 @@ import styles from "../Styles/Customer Page Styles/CustomerPage.module.css"
 function CustomerPage(props) {
   const [name, setName] = useState(props.name)
 
-  const handleSearchButtonClicked = () => {
-    setSearchButtonClicked(true)
-  }
-
   return (
     <>
       <NavigationBar
