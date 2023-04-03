@@ -23,10 +23,10 @@ function DropdownItem(props) {
     }
   }
   return (
-    <li className={styles.DropdownItem}>
+    <div className={styles.dropdownItem} onClick={props.onClickFunction}>
       {getIcon(text)}
-      <span className={styles.DropdownItemText}>{text}</span>
-    </li>
+      <span className={styles.dropdownItemText}>{text}</span>
+    </div>
   );
 }
 
