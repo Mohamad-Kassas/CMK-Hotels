@@ -6,8 +6,7 @@ import SearchBar from "./Components/Search Bar/SearchBar";
 
 export default function App({ Component, pageProps }) {
   return (
-    <SearchBar bookRoomsSearchBar={true} />
-//     <LandingPage />
+    <LandingPage />
     // <Booking
     //   isEmployeeEmptyRoom={true}
     //   name="John Doe"
