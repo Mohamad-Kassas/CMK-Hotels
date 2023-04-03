@@ -1,18 +1,19 @@
 .dropdownContainer {
   background-color: white;
   font-family: "FS Me Light", sans-serif;
-  font-size: 15pt;
-  width: 20vw;
+  font-size: 14pt;
+  width: 15vw;
   text-align: left;
   position: relative;
   border-radius: 15px;
   box-shadow: 2px 3px 2px #d3756b;
   cursor: pointer;
+  margin-top: 15px;
 }
 
 .dropdownInput {
   font-family: "FS Me Light", sans-serif;
-  font-size: 15pt;
+  font-size: 14px;
   color: #b06464;
   padding: 10px;
   display: flex;
@@ -30,13 +31,13 @@
   overflow: auto;
   max-height: 150px;
   background-color: #fff;
-  z-index: 99;
+  z-index: 1;
   cursor: pointer;
 }
 
 .dropdownItem {
   font-family: "FS Me Light", sans-serif;
-  font-size: 18pt;
+  font-size: 14px;
   padding: 10px;
   cursor: pointer;
 }
@@ -58,7 +59,7 @@
 
 .dropdownTagItem {
   font-family: "FS Me Light", sans-serif;
-  font-size: 18pt;
+  font-size: 14px;
   color: #2c3333;
   background-color: #ffd6c2;
   padding: 2px 4px;

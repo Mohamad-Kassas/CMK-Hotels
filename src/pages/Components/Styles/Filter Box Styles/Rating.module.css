@@ -1,6 +1,7 @@
 .starUnfilled {
   color: #ffd6c2;
   cursor: pointer;
+  transition: 0.1s linear;
 }
 .starUnfilled:hover {
   color: #b06464;
@@ -10,6 +11,11 @@
 .starFilled {
   color: #b06464;
   cursor: pointer;
+  transition: 0.1s linear;
+}
+
+.starFilled:hover{
+  filter: brightness(0.7);
 }
 
 .ratingContainer {
@@ -17,7 +23,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding-bottom: 2vw;
+  margin-top: 15px;
 }
 
 .ratingText {
