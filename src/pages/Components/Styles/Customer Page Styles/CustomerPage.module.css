@@ -1,5 +1,5 @@
 .searchBarContainer {
-    margin-top: 10%;
+    margin-top: 8%;
 }
 
 .cardGroupContainer {
@@ -14,3 +14,22 @@
     margin-top: 2%;
 }
 
+.filterBookingsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2%;
+
+    width: 100%;
+    height: 60%;
+}
+
+.filterContainer{
+    width: fit-content;
+    height: fit-content;
+}
+
+.singleBookingContainer {
+    scale: 0.9;
+}
