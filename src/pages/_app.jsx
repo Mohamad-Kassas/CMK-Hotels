@@ -2,10 +2,11 @@ import "@/styles/globals.css";
 import LandingPage from "./Components/Landing Page/LandingPage";
 import Booking from "./Components/Bookings/Booking";
 import FilterBox from "./Components/Filter Box/FilterBox";
+import EmployeePage from "./Components/Employee Page/EmployeePage";
 
 export default function App({ Component, pageProps }) {
   return (
-    <LandingPage />
+    //<LandingPage />
     // <Booking
     //   isEmployeeEmptyRoom={true}
     //   name="John Doe"
@@ -33,5 +34,6 @@ export default function App({ Component, pageProps }) {
     //   ]}
     // />
     //<FilterBox />
+    <EmployeePage name={"John Doe"} hotelChain={"Capital Hotels"} />
   );
 }

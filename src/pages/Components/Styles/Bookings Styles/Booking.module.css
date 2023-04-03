@@ -9,6 +9,28 @@
   width: 65vw;
 }
 
+.emptyRoomBookingContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid #d3756b;
+  height: fit-content;
+  width: 90%;
+}
+
+.bookedRoomBookingContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid #d3756b;
+  height: fit-content;
+  width: 30vw;
+}
+
 .textContainer {
   height: 100%;
   gap: 0.7rem;

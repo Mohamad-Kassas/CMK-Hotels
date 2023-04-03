@@ -51,7 +51,7 @@ function NavigationBar(props) {
       </div>
       {loggedIn ? (
         <>
-          <UserProfile name={name} onClickFunction={toggleDropdown}/>
+          <UserProfile name={name} onClickFunction={toggleDropdown} />
           {showDropdown ? (
             <DropdownMenu customer={customer} employee={employee} />
           ) : null}

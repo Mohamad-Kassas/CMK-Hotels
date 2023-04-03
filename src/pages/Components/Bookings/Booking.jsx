@@ -47,8 +47,7 @@ function Booking(props) {
       </div>
     </div>
   ) : isEmployeeBookedRoom ? (
-    <div className={styles.bookingContainer}>
-      <RoomPicture roomNumber={roomNumber} />
+    <div className={styles.bookedRoomBookingContainer}>
       <div className={styles.textContainer}>
         <Title titleText={titleText} size="medium" rating={-1} />
         <Subtitle city={city} numberOfNights={numberOfNights} price={price} />
@@ -64,8 +63,7 @@ function Booking(props) {
       </div>
     </div>
   ) : isEmployeeEmptyRoom ? (
-    <div className={styles.bookingContainer}>
-      <RoomPicture roomNumber={roomNumber} />
+    <div className={styles.emptyRoomBookingContainer}>
       <div className={styles.textContainer}>
         <Title titleText={titleText} size="medium" rating={-1} />
         <Subtitle city={city} numberOfNights={numberOfNights} price={price} />

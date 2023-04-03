@@ -19,7 +19,7 @@ function DateRangeInput(props) {
     } else if (leftOfSearchBar) {
       return styles.DateRangeInputLeft;
     }
-  };
+  }
 
   useEffect(() => {
     setRange(props.range);
