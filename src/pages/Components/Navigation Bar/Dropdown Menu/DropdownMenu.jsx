@@ -22,6 +22,19 @@ function DropdownMenu(props) {
     console.log("Customer Log Out clicked");
   };
 
+  const employeeProfileOnClick = () => {
+    console.log("Employee Profile clicked");
+  };
+
+  const employeeSearchRoomsOnClick = () => {
+    console.log("Employee Search Rooms clicked");
+  };
+
+  const employeeLogOutOnClick = () => {
+    console.log("Employee Log Out clicked");
+  };
+
+
   return (
     <div className={styles.dropdownMenu}>
       {customer ? (
@@ -32,7 +45,13 @@ function DropdownMenu(props) {
           <DropdownItem text={"Log Out"} onClickFunction={customerLogOutOnClick} />
         </div>
       ) : null}
-      {/** Put employee stuff instead of null above */}
+      {employee ? (
+        <div className={styles.dropdownEmployeeMenu}>
+          <DropdownItem text={"My Profile"} onClickFunction={employeeProfileOnClick} />
+          <DropdownItem text={"Search rooms"} onClickFunction={employeeSearchRoomsOnClick} />
+          <DropdownItem text={"Log Out"} onClickFunction={employeeLogOutOnClick} />
+        </div>
+      ) : null}
     </div>
   );
 }
