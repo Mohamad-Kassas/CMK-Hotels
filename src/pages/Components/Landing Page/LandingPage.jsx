@@ -1,15 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavigationBar from "../Navigation Bar/NavigationBar";
 import CardGroup from "../Card Group/CardGroup";
 import Title from "../Bookings/Title";
 import styles from "../Styles/Landing Page Styles/LandingPage.module.css";
 import Popup from "../Popup/Popup";
-
 function LandingPage() {
 
   const [seen, setSeen] = useState(false);
   const [login, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false);
+
+  useEffect(() => {
+
+    const getData = async (url) => {
+      const res = await fetch(url)
+      const results = await res.json();
+      console.log(results);
+    
+    }
+
+    getData("http://localhost:3000/api/Mohamed")
+
+  }, [])
 
   const closePopup = () => {
     setSeen(!seen);
