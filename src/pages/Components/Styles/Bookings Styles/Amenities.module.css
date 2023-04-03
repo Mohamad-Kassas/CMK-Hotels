@@ -1,11 +1,12 @@
-.dateText {
+.listText {
   font-family: "FS Me Regular", sans-serif;
   font-size: 18px;
   color: #2c3333;
-  padding-right: 15px;
+  padding-right: 5px;
+  padding-bottom: 5px;
 }
 
-.dateTextBold {
+.textBold {
   font-family: "FS Me Regular", sans-serif;
   font-weight: bold;
   font-size: 18px;
@@ -13,13 +14,17 @@
   padding-right: 15px;
 }
 
-.dateContainer {
+.amenitiesContainer {
   width: fit-content;
-  max-width: 350px;
   display: flex;
   justify-content: flex-start;
 }
 
-.editButton {
-  cursor: pointer;
+.listContainer {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
 }

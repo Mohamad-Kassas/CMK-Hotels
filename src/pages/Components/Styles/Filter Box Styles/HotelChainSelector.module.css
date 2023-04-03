@@ -1,0 +1,101 @@
+.dropdownContainer {
+  background-color: white;
+  font-family: "FS Me Light", sans-serif;
+  font-size: 15pt;
+  width: 20vw;
+  text-align: left;
+  position: relative;
+  border-radius: 15px;
+  box-shadow: 2px 3px 2px #d3756b;
+  cursor: pointer;
+}
+
+.dropdownInput {
+  font-family: "FS Me Light", sans-serif;
+  font-size: 15pt;
+  color: #b06464;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.dropdownMenu {
+  position: absolute;
+  transform: translateY(4px);
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: auto;
+  max-height: 150px;
+  background-color: #fff;
+  z-index: 99;
+  cursor: pointer;
+}
+
+.dropdownItem {
+  font-family: "FS Me Light", sans-serif;
+  font-size: 18pt;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: #f0997d;
+}
+
+.dropdownItem.selected {
+  background-color: #f0997d;
+  color: #fff;
+}
+
+.dropdownTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.dropdownTagItem {
+  font-family: "FS Me Light", sans-serif;
+  font-size: 18pt;
+  color: #2c3333;
+  background-color: #ffd6c2;
+  padding: 2px 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.dropdownTagClose {
+  display: flex;
+  align-items: center;
+}
+
+.searchBox {
+  padding: 5px;
+  background-color: #eee;
+}
+
+.searchBoxInput {
+  font-family: "FS Me Light", sans-serif;
+  font-size: 18pt;
+  color: #b06464;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.App {
+  font-family: "FS Me Light", sans-serif;
+  font-size: 15pt;
+  text-align: center;
+  display: flex;
+  column-gap: 10px;
+}
+
+.App > * {
+  flex: 1;
+}
