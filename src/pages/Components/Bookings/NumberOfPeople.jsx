@@ -7,10 +7,8 @@ function NumberOfPeople(props) {
 
   return (
     <div className={styles.dateContainer}>
-      <div className={styles.dateText}>
-        {"Number of People: "}
-        {number}
-      </div>
+      <div className={styles.dateTextBold}>{"Number of People:  "}</div>
+      <div className={styles.dateText}>{number}</div>
       <div className={styles.editButton}>
         <TbEdit color="#864646" />
       </div>
