@@ -1,13 +1,10 @@
 import "@/styles/globals.css";
 import LandingPage from "./Components/Landing Page/LandingPage";
-import UserDropdown from "./Components/Navigation Bar/Dropdown Menu/UserDropdown";
 import Booking from "./Components/Bookings/Booking";
 import FilterBox from "./Components/Filter Box/FilterBox";
 
 export default function App({ Component, pageProps }) {
   return (
-    // <UserDropdown name={"Anjali"} customer={true} employee={false}/>
-    // <NavigationBar name={"Anjali"} loggedIn={true}/>
     <LandingPage />
     // <Booking
     //   isEmployeeEmptyRoom={true}
