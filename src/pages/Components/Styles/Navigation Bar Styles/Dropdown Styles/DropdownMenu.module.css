@@ -1,16 +1,20 @@
 .dropdownMenu{
     position: absolute;
-    top: 100px;
-    right: 20px;
+    top: 120%;
+    right: 12vw;
     left: auto;
     float: left;
     color: #212529;
     text-align: left;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.15);
+    
     border-radius: 0.35rem;
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,.175);
+
+    width: 20%;
+    max-width: 250px;
+    min-width: 200px;
 }
 
 .dropdownMenu::before{
@@ -23,8 +27,14 @@
     margin-right: 0.5rem;
     vertical-align: 0.255em;
     content: "";
-    border-right: 0.3em solid transparent;
-    border-bottom: 0.3em solid;
-    border-left: 0.3em solid transparent;
-    
+    border-right: 0.4em solid transparent;
+    border-bottom: 0.4em solid;
+    border-left: 0.4em solid transparent;
+}
+
+.dropdownCustomerMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
 }
