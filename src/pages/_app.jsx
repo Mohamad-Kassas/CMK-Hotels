@@ -34,6 +34,9 @@ export default function App({ Component, pageProps }) {
     //   ]}
     // />
     //<FilterBox />
-    <EmployeePage name={"John Doe"} hotelChain={"Capital Hotels"} />
+    <EmployeePage
+      employeeName={"John Doe"}
+      employeeHotelChain={"Hyatt Hotel"}
+    />
   );
 }

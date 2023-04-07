@@ -90,6 +90,7 @@ function HotelChainSelector(props) {
     e.stopPropagation();
     const newValue = removeOption(option);
     setSelectedValue(newValue);
+    props.setFilterHotelChains(newValue);
     onChange(newValue);
   };
 
@@ -105,6 +106,7 @@ function HotelChainSelector(props) {
       newValue = option;
     }
     setSelectedValue(newValue);
+    props.setFilterHotelChains(newValue);
     onChange(newValue);
   };
 
