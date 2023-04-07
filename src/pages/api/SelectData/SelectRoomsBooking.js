@@ -1,17 +1,21 @@
 import mysql from 'mysql2/promise'
 require('dotenv').config()
 
-//Done 
-//Returns all userNames /Email Address and Passwords for all Employees,
-//http://localhost:3000/api/SelectEmployeeToLogin
+//Returns all bookings associated with a room
+//Call with some bookings
+//http://localhost:3000/api/SelectData/SelectRoomsBooking?hotelRoomID=HR101
+// Call with no bookings 
+//http://localhost:3000/api/SelectData/SelectRoomsBooking?hotelRoomID=HR105
 export default async function handler (req, res) {
+
+    const hotelRoomID = req.query.hotelRoomID;
 
     const connection = await mysql.createConnection(process.env.DATABASE_URL)
 
     try {
-        const query = "SELECT userName,userPassword FROM Employee"
-        
-        const values = []
+        const query = "SELECT * FROM Booking Where Booking.hotelRoomID = ?";
+
+        const values = [hotelRoomID]
 
         const [results] = await (await connection).execute(query,values)
 
@@ -23,4 +27,3 @@ export default async function handler (req, res) {
         res.status(500).json({error: error.message})
     }
 }
-
