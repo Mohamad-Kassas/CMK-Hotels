@@ -7,11 +7,6 @@ function NumberOfRooms() {
   const [minRooms, setMinRooms] = useState(0);
   const [maxRooms, setMaxRooms] = useState(0);
 
-  useEffect(() => {
-    console.log(minRooms);
-    console.log(maxRooms);
-  }, [minRooms, maxRooms]);
-
   return (
     <div className={styles.container}>
       <CostInput text="Min Rooms " handleOnChange={setMinRooms} />

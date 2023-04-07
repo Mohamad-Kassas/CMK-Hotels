@@ -7,11 +7,6 @@ function Cost() {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
 
-  useEffect(() => {
-    console.log(minPrice);
-    console.log(maxPrice);
-  }, [minPrice, maxPrice]);
-
   return (
     <div className={styles.container}>
       <CostInput text="Min Price" handleOnChange={setMinPrice} />
