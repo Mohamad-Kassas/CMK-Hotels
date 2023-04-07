@@ -17,6 +17,7 @@ function Rating() {
     setStar4Filled(false);
     setStar5Filled(false);
     setRating(1);
+    props.setFilterRating(1);
   };
 
   const handleStar2Click = () => {
@@ -26,6 +27,7 @@ function Rating() {
     setStar4Filled(false);
     setStar5Filled(false);
     setRating(2);
+    props.setFilterRating(2);
   };
 
   const handleStar3Click = () => {
@@ -35,6 +37,7 @@ function Rating() {
     setStar4Filled(false);
     setStar5Filled(false);
     setRating(3);
+    props.setFilterRating(3);
   };
 
   const handleStar4Click = () => {
@@ -44,6 +47,7 @@ function Rating() {
     setStar4Filled(true);
     setStar5Filled(false);
     setRating(4);
+    props.setFilterRating(4);
   };
 
   const handleStar5Click = () => {
@@ -53,6 +57,7 @@ function Rating() {
     setStar4Filled(true);
     setStar5Filled(true);
     setRating(5);
+    props.setFilterRating(5);
   };
 
   return (
