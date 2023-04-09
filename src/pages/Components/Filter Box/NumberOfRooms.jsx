@@ -3,7 +3,7 @@ import CostInput from "./CostInput";
 import { BsDash } from "react-icons/bs";
 import styles from "../Styles/Filter Box Styles/Cost.module.css";
 
-function NumberOfRooms() {
+function NumberOfRooms(props) {
   const [minRooms, setMinRooms] = useState(0);
   const [maxRooms, setMaxRooms] = useState(0);
 

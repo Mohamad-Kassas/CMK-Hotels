@@ -49,11 +49,11 @@ function SearchBar(props) {
   };
 
   const handleSearchButtonClick = () => {
-    console.log("city: " + city)
-    console.log("number of people: " + numberOfPeople)
-    console.log("start date: " + range[0].startDate)
-    console.log("end date: " + range[0].endDate)
-  }
+    console.log("city: " + city);
+    console.log("number of people: " + numberOfPeople);
+    console.log("start date: " + range[0].startDate);
+    console.log("end date: " + range[0].endDate);
+  };
 
   const getInputsStyle = () => {
     if (bookRoomsSearchBar) {
@@ -71,12 +71,7 @@ function SearchBar(props) {
         <form id="searchBarFormID" className={styles.inputsContainer}>
           {bookRoomsSearchBar ? (
             <>
-              <CityInput
-                updateCity={(e) => {
-                  setCity(e)
-                  props.setCity(e)
-                }}
-              />{" "}
+              <CityInput updateCity={(e) => setCity(e)} />{" "}
               <DateRangeInput
                 middleOfSearchBar={true}
                 range={range}
@@ -84,8 +79,8 @@ function SearchBar(props) {
               />
               <NumberOfPeopleInput
                 handleOnChange={(e) => {
-                  setNumberOfPeople(e)
-                  props.setNumberOfPeople(e)
+                  setNumberOfPeople(e);
+                  props.updateNumberOfPeople();
                 }}
                 rightOfSearchBar={true}
               />
@@ -99,10 +94,7 @@ function SearchBar(props) {
                 setOpenFunction={() => toggleOpen()}
               />
               <NumberOfPeopleInput
-                handleOnChange={(e) => {
-                  setNumberOfPeople(e)
-                  props.setNumberOfPeople(e)
-                }}
+                handleOnChange={(e) => setNumberOfPeople(e)}
                 rightOfSearchBar={true}
               />
             </>
@@ -113,7 +105,7 @@ function SearchBar(props) {
               <NumberOfPeopleInput
                 handleOnChange={(e) => {
                   setNumberOfPeople(e);
-                  props.updateupdateRoomNumber(e);
+                  props.updateRoomNumber(e);
                 }}
                 allOfSearchBar={true}
               />
@@ -132,9 +124,8 @@ function SearchBar(props) {
           {open && (
             <DateRange
               onChange={(item) => {
-                setRange([item.selection])
-                props.setStartDate(item.selection.startDate)
-                props.setEndDate(item.selection.endDate)
+                setRange([item.selection]);
+                props.setDateRange(item.selection);
               }}
               editableDateInputs={true}
               moveRangeOnFirstSelection={false}

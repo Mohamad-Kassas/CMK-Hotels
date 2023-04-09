@@ -6,7 +6,7 @@ import Rating from "./Rating";
 import BookingButton from "../Bookings/BookingButton";
 import styles from "../Styles/Filter Box Styles/FilterBox.module.css";
 
-function FilterBox() {
+function FilterBox(props) {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1000000);
   const [minRooms, setMinRooms] = useState(0);

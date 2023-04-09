@@ -2,7 +2,7 @@ import RatingStar from "./RatingStar";
 import styles from "../Styles/Filter Box Styles/Rating.module.css";
 import { useState } from "react";
 
-function Rating() {
+function Rating(props) {
   const [rating, setRating] = useState(0);
   const [star1Filled, setStar1Filled] = useState(false);
   const [star2Filled, setStar2Filled] = useState(false);

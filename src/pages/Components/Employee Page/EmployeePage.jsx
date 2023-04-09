@@ -14,18 +14,17 @@ function EmployeePage(props) {
   );
 
   const [noInput, setNoInput] = useState(false);
-  const [emptyRoomSearch, setEmptyRoomSearch] = useState(false);
-  const [occupiedRoomSearch, setOccupiedRoomSearch] = useState(false);
+  const [emptyRoomSearch, setEmptyRoomSearch] = useState(true);
+  const [occupiedRoomSearch, setOccupiedRoomSearch] = useState(true);
 
   const [emptyRoomNumberOfPeople, setEmptyRoomNumberOfPeople] = useState(0);
   const [occupiedRoomNumber, setOccupiedRoomNumber] = useState(0);
-
-  const [emptyRoomDateRange, setEmptyRoomDateRange] = useState("00/00/0000");
+  const [dateRange, setDateRange] = useState(new Date());
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1000000);
   const [minRooms, setMinRooms] = useState(0);
   const [maxRooms, setMaxRooms] = useState(1000000);
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(1);
   const [hotelChains, setHotelChains] = useState([
     "Paradise Hotels",
     "Hyatt Hotel",
@@ -84,7 +83,14 @@ function EmployeePage(props) {
       </div>
       <div className={styles.searchContainer}>
         <div className={styles.filterBoxContainer}>
-          <FilterBox />
+          <FilterBox
+            setMinPrice={setMinPrice}
+            setMaxPrice={setMaxPrice}
+            setMinRooms={setMinRooms}
+            setMaxRooms={setMaxRooms}
+            setRating={setRating}
+            setHotelChains={setHotelChains}
+          />
         </div>
         <div className={styles.searchAndResultsContainer}>
           <div className={styles.titleContainer}>
@@ -95,6 +101,7 @@ function EmployeePage(props) {
               emptyRoomsSearchBar={true}
               searchOnClick={emptyRoomSearchClick}
               updateNumberOfPeople={setEmptyRoomNumberOfPeople}
+              setDateRange={setDateRange}
             />
           </div>
           {emptyRoomSearch ? (
@@ -192,7 +199,7 @@ function EmployeePage(props) {
             />
           </div>
 
-          {emptyRoomSearch ? (
+          {occupiedRoomSearch ? (
             <div className={styles.resultsContainer}>
               <Booking
                 isEmployeeBookedRoom={true}
