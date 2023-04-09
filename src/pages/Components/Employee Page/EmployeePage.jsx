@@ -14,8 +14,8 @@ function EmployeePage(props) {
   );
 
   const [noInput, setNoInput] = useState(false);
-  const [emptyRoomSearch, setEmptyRoomSearch] = useState(true);
-  const [occupiedRoomSearch, setOccupiedRoomSearch] = useState(true);
+  const [emptyRoomSearch, setEmptyRoomSearch] = useState(false);
+  const [occupiedRoomSearch, setOccupiedRoomSearch] = useState(false);
 
   const [emptyRoomNumberOfPeople, setEmptyRoomNumberOfPeople] = useState(0);
   const [occupiedRoomNumber, setOccupiedRoomNumber] = useState(0);

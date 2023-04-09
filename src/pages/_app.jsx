@@ -3,6 +3,7 @@ import LandingPage from "./Components/Landing Page/LandingPage";
 import Booking from "./Components/Bookings/Booking";
 import FilterBox from "./Components/Filter Box/FilterBox";
 import EmployeePage from "./Components/Employee Page/EmployeePage";
+import CustomerViewBookings from "./Components/Customer Page/CustomerViewBookings";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -34,9 +35,10 @@ export default function App({ Component, pageProps }) {
     //   ]}
     // />
     //<FilterBox />
-    <EmployeePage
-      employeeName={"John Doe"}
-      employeeHotelChain={"Hyatt Hotel"}
-    />
+    // <EmployeePage
+    //   employeeName={"John Doe"}
+    //   employeeHotelChain={"Hyatt Hotel"}
+    // />
+    <CustomerViewBookings customerName={"John Doe"} />
   );
 }
