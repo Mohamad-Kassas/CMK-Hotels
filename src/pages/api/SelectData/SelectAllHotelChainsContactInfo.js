@@ -2,7 +2,7 @@ import mysql from 'mysql2/promise'
 require('dotenv').config()
 
 //Done
-//http://localhost:3000/api//SelectData/SelectAllHotelChainsContactInfo
+//http://localhost:3000/api/SelectData/SelectAllHotelChainsContactInfo
 
 export default async function handler (req, res) {
 

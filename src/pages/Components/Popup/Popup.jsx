@@ -4,10 +4,29 @@ import { AiOutlineClose } from "react-icons/ai";
 import { RiErrorWarningFill } from "react-icons/ri";
 import PopupInput from "./PopupInput";
 
+
+
 function Popup(props) {
   const [login, setLogin] = useState(props.login);
   const [signUp, setSignUp] = useState(props.signUp);
   const [employeePopup, setEmployeePopup] = useState(props.employeePopup);
+
+  const [customerData, setCustomerData] = useState(null);
+  const [shouldFetchCustomerData, setShouldFetchCustomerData] = useState(false);
+
+  const [employeeData, setEmployeeData] = useState(null);
+  const [shouldFetchEmployeeData, setShouldFetchEmployeeData] = useState(false);
+
+  const [shouldInsertACustomerData, setShouldInsertACustomerData] = useState(false);
+
+  const [emailInput, setEmailInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+  const [firstNameInput, setFirstNameInput] = useState('');
+  const [lastNameInput, setLastNameInput] = useState('');
+  const [addressInput, setAddressInput] = useState('');
+  const [cityInput, setCityInput] = useState('');
+  const [countryInput, setCountryInput] = useState('');
+  const [postalCodeInput, setPostalCodeInput] = useState('');
 
   useEffect(() => {
     setLogin(props.login);
@@ -15,10 +34,92 @@ function Popup(props) {
     setEmployeePopup(props.employeePopup);
   }, []);
 
+    useEffect(() => {
+
+      if (shouldFetchCustomerData) {
+        const getData = async (url) => {
+          const res = await fetch(url)
+          const results = await res.json();
+
+          //If the length is 1, then there is 1 user who exists
+          //
+          if (results.result.length == 1) {
+            console.log(results.result[0].userName);
+            console.log(results.result[0].userPassword);
+            setCustomerData(results.result[0])
+            console.log(customerData)
+          }
+
+          //User not found
+          else {
+            console.log("Error: No results found.");
+          }
 
 
+        }
+    
+        getData("http://localhost:3000/api/SelectData/SelectAllCustomerInfoIfTheyExist?userName=" + emailInput + "&userPassword=" + passwordInput)
+
+        //getData("http://localhost:3000/api/SelectData/SelectAllCustomerInfoIfTheyExist?userName=tbaker&userPassword=password")
+      }
+
+      setShouldFetchCustomerData(false);
   
+    }, [shouldFetchCustomerData,emailInput,passwordInput])
 
+    useEffect(() => {
+
+      if (shouldFetchEmployeeData) {
+        const getData = async (url) => {
+          const res = await fetch(url)
+          const results = await res.json();
+
+          //If the length is 1, then there is 1 user who exists
+          //
+          if (results.result.length == 1) {
+            console.log(results.result[0].userName);
+            console.log(results.result[0].userPassword);
+            setEmployeeData(results.result[0])
+            console.log(employeeData)
+          }
+
+          //User not found
+          else {
+            console.log("Error: No results found.");
+          }
+
+
+        }
+    
+        getData("http://localhost:3000/api/SelectData/SelectAllEmployeeInfoIfTheyExist?userName=" + emailInput + "&userPassword=" + passwordInput)
+
+        //http://localhost:3000/api/SelectData/SelectAllEmployeeInfoIfTheyExist?userName=johndoe&userPassword=pass123
+      }
+
+      setShouldFetchEmployeeData(false);
+  
+    }, [shouldFetchEmployeeData,emailInput,passwordInput])
+
+
+    useEffect(() => {
+
+      if (shouldInsertACustomerData) {
+        const getData = async (url) => {
+          const res = await fetch(url)
+          const results = await res.json();      
+
+        }
+    
+        getData("http://localhost:3000/api/Insert/InsertCustomer?customerID="+ + "&username="+ +"&userPassword="+ +"&firstName="+ + "&lastName=" + +"&street=" + +"&city="+ + "&country=Canada&postalCode="+ +"&ssn=123456789")
+
+        //http://localhost:3000/api/Insert/InsertCustomer?customerID=12346&username=johndoe&userPassword=password&firstName=John&lastName=Doe&street=123%20Main%20St&city=New%20York&country=USA&postalCode=10001&ssn=123456789
+}
+
+      setShouldInsertACustomerData(false);
+  
+    }, [setShouldInsertACustomerData,emailInput,passwordInput,firstNameInput,lastNameInput,addressInput,cityInput,countryInput,postalCodeInput])
+  
+  //On submit button
   const handleMainButtonClick = () => {
     const emailInputField = document.getElementById("emailInput");
     const passwordInputField = document.getElementById("passwordInput");
@@ -26,9 +127,11 @@ function Popup(props) {
     const emailInput = emailInputField.value;
     const passwordInput = passwordInputField.value;
 
-    const errorMessagesDiv = document.getElementById("errorMessagesDiv");
+    setEmailInput(emailInputField.value);
+    setPasswordInput(passwordInputField.value);
 
     const errorMessages = document.getElementById("errorMessages");
+    const errorMessagesDiv = document.getElementById("errorMessagesDiv");
 
     let errorStatus = false;
 
@@ -49,6 +152,15 @@ function Popup(props) {
       const cityInput = cityInputField.value;
       const countryInput = countryInputField.value;
       const postalCodeInput = postalCodeInputField.value;
+
+      setFirstNameInput(firstNameInputField.value);
+      setLastNameInput(lastNameInputField.value);
+      setAddressInput(firstNameInputField.value);
+      setCityInput(firstNameInputField.value);
+      setCountryInput(firstNameInputField.value);
+      setPostalCodeInput(firstNameInputField.value);
+
+
 
       if (firstNameInput === "") {
         errorMessages.innerText = "First name cannot be empty";
@@ -91,10 +203,14 @@ function Popup(props) {
         errorMessagesDiv.style.display = "flex";
         errorStatus = true;
       }
+
+      //sign up is legit
+      //sign up is legit
+      
     }
 
-    if (passwordInput.length < 8 || passwordInput.length > 20) {
-      errorMessages.innerText = "Password must be between 8 and 20 characters";
+    if (passwordInput.length < 6 || passwordInput.length > 20) {
+      errorMessages.innerText = "Password must be between 6 and 20 characters";
       errorMessagesDiv.style.display = "flex";
       errorStatus = true;
     }
@@ -117,7 +233,26 @@ function Popup(props) {
       }
     } else {
       // authentication database code, check that email and password are in db and the user checks out
-      
+      //---------------------------------------------------------------------------------
+      //---------------------------------------------------------------------------------
+      //---------------------------------------------------------------------------------
+      //---------------------------------------------------------------------------------
+      //---------------------------------------------------------------------------------
+      //---------------------------------------------------------------------------------
+      //---------------------------------------------------------------------------------
+      //---------------------------------------------------------------------------------
+      //---------------------------------------------------------------------------------
+      //---------------------------------------------------------------------------------
+
+      if (employeePopup) {
+        setShouldFetchEmployeeData(true);
+      }
+
+      //Customer Login 
+      else {
+        setShouldFetchCustomerData(true)
+      }
+
     }
 
     if (!errorStatus) {
@@ -125,6 +260,7 @@ function Popup(props) {
     }
   };
 
+  //Login or Sign Up Toggle
   const handleChangeAuthenticationMethodButtonClick = (numButton) => {
     if (numButton === 1) {
       if (login || signUp) {
@@ -158,6 +294,7 @@ function Popup(props) {
     errorMessagesDiv.style.display = "none";
   };
 
+  //closes the popup
   const handleExitButtonClick = () => {
     props.closePopup();
   };

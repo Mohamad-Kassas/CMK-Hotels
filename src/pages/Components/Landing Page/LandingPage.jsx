@@ -6,7 +6,7 @@ import styles from "../Styles/Landing Page Styles/LandingPage.module.css";
 import Popup from "../Popup/Popup";
 
 export async function getStaticProps() {
-  const res = await fetch('https://api.example.com/data');
+  const res = await fetch("http://localhost:3000/api//SelectData/SelectAllHotelChainsContactInfo");
   const data = await res.json();
 
   return {
@@ -31,7 +31,7 @@ function LandingPage() {
     
     }
 
-    getData("http://localhost:3000/api/Mohamed")
+    getData("http://localhost:3000/api/SelectData/SelectAllHotelChainsContactInfo")
 
   }, [])
 

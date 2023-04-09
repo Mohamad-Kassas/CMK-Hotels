@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import LandingPage from "./Components/Landing Page/LandingPage";
 import Booking from "./Components/Bookings/Booking";
 import FilterBox from "./Components/Filter Box/FilterBox";
-import SearchBar from "./Components/Search Bar/SearchBar";
+//import SearchBar from "./Components/Search Bar/SearchBar";
 
 export default function App({ Component, pageProps }) {
   return (
