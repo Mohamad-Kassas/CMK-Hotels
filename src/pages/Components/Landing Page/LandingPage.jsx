@@ -22,8 +22,6 @@ function LandingPage() {
   const [login, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false);
 
-  //Side effect
-  //Called each time the application is rendered
   useEffect(() => {
 
     const getData = async (url) => {
@@ -32,8 +30,9 @@ function LandingPage() {
       console.log(results);
     
     }
-    getData("api/SelectCount/SelectCustomerCount")
-    //Everytime the data in the [] square brackers are rendered, the useEffect Hook is called
+
+    getData("http://localhost:3000/api/Mohamed")
+
   }, [])
 
   const closePopup = () => {
@@ -74,7 +73,6 @@ function LandingPage() {
           />
         ) : null}
       </div>
-
     </>
   );
 }

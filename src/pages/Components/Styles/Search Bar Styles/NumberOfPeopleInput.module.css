@@ -1,0 +1,29 @@
+.rightOfSearchBar,
+.allOfSearchBar {
+  font-family: "FS ME Regular", sans-serif;
+  border: 3px solid #b06464;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 10px;
+  padding-left: 15px;
+  font-size: 18px;
+  color: #b06464;
+  outline: none;
+  /* background-color: rgba(240, 153, 125, 0.3); */
+  background-color: white;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.allOfSearchBar {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.rightOfSearchBar::-webkit-outer-spin-button,
+.allOfSearchBar::-webkit-outer-spin-button,
+.rightOfSearchBar::-webkit-inner-spin-button,
+.allOfSearchBar::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

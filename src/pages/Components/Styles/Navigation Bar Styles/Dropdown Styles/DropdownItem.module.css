@@ -1,3 +1,35 @@
-.DropdownItem{
-    list-style: none;
+.dropdownItem{
+    width:calc(100% - 5rem);
+    max-width: calc(250px -5rem);
+    min-width: calc(200px - 5rem);
+
+    display: flex;
+    align-items: center;
+    padding: 1.0rem 2.5rem;
+    font-size: 1.2rem;
+    color: #B06464;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 0.1rem;
+    
+}
+
+.dropdownItem:hover{
+    background-color: #F1F1F1;
+}
+
+.dropdownItem:active{
+    background-color: #dfdfdf
+}
+
+.DropdownItemIcon{
+    margin-right: 1.5rem;
+    font-size: 1.5rem;
+    user-select: none;
+}
+
+.dropdownItemText {
+    font-family: "FS ME Light", sans-serif;
+    user-select: none;
 }
