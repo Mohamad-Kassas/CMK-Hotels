@@ -3,7 +3,7 @@ import CostInput from "./CostInput";
 import { BsDash } from "react-icons/bs";
 import styles from "../Styles/Filter Box Styles/Cost.module.css";
 
-function Cost() {
+function Cost(props) {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
 
@@ -11,9 +11,9 @@ function Cost() {
     <div className={styles.container}>
       <CostInput
         text="Min Price"
-        handleOnChange={() => {
-          setMinPrice();
-          props.setFilterMinPrice();
+        handleOnChange={(e) => {
+          setMinPrice(e);
+          props.setFilterMinPrice(e);
         }}
       />
       <BsDash
@@ -24,9 +24,9 @@ function Cost() {
       />
       <CostInput
         text="Max Price"
-        handleOnChange={() => {
-          setMaxPrice();
-          props.setFilterMaxPrice();
+        handleOnChange={(e) => {
+          setMaxPrice(e);
+          props.setFilterMaxPrice(e);
         }}
       />
     </div>

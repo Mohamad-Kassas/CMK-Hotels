@@ -20,7 +20,7 @@ function NumberOfPeopleInput(props) {
         className={getStyle()}
         type="number"
         min="1"
-        placeholder="Number of People"
+        placeholder={allOfSearchBar ? "Room Number" : "Number of People"}
         onChange={(e) => {
           props.handleOnChange(e.target.value);
         }}

@@ -1,0 +1,36 @@
+{
+    "rooms": [
+      {
+        "hotelRoomID": "1",
+        "hotelLocationID": "123",
+        "roomNumber": "101",
+        "pricePerNight": 100,
+        "capacity": 2,
+        "typeOfView": "ocean",
+        "extendable": 1,
+        "extendAmount": 50,
+        "problemsWithRoom": null,
+        "firstAmenity": "Free WiFi",
+        "secondAmenity": "Air Conditioning",
+        "thirdAmenity": "Mini Fridge",
+        "addressOfHotel": "123 Main St, Anytown USA",
+        "nameOfChain": "ABC Hotels"
+      },
+      {
+        "hotelRoomID": "2",
+        "hotelLocationID": "456",
+        "roomNumber": "201",
+        "pricePerNight": 150,
+        "capacity": 4,
+        "typeOfView": "city",
+        "extendable": 0,
+        "extendAmount": null,
+        "problemsWithRoom": "Leaky faucet",
+        "firstAmenity": "Free Breakfast",
+        "secondAmenity": "Swimming Pool",
+        "thirdAmenity": "Room Service",
+        "addressOfHotel": "456 Elm St, Anytown USA",
+        "nameOfChain": "XYZ Hotels"
+      }
+    ]
+  }

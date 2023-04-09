@@ -113,9 +113,10 @@ function SearchBar(props) {
               <NumberOfPeopleInput
                 handleOnChange={(e) => {
                   setNumberOfPeople(e);
-                  props.updateupdateRoomNumber(e);
+                  props.updateRoomNumber(e);
                 }}
                 allOfSearchBar={true}
+                
               />
             </>
           ) : null}

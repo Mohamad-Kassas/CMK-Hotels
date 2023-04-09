@@ -42,6 +42,70 @@ function CustomerPage({ fetchedRooms, ...props }) {
     console.log("max rooms: " + maxRooms)
     console.log("hotel chains: " + hotelChains)
     console.log("rating: " + rating)
+
+    try {
+      rooms.forEach((room) => {
+        // We need to check the following:
+        // 1. City inputted is equal to the city of the room
+        // 2. The room is available for the dates inputted
+        // 3. The room is available for the number of people inputted
+        // Note: We need to add the number of people and extend amount to check true capacity
+        // 4. The room price is within the price range inputted
+        // 5. The number of rooms in the hotel location is within the range inputted
+        // 6. The hotel chain is within the hotel chains inputted
+        // 7. The rating of the hotel is within the rating inputted
+
+        roomStatus = true
+
+        // Checking city
+        if (city.length > 0) {
+          cityName = city.split(",")[0]
+          if (!room.addressOfHotel.contains(cityName)) {
+            roomStatus = false
+          }
+        }
+
+        // Checking dates
+        // TODO: Check if room is available for dates inputted
+
+        // Checking number of people
+        if (room.extendable === 1) {
+          if (room.capacity + room.extendAmount < numberOfPeople) {
+            roomStatus = false
+          }
+        } else {
+          if (room.capacity < numberOfPeople) {
+            roomStatus = false
+          }
+        }
+
+        // Checking price
+        if (room.pricePerNight < minPrice || room.pricePerNight > maxPrice) {
+          roomStatus = false
+        }
+
+        // Checking number of rooms
+        if (room.numberOfRooms < minRooms || room.numberOfRooms > maxRooms) {
+          roomStatus = false
+        }
+
+        // Checking hotel chains
+        if (!hotelChains.includes(room.nameOfChain)) {
+          roomStatus = false
+        }
+
+        // Checking rating
+        if (room.rating < rating) {
+          roomStatus = false
+        }
+
+        if (roomStatus) {
+          filteredRooms.push(room)
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }, [
     city,
     startDate,
@@ -75,37 +139,34 @@ function CustomerPage({ fetchedRooms, ...props }) {
       </div>
       <div className={styles.filterBookingsContainer}>
         <div className={styles.filterContainer}>
-          <FilterBox />
+          <FilterBox
+            setMinPrice={setMinPrice}
+            setMaxPrice={setMaxPrice}
+            setMinRooms={setMinRooms}
+            setMaxRooms={setMaxRooms}
+            setHotelChains={setHotelChains}
+            setRating={setRating}
+          />
         </div>
         <div className={styles.bookingsContainer}>
-          <div className={styles.singleBookingContainer}>
+          {filteredRooms.map((room) => (
             <Booking
               isCustomer={true}
-              titleText="Test Room"
-              rating={5}
-              city="Ottawa"
-              numberOfNights={5}
-              price={300}
-              checkInDate="11/11/2011"
-              checkOutDate="11/12/2011"
-              roomNumber={1}
-              amenities={["Bed", "TV", "Wifi"]}
+              titleText={room.nameOfChain}
+              rating={room.rating}
+              city={city.split(",")[0]}
+              numberOfNights={endDate - startDate}
+              price={room.pricePerNight}
+              checkInDate={startDate}
+              checkOutDate={endDate}
+              amenities={[
+                room.firstAmenity,
+                room.secondAmenity,
+                room.thirdAmenity,
+              ]}
+              isCheckedin={false}
             />
-          </div>
-          <div className={styles.singleBookingContainer}>
-            <Booking
-              isCustomer={true}
-              titleText="Test Room"
-              rating={5}
-              city="Ottawa"
-              numberOfNights={5}
-              price={300}
-              checkInDate="11/11/2011"
-              checkOutDate="11/12/2011"
-              roomNumber={1}
-              amenities={["Bed", "TV", "Wifi"]}
-            />
-          </div>
+          ))}
         </div>
       </div>
     </>
