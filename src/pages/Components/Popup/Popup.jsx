@@ -18,6 +18,9 @@ function Popup(props) {
   const [shouldFetchEmployeeData, setShouldFetchEmployeeData] = useState(false);
 
   const [shouldInsertACustomerData, setShouldInsertACustomerData] = useState(false);
+  const [shouldFindANewCustomerID, setShouldFindANewCustomerID] = useState(false);
+
+
 
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
@@ -27,6 +30,10 @@ function Popup(props) {
   const [cityInput, setCityInput] = useState('');
   const [countryInput, setCountryInput] = useState('');
   const [postalCodeInput, setPostalCodeInput] = useState('');
+
+  const [newCustomerID, setCustomerID] = useState('');
+
+  const [date, setDate] = useState(new Date(2023, 3, 9).toLocaleDateString('en-CA', { timeZone: 'UTC' }));
 
   useEffect(() => {
     setLogin(props.login);
@@ -44,10 +51,7 @@ function Popup(props) {
           //If the length is 1, then there is 1 user who exists
           //
           if (results.result.length == 1) {
-            console.log(results.result[0].userName);
-            console.log(results.result[0].userPassword);
             setCustomerData(results.result[0])
-            console.log(customerData)
           }
 
           //User not found
@@ -100,24 +104,46 @@ function Popup(props) {
   
     }, [shouldFetchEmployeeData,emailInput,passwordInput])
 
+        //For finding a CustomerID
+        useEffect(() => {
 
-    useEffect(() => {
-
-      if (shouldInsertACustomerData) {
-        const getData = async (url) => {
-          const res = await fetch(url)
-          const results = await res.json();      
-
-        }
+          if (shouldFindANewCustomerID) {
+            const getData = async (url) => {
+              const res = await fetch(url)
+              const results = await res.json();
     
-        getData("http://localhost:3000/api/Insert/InsertCustomer?customerID="+ + "&username="+ +"&userPassword="+ +"&firstName="+ + "&lastName=" + +"&street=" + +"&city="+ + "&country=Canada&postalCode="+ +"&ssn=123456789")
+              setCustomerID(results.newCustomerID)
+      
+            }
+        
+             getData("http://localhost:3000/api/SelectCount/SelectCustomerCount")
+          }
+    
+          setShouldFindANewCustomerID(false);
+      
+        }, [shouldFindANewCustomerID,newCustomerID])
 
-        //http://localhost:3000/api/Insert/InsertCustomer?customerID=12346&username=johndoe&userPassword=password&firstName=John&lastName=Doe&street=123%20Main%20St&city=New%20York&country=USA&postalCode=10001&ssn=123456789
-}
+useEffect(() => {
+  const insertCustomer = async () => {
+    const url = `http://localhost:3000/api/Insert/InsertCustomer?customerID=${newCustomerID}&username=${emailInput}&userPassword=${passwordInput}&firstName=${firstNameInput}&lastName=${lastNameInput}&street=${addressInput}&city=${cityInput}&country=${countryInput}&postalCode=${postalCodeInput}&ssn=123456789&dateOfRegistration=${date}`;
+    console.log(addressInput,cityInput,countryInput,postalCodeInput)
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
 
-      setShouldInsertACustomerData(false);
-  
-    }, [setShouldInsertACustomerData,emailInput,passwordInput,firstNameInput,lastNameInput,addressInput,cityInput,countryInput,postalCodeInput])
+      // Handle success
+      console.log('Insert customer success:', data);
+    } catch (error) {
+      // Handle error
+      console.error('Insert customer error:', error);
+    }
+  };
+
+  if (shouldInsertACustomerData) {
+    insertCustomer();
+    setShouldInsertACustomerData(false);
+  }
+}, [shouldInsertACustomerData, newCustomerID, emailInput, passwordInput, firstNameInput, lastNameInput, addressInput, cityInput, countryInput, postalCodeInput,date]);
   
   //On submit button
   const handleMainButtonClick = () => {
@@ -153,12 +179,12 @@ function Popup(props) {
       const countryInput = countryInputField.value;
       const postalCodeInput = postalCodeInputField.value;
 
-      setFirstNameInput(firstNameInputField.value);
-      setLastNameInput(lastNameInputField.value);
-      setAddressInput(firstNameInputField.value);
-      setCityInput(firstNameInputField.value);
-      setCountryInput(firstNameInputField.value);
-      setPostalCodeInput(firstNameInputField.value);
+      setFirstNameInput(firstNameInput);
+      setLastNameInput(lastNameInput);
+      setAddressInput(addressInput);
+      setCityInput(cityInput);
+      setCountryInput(countryInput);
+      setPostalCodeInput(postalCodeInput);
 
 
 
@@ -206,6 +232,11 @@ function Popup(props) {
 
       //sign up is legit
       //sign up is legit
+
+      setShouldFindANewCustomerID(true)
+      setShouldInsertACustomerData(true)
+
+
       
     }
 
@@ -249,7 +280,7 @@ function Popup(props) {
       }
 
       //Customer Login 
-      else {
+      else if(login) {
         setShouldFetchCustomerData(true)
       }
 

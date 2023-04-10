@@ -19,7 +19,7 @@ export default async function handler (req, res) {
         
         const recentCustomerID = results[0]['count(*)'] + 1
 
-        const  newCustomerID = "B000" + recentCustomerID;
+        const  newCustomerID = "C000" + recentCustomerID;
 
         connection.end()
 
