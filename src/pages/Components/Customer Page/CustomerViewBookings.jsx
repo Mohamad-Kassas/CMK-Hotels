@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavigationBar from "../Navigation Bar/NavigationBar";
 import Title from "../Bookings/Title";
 import styles from "../Styles/Customer Page Styles/CustomerViewBookings.module.css";
@@ -7,6 +7,46 @@ import Booking from "../Bookings/Booking";
 function CustomerViewBookings(props) {
   const [customerName, setCustomerName] = useState(props.customerName);
   const [customerID, setCustomerID] = useState(props.customerID);
+  const [bookings, setBookings] = useState({});
+
+  useEffect(() => {
+    const getData = async (url) => {
+      const res = await fetch(url);
+      const results = await res.json();
+      setBookings(results.result);
+    };
+
+    getData(
+      "http://localhost:3000/api/SelectData/SelectCustomerBookings?customerID=" +
+        customerID
+    );
+  }, []);
+
+  useEffect(() => {
+    console.log(bookings);
+  }, [bookings]);
+
+  const formatDate = (dateString) => {
+    const [datePart] = dateString.split("T");
+    return datePart;
+  };
+
+  const calculateDateDifference = (dateString1, dateString2) => {
+    const date1 = new Date(dateString1);
+    const date2 = new Date(dateString2);
+
+    const timeDifference = date2 - date1;
+
+    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+    return daysDifference;
+  };
+
+  const getLastCharacterAsInt = (str) => {
+    const lastChar = str.slice(-1);
+    const lastCharAsInt = parseInt(lastChar, 10);
+    return lastCharAsInt;
+  };
 
   return (
     <div className={styles.pageContainer}>
@@ -20,82 +60,38 @@ function CustomerViewBookings(props) {
         <Title titleText="Your Bookings" size={"large"} rating={-1} />
       </div>
       <div className={styles.resultsContainer}>
-        <Booking
-          isCustomerViewBookings={true}
-          name="John Doe"
-          numberOfPeople={3}
-          isCheckedIn={true}
-          titleText="Room #192"
-          rating={4}
-          city="Ottawa"
-          numberOfNights={2}
-          price={350}
-          checkInDate="07-09-2023"
-          checkOutDate="09-09-2023"
-          roomNumber={1}
-          amenities={[
-            { id: 1, text: "Wifi" },
-            { id: 2, text: "Pool" },
-            { id: 3, text: "Oven" },
-          ]}
-        />
-        <Booking
-          isCustomerViewBookings={true}
-          name="John Doe"
-          numberOfPeople={3}
-          isCheckedIn={true}
-          titleText="Room #245"
-          rating={3}
-          city="Ottawa"
-          numberOfNights={2}
-          price={350}
-          checkInDate="07-09-2023"
-          checkOutDate="09-09-2023"
-          roomNumber={2}
-          amenities={[
-            { id: 4, text: "TV" },
-            { id: 5, text: "Refrigerator" },
-            { id: 6, text: "Patio" },
-          ]}
-        />
-        <Booking
-          isCustomerViewBookings={true}
-          name="John Doe"
-          numberOfPeople={3}
-          isCheckedIn={true}
-          titleText="Room #1685"
-          rating={5}
-          city="Ottawa"
-          numberOfNights={2}
-          price={350}
-          checkInDate="07-09-2023"
-          checkOutDate="09-09-2023"
-          roomNumber={3}
-          amenities={[
-            { id: 7, text: "Hammock" },
-            { id: 9, text: "Stove" },
-            { id: 10, text: "Jacuzzi" },
-          ]}
-        />
-        <Booking
-          isCustomerViewBookings={true}
-          name="John Doe"
-          numberOfPeople={3}
-          isCheckedIn={true}
-          titleText="Room #2365"
-          rating={2}
-          city="Ottawa"
-          numberOfNights={2}
-          price={350}
-          checkInDate="07-09-2023"
-          checkOutDate="09-09-2023"
-          roomNumber={4}
-          amenities={[
-            { id: 4, text: "TV" },
-            { id: 5, text: "Refrigerator" },
-            { id: 9, text: "Stove" },
-          ]}
-        />
+        {(() => {
+          const elements = [];
+          for (let i = 0; i < bookings.length; i++) {
+            elements.push(
+              <Booking
+                key={bookings[i].bookingID}
+                isCustomerViewBookings={true}
+                name={customerName}
+                isCheckedIn={true}
+                titleText={bookings[i].nameOfChain}
+                rating={bookings[i].rating}
+                city={bookings[i].city}
+                numberOfNights={calculateDateDifference(
+                  bookings[i].dateCheckIn,
+                  bookings[i].dateCheckOut
+                )}
+                price={bookings[i].totalPrice}
+                checkInDate={formatDate(bookings[i].dateCheckIn)}
+                checkOutDate={formatDate(bookings[i].dateCheckOut)}
+                roomNumber={getLastCharacterAsInt(bookings[i].hotelRoomID)}
+                status={bookings[i].currentStatus}
+                amenities={[
+                  { id: 1, text: bookings[i].firstAmenity },
+                  { id: 2, text: bookings[i].secondAmenity },
+                  { id: 3, text: bookings[i].thirdAmenity },
+                ]}
+              />
+            );
+          }
+
+          return elements;
+        })()}
       </div>
     </div>
   );

@@ -39,6 +39,6 @@ export default function App({ Component, pageProps }) {
     //   employeeName={"John Doe"}
     //   employeeHotelChain={"Hyatt Hotel"}
     // />
-    <CustomerViewBookings customerName={"John Doe"} />
+    <CustomerViewBookings customerName={"John Doe"} customerID={"C0005"} />
   );
 }

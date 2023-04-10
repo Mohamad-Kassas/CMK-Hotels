@@ -33,7 +33,7 @@ function Booking(props) {
 
   const [name, setName] = useState(props.name);
   const [numberOfPeople, setNumberOfPeople] = useState(props.numberOfPeople);
-  const [isCheckedIn, setisCheckedIn] = useState(props.isCheckedIn);
+  const [status, setStatus] = useState(props.status);
 
   return isCustomer ? (
     <div className={styles.bookingContainer}>
@@ -57,6 +57,7 @@ function Booking(props) {
         <Subtitle city={city} numberOfNights={numberOfNights} price={price} />
         <Date isCheckIn={true} isEditable={false} dateText={checkInDate} />
         <Date isCheckIn={false} isEditable={false} dateText={checkOutDate} />
+        <Status status={status} isEditable={false} />
         <Amenities list={amenities} />
       </div>
     </div>
@@ -69,7 +70,7 @@ function Booking(props) {
         <NumberOfPeople number={numberOfPeople} />
         <Date isCheckIn={true} isEditable={true} dateText={checkInDate} />
         <Date isCheckIn={false} isEditable={true} dateText={checkOutDate} />
-        <Status isCheckedIn={isCheckedIn} />
+        <Status status={status} isEditable={true} />
         <Amenities list={amenities} />
         <div className={styles.button}>
           <BookingButton buttonText="Cancel" />
