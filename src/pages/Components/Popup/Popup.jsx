@@ -33,6 +33,8 @@ function Popup(props) {
 
   const [newCustomerID, setCustomerID] = useState('');
 
+
+
   const [date, setDate] = useState(new Date(2023, 3, 9).toLocaleDateString('en-CA', { timeZone: 'UTC' }));
 
   useEffect(() => {
@@ -81,10 +83,7 @@ function Popup(props) {
           //If the length is 1, then there is 1 user who exists
           //
           if (results.result.length == 1) {
-            console.log(results.result[0].userName);
-            console.log(results.result[0].userPassword);
             setEmployeeData(results.result[0])
-            console.log(employeeData)
           }
 
           //User not found
@@ -264,16 +263,6 @@ useEffect(() => {
       }
     } else {
       // authentication database code, check that email and password are in db and the user checks out
-      //---------------------------------------------------------------------------------
-      //---------------------------------------------------------------------------------
-      //---------------------------------------------------------------------------------
-      //---------------------------------------------------------------------------------
-      //---------------------------------------------------------------------------------
-      //---------------------------------------------------------------------------------
-      //---------------------------------------------------------------------------------
-      //---------------------------------------------------------------------------------
-      //---------------------------------------------------------------------------------
-      //---------------------------------------------------------------------------------
 
       if (employeePopup) {
         setShouldFetchEmployeeData(true);
