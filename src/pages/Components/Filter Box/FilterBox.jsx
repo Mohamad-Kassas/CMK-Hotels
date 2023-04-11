@@ -33,8 +33,8 @@ function FilterBox(props) {
   const parseHotelChains = (rawHotelChains) => {
     let parsedHotelChains = []
     if (rawHotelChains.length > 0) {
-      for (let i = 0; i < rawHotelChains.length; i++) {
-        parsedHotelChains.push(rawHotelChains[i].label)
+      for (const element of rawHotelChains) {
+        parsedHotelChains.push(element.label)
       }
     } else {
       parsedHotelChains = [

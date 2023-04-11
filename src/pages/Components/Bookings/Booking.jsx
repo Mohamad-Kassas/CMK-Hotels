@@ -23,8 +23,8 @@ function Booking(props) {
   const [city, setCity] = useState(props.city)
   const [numberOfNights, setNumberOfNights] = useState(props.numberOfNights)
   const [price, setPrice] = useState(props.price)
-  const [checkInDate, setCheckInDate] = useState(props.checkInDate)
-  const [checkOutDate, setCheckOutDate] = useState(props.checkOutDate)
+  // const [checkInDate, setCheckInDate] = useState(props.checkInDate)
+  // const [checkOutDate, setCheckOutDate] = useState(props.checkOutDate)
   const [roomNumber, setRoomNumber] = useState(props.roomNumber)
   const [amenities, setAmenities] = useState(props.amenities)
 
@@ -38,8 +38,16 @@ function Booking(props) {
       <div className={styles.textContainer}>
         <Title titleText={titleText} size="medium" rating={rating} />
         <Subtitle city={city} numberOfNights={numberOfNights} price={price} />
-        <Date isCheckIn={true} isEditable={false} dateText={checkInDate} />
-        <Date isCheckIn={false} isEditable={false} dateText={checkOutDate} />
+        <Date
+          isCheckIn={true}
+          isEditable={false}
+          dateText={props.checkInDate}
+        />
+        <Date
+          isCheckIn={false}
+          isEditable={false}
+          dateText={props.checkOutDate}
+        />
         <Amenities list={amenities} />
         <div className={styles.button}>
           <BookingButton buttonText="Book Now" />
@@ -53,8 +61,12 @@ function Booking(props) {
         <Subtitle city={city} numberOfNights={numberOfNights} price={price} />
         <Name name={name} />
         <NumberOfPeople number={numberOfPeople} />
-        <Date isCheckIn={true} isEditable={true} dateText={checkInDate} />
-        <Date isCheckIn={false} isEditable={true} dateText={checkOutDate} />
+        <Date isCheckIn={true} isEditable={true} dateText={props.checkInDate} />
+        <Date
+          isCheckIn={false}
+          isEditable={true}
+          dateText={props.checkOutDate}
+        />
         <Status isCheckedIn={isCheckedIn} />
         <Amenities list={amenities} />
         <div className={styles.button}>
@@ -67,8 +79,16 @@ function Booking(props) {
       <div className={styles.textContainer}>
         <Title titleText={titleText} size="medium" rating={-1} />
         <Subtitle city={city} numberOfNights={numberOfNights} price={price} />
-        <Date isCheckIn={true} isEditable={false} dateText={checkInDate} />
-        <Date isCheckIn={false} isEditable={false} dateText={checkOutDate} />
+        <Date
+          isCheckIn={true}
+          isEditable={false}
+          dateText={props.checkInDate}
+        />
+        <Date
+          isCheckIn={false}
+          isEditable={false}
+          dateText={props.checkOutDate}
+        />
         <Amenities list={amenities} />
         <div className={styles.button}>
           <BookingButton buttonText="Make Booking" />
