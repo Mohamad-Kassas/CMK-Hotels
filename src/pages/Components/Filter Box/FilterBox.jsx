@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Cost from "./Cost";
 import NumberOfRooms from "./NumberOfRooms";
 import HotelChainSelector from "./HotelChainSelector";
@@ -20,7 +20,14 @@ function FilterBox(props) {
   ]);
   const [rating, setRating] = useState(0);
 
-  //const applyFilters = () => {
+  useEffect(() => {
+    props.setMinPrice(minPrice);
+    props.setMaxPrice(maxPrice);
+    props.setMinRooms(minRooms);
+    props.setMaxRooms(maxRooms);
+    props.setHotelChains(hotelChains);
+    props.setRating(rating);
+  }, [minPrice, maxPrice, minRooms, maxRooms, hotelChains, rating]);
 
   return (
     <div className={styles.container}>

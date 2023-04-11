@@ -11,22 +11,22 @@ function NumberOfRooms(props) {
     <div className={styles.container}>
       <CostInput
         text="Min Rooms "
-        handleOnChange={() => {
-          setMinRooms();
-          props.setFilterMinRooms();
+        handleOnChange={(e) => {
+          setMinRooms(e);
+          props.setFilterMinRooms(e);
         }}
       />
       <BsDash
         size={40}
         color={"#d3756b"}
         display={"flex"}
-        justifyContent={"center"}
+        align-items={"center"}
       />
       <CostInput
         text="Max Rooms "
-        handleOnChange={() => {
-          setMaxRooms();
-          props.setFilterMaxRooms();
+        handleOnChange={(e) => {
+          setMaxRooms(e);
+          props.setFilterMaxRooms(e);
         }}
       />
     </div>

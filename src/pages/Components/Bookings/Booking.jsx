@@ -21,6 +21,8 @@ function Booking(props) {
   const [isEmployeeBookedRoom, setIsEmployeeBookedRoom] = useState(
     props.isEmployeeBookedRoom
   );
+  const [isEmployeeBookedRoomRenting, setIsEmployeeBookedRoomRenting] =
+    useState(props.isEmployeeBookedRoomRenting);
   const [titleText, setTitleText] = useState(props.titleText);
   const [rating, setRating] = useState(props.rating);
   const [city, setCity] = useState(props.city);
@@ -87,6 +89,21 @@ function Booking(props) {
         <Amenities list={amenities} />
         <div className={styles.button}>
           <BookingButton buttonText="Make Booking" />
+        </div>
+      </div>
+    </div>
+  ) : isEmployeeBookedRoomRenting ? (
+    <div className={styles.bookedRoomBookingContainer}>
+      <div className={styles.textContainer}>
+        <Title titleText={titleText} size="medium" rating={-1} />
+        <Subtitle city={city} numberOfNights={numberOfNights} price={price} />
+        <Name name={name} />
+        <NumberOfPeople number={numberOfPeople} />
+        <Date isCheckIn={false} isEditable={true} dateText={checkOutDate} />
+        <Status status={status} isEditable={true} />
+        <Amenities list={amenities} />
+        <div className={styles.button}>
+          <BookingButton buttonText="Cancel" />
         </div>
       </div>
     </div>

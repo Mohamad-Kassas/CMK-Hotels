@@ -68,7 +68,6 @@ function CustomerViewBookings(props) {
                 key={bookings[i].bookingID}
                 isCustomerViewBookings={true}
                 name={customerName}
-                isCheckedIn={true}
                 titleText={bookings[i].nameOfChain}
                 rating={bookings[i].rating}
                 city={bookings[i].city}

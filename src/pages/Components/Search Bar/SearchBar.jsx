@@ -80,7 +80,7 @@ function SearchBar(props) {
               <NumberOfPeopleInput
                 handleOnChange={(e) => {
                   setNumberOfPeople(e);
-                  props.updateNumberOfPeople();
+                  props.updateNumberOfPeople(e);
                 }}
                 rightOfSearchBar={true}
               />
@@ -94,7 +94,10 @@ function SearchBar(props) {
                 setOpenFunction={() => toggleOpen()}
               />
               <NumberOfPeopleInput
-                handleOnChange={(e) => setNumberOfPeople(e)}
+                handleOnChange={(e) => {
+                  setNumberOfPeople(e);
+                  props.updateNumberOfPeople(e);
+                }}
                 rightOfSearchBar={true}
               />
             </>
@@ -125,7 +128,8 @@ function SearchBar(props) {
             <DateRange
               onChange={(item) => {
                 setRange([item.selection]);
-                props.setDateRange(item.selection);
+                props.setStartDate(item.selection.startDate);
+                props.setEndDate(item.selection.endDate);
               }}
               editableDateInputs={true}
               moveRangeOnFirstSelection={false}

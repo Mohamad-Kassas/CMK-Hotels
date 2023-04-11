@@ -35,10 +35,10 @@ export default function App({ Component, pageProps }) {
     //   ]}
     // />
     //<FilterBox />
-    // <EmployeePage
-    //   employeeName={"John Doe"}
-    //   employeeHotelChain={"Hyatt Hotel"}
-    // />
-    <CustomerViewBookings customerName={"John Doe"} customerID={"C0005"} />
+    <EmployeePage
+      employeeName={"John Doe"}
+      employeeHotelChain={"Hyatt Hotel"}
+    />
+    //<CustomerViewBookings customerID={"C0005"} />
   );
 }

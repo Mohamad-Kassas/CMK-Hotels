@@ -11,22 +11,22 @@ function Cost(props) {
     <div className={styles.container}>
       <CostInput
         text="Min Price"
-        handleOnChange={() => {
-          setMinPrice();
-          props.setFilterMinPrice();
+        handleOnChange={(e) => {
+          setMinPrice(e);
+          props.setFilterMinPrice(e);
         }}
       />
       <BsDash
         size={40}
         color={"#d3756b"}
         display={"flex"}
-        justifyContent={"center"}
+        align-items={"center"}
       />
       <CostInput
         text="Max Price"
-        handleOnChange={() => {
-          setMaxPrice();
-          props.setFilterMaxPrice();
+        handleOnChange={(e) => {
+          setMaxPrice(e);
+          props.setFilterMaxPrice(e);
         }}
       />
     </div>
