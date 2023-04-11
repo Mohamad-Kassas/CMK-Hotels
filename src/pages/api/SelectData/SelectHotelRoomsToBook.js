@@ -9,7 +9,7 @@ export default async function handler (req, res) {
     const connection = await mysql.createConnection(process.env.DATABASE_URL)
 
     try {
-        const query = "SELECT HotelRoom.*, Amenity.firstAmenity, Amenity.secondAmenity, Amenity.thirdAmenity, HotelLocation.addressOfHotel, HotelLocation.rating, HotelLocation. numberOfRooms, HotelChain.nameOfChain FROM HotelRoom JOIN Amenity ON HotelRoom.hotelRoomID = Amenity.hotelRoomID  JOIN HotelLocation ON HotelRoom.hotelLocationID = HotelLocation.hotelLocationID JOIN HotelChain ON HotelLocation.hotelChainID = HotelChain.hotelChainID;"
+        const query = "SELECT HotelRoom.*, Amenity.firstAmenity, Amenity.secondAmenity, Amenity.thirdAmenity, HotelLocation.addressOfHotel, HotelLocation.rating, HotelLocation.numberOfRooms, HotelChain.nameOfChain FROM HotelRoom JOIN Amenity ON HotelRoom.hotelRoomID = Amenity.hotelRoomID  JOIN HotelLocation ON HotelRoom.hotelLocationID = HotelLocation.hotelLocationID JOIN HotelChain ON HotelLocation.hotelChainID = HotelChain.hotelChainID;"
         
         const values = []
 
