@@ -8,7 +8,7 @@ dotenv.config();
 export default async function handler(req, res) {
 
   const date = new Date();
-
+  //userName/Email address can't be over 20 characters long
   const customerID = req.query.customerID;
   const userName = req.query.username;
   const userPassword = req.query.userPassword;
@@ -20,9 +20,6 @@ export default async function handler(req, res) {
   const postalCode = req.query.postalCode;
   const ssn  = req.query.ssn;
   const currentDate = date.toISOString().substring(0, 10);
-
-  console.log(currentDate)
-
 
   const connection = await mysql.createConnection(process.env.DATABASE_URL);
 

@@ -4,10 +4,41 @@ import { AiOutlineClose } from "react-icons/ai";
 import { RiErrorWarningFill } from "react-icons/ri";
 import PopupInput from "./PopupInput";
 
+
+
 function Popup(props) {
   const [login, setLogin] = useState(props.login);
   const [signUp, setSignUp] = useState(props.signUp);
   const [employeePopup, setEmployeePopup] = useState(props.employeePopup);
+
+  const [shouldFetchCustomerData, setShouldFetchCustomerData] = useState(false);
+
+  const [shouldFetchEmployeeData, setShouldFetchEmployeeData] = useState(false);
+
+  const [shouldInsertACustomerData, setShouldInsertACustomerData] = useState(false);
+  const [shouldFindANewCustomerID, setShouldFindANewCustomerID] = useState(false);
+
+  const [wasLoginSuccessful, setWasLoginSuccessful] = useState(null);
+  const [wasSignUpSuccessful, setWasSignUpSuccessful] = useState(null);
+
+
+
+  const [emailInput, setEmailInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+  const [firstNameInput, setFirstNameInput] = useState('');
+  const [lastNameInput, setLastNameInput] = useState('');
+  const [addressInput, setAddressInput] = useState('');
+  const [cityInput, setCityInput] = useState('');
+  const [countryInput, setCountryInput] = useState('');
+  const [postalCodeInput, setPostalCodeInput] = useState('');
+
+  const [newCustomerID, setCustomerID] = useState('');
+
+  console.log(props.count + "lol")
+
+
+
+  const [date, setDate] = useState(new Date(2023, 3, 9).toLocaleDateString('en-CA', { timeZone: 'UTC' }));
 
   useEffect(() => {
     setLogin(props.login);
@@ -15,10 +46,130 @@ function Popup(props) {
     setEmployeePopup(props.employeePopup);
   }, []);
 
+  //customer login
+    useEffect(() => {
+
+      if (shouldFetchCustomerData) {
+        const getData = async (url) => {
+          const res = await fetch(url)
+          const results = await res.json();
+
+          //If the length is 1, then there is 1 user who exists
+          //
+          if (results.result.length == 1) {
+            setCustomerData(results.result[0])
+            props.customerDataFunction(results.result[0])
+            //console.log(customerData)
+            setWasLoginSuccessful(true)
+          }
+          //No user found 
+          if (results.result.length == 0) {
+            setWasLoginSuccessful(false)
+          }
+
+          //User not found
+          //I don't think this gets called
+          else {
+            console.log("Error: No results found.");
+          }
 
 
+        }
+    
+        getData("http://localhost:3000/api/SelectData/SelectAllCustomerInfoIfTheyExist?userName=" + emailInput + "&userPassword=" + passwordInput)
+
+        //getData("http://localhost:3000/api/SelectData/SelectAllCustomerInfoIfTheyExist?userName=tbaker&userPassword=password")
+      }
+
+      setShouldFetchCustomerData(false);
   
+    }, [shouldFetchCustomerData,emailInput,passwordInput])
 
+    useEffect(() => {
+
+      if (shouldFetchEmployeeData) {
+        const getData = async (url) => {
+          const res = await fetch(url)
+          const results = await res.json();
+
+          //If the length is 1, then there is 1 user who exists
+          //
+          if (results.result.length == 1) {
+            setEmployeeData(results.result[0])
+            props.employeeDataFunction(results.result[0])
+            console.log(employeeData)
+            setWasLoginSuccessful(true)
+          }
+
+          //No user found 
+          if (results.result.length == 0) {
+            setWasLoginSuccessful(false)
+          }
+
+          //User not found
+          else {
+            console.log("Error: No results found.");
+          }
+
+
+        }
+    
+        getData("http://localhost:3000/api/SelectData/SelectAllEmployeeInfoIfTheyExist?userName=" + emailInput + "&userPassword=" + passwordInput)
+
+        //http://localhost:3000/api/SelectData/SelectAllEmployeeInfoIfTheyExist?userName=johndoe&userPassword=pass123
+      }
+
+      setShouldFetchEmployeeData(false);
+  
+    }, [shouldFetchEmployeeData,emailInput,passwordInput])
+
+        //For finding a CustomerID
+        useEffect(() => {
+
+          if (shouldFindANewCustomerID) {
+            const getData = async (url) => {
+              const res = await fetch(url)
+              const results = await res.json();
+    
+              setCustomerID(results.newCustomerID)
+      
+            }
+        
+             getData("http://localhost:3000/api/SelectCount/SelectCustomerCount")
+          }
+    
+          setShouldFindANewCustomerID(false);
+      
+        }, [shouldFindANewCustomerID,newCustomerID])
+
+useEffect(() => {
+  const insertCustomer = async () => {
+    const url = `http://localhost:3000/api/Insert/InsertCustomer?customerID=${newCustomerID}&username=${emailInput}&userPassword=${passwordInput}&firstName=${firstNameInput}&lastName=${lastNameInput}&street=${addressInput}&city=${cityInput}&country=${countryInput}&postalCode=${postalCodeInput}&ssn=123456789&dateOfRegistration=${date}`;
+    console.log(addressInput,cityInput,countryInput,postalCodeInput)
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      // Handle success
+      console.log('Insert customer success:', data);
+      setWasSignUpSuccessful(true)
+
+
+    } catch (error) {
+      // Handle error
+      console.error('Insert customer error:', error);
+      setWasSignUpSuccessful(false)
+
+    }
+  };
+
+  if (shouldInsertACustomerData) {
+    insertCustomer();
+    setShouldInsertACustomerData(false);
+  }
+}, [shouldInsertACustomerData, newCustomerID, emailInput, passwordInput, firstNameInput, lastNameInput, addressInput, cityInput, countryInput, postalCodeInput,date]);
+  
+  //On submit button
   const handleMainButtonClick = () => {
     const emailInputField = document.getElementById("emailInput");
     const passwordInputField = document.getElementById("passwordInput");
@@ -26,14 +177,18 @@ function Popup(props) {
     const emailInput = emailInputField.value;
     const passwordInput = passwordInputField.value;
 
-    const errorMessagesDiv = document.getElementById("errorMessagesDiv");
+    setEmailInput(emailInputField.value);
+    setPasswordInput(passwordInputField.value);
 
     const errorMessages = document.getElementById("errorMessages");
+    const errorMessagesDiv = document.getElementById("errorMessagesDiv");
 
     let errorStatus = false;
 
     // Default values
-    errorMessagesDiv.style.display = "none";
+    errorMessagesDiv.style.display = "none"
+
+
 
     if (signUp) {
       const firstNameInputField = document.getElementById("first NameInput");
@@ -49,6 +204,15 @@ function Popup(props) {
       const cityInput = cityInputField.value;
       const countryInput = countryInputField.value;
       const postalCodeInput = postalCodeInputField.value;
+
+      setFirstNameInput(firstNameInput);
+      setLastNameInput(lastNameInput);
+      setAddressInput(addressInput);
+      setCityInput(cityInput);
+      setCountryInput(countryInput);
+      setPostalCodeInput(postalCodeInput);
+
+
 
       if (firstNameInput === "") {
         errorMessages.innerText = "First name cannot be empty";
@@ -91,10 +255,26 @@ function Popup(props) {
         errorMessagesDiv.style.display = "flex";
         errorStatus = true;
       }
+
+      //sign up is legit
+      //sign up is legit
+
+      setShouldFindANewCustomerID(true)
+      setShouldInsertACustomerData(true)
+
+      if (wasSignUpSuccessful == false) {
+        errorMessages.innerText = "Invalid Sign Up";
+        errorMessagesDiv.style.display = "flex";
+        errorStatus = true;
+        
+      }
+
+
+      
     }
 
-    if (passwordInput.length < 8 || passwordInput.length > 20) {
-      errorMessages.innerText = "Password must be between 8 and 20 characters";
+    if (passwordInput.length < 6 || passwordInput.length > 20) {
+      errorMessages.innerText = "Password must be between 6 and 20 characters";
       errorMessagesDiv.style.display = "flex";
       errorStatus = true;
     }
@@ -117,7 +297,26 @@ function Popup(props) {
       }
     } else {
       // authentication database code, check that email and password are in db and the user checks out
-      
+
+      if (employeePopup) {
+        setShouldFetchEmployeeData(true);
+
+        if (wasLoginSuccessful == false) {
+
+        }
+      }
+
+      //Customer Login 
+      else if(login) {
+        setShouldFetchCustomerData(true)
+
+        if (wasLoginSuccessful == false) {
+          errorMessages.innerText = "Login failed";
+          errorMessagesDiv.style.display = "flex";
+          errorStatus = true;
+        }
+      }
+
     }
 
     if (!errorStatus) {
@@ -125,7 +324,9 @@ function Popup(props) {
     }
   };
 
+  //Login or Sign Up Toggle
   const handleChangeAuthenticationMethodButtonClick = (numButton) => {
+
     if (numButton === 1) {
       if (login || signUp) {
         setLogin(!login);
@@ -158,6 +359,7 @@ function Popup(props) {
     errorMessagesDiv.style.display = "none";
   };
 
+  //closes the popup
   const handleExitButtonClick = () => {
     props.closePopup();
   };

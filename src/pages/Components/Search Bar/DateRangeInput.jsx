@@ -1,29 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
-import format from "date-fns/format";
+import format from "date-fns/format"
 
-import styles from "../Styles/Search Bar Styles/DateRangeInput.module.css";
+import styles from "../Styles/Search Bar Styles/DateRangeInput.module.css"
 
-import "react-date-range/dist/styles.css";
-import "react-date-range/dist/theme/default.css";
+import "react-date-range/dist/styles.css"
+import "react-date-range/dist/theme/default.css"
 
 function DateRangeInput(props) {
-  const [range, setRange] = useState(props.range);
+  const [range, setRange] = useState(props.range)
 
-  const middleOfSearchBar = props.middleOfSearchBar;
-  const leftOfSearchBar = props.leftOfSearchBar;
+  const middleOfSearchBar = props.middleOfSearchBar
+  const leftOfSearchBar = props.leftOfSearchBar
 
   function getDateRangeInputStyle() {
     if (middleOfSearchBar) {
-      return styles.DateRangeInputMiddle;
+      return styles.DateRangeInputMiddle
     } else if (leftOfSearchBar) {
-      return styles.DateRangeInputLeft;
+      return styles.DateRangeInputLeft
     }
   }
 
   useEffect(() => {
-    setRange(props.range);
-  }, [props.range]);
+    setRange(props.range)
+  }, [props.range])
 
   return (
     <>
@@ -41,7 +41,7 @@ function DateRangeInput(props) {
         name="dateRange"
       />
     </>
-  );
+  )
 }
 
-export default DateRangeInput;
+export default DateRangeInput
