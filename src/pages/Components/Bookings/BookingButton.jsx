@@ -6,10 +6,7 @@ function BookingButton(props) {
   const [buttonText] = useState(props.buttonText);
 
   return (
-    <button
-      className={styling.bookingButton}
-      onClick={() => props.onClickFunction()}
-    >
+    <button className={styling.bookingButton} onClick={props.onClickFunction}>
       {buttonText}
     </button>
   );

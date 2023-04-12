@@ -1,161 +1,134 @@
-import React, { useState, useEffect } from "react";
-import styles from "../Styles/Popup/Popup.module.css";
-import { AiOutlineClose } from "react-icons/ai";
-import { RiErrorWarningFill } from "react-icons/ri";
-import PopupInput from "../Popup/PopupInput";
+import React, { useState, useEffect } from "react"
+import styles from "../Styles/Popup/MakeBookingPopup.module.css"
+import { AiOutlineClose } from "react-icons/ai"
+import { RiErrorWarningFill } from "react-icons/ri"
+import MakeBookingPopupInput from "./MakeBookingPopupInput"
 
 function MakeBookingPopup(props) {
-  const [login, setLogin] = useState(props.login);
-  const [signUp, setSignUp] = useState(props.signUp);
-  const [employeePopup, setEmployeePopup] = useState(props.employeePopup);
+  const [message, setMessage] = useState("")
 
-  useEffect(() => {
-    setLogin(props.login);
-    setSignUp(props.signUp);
-    setEmployeePopup(props.employeePopup);
-  }, []);
+  const [renderError, setRenderError] = useState(false)
+
+  const [emailInput, setEmailInput] = useState("")
+
+  const [runFetchUseEffect, setRunFetchUseEffect] = useState(false)
+
+  const [customerID, setCustomerID] = useState("")
+
+  const [runFetchBookingID, setRunFetchBookingID] = useState(false)
+
+  const [bookingID, setBookingID] = useState("")
+
+  const [hotelRoomID, setHotelRoomID] = useState(props.hotelRoomID)
+
+  const [dateCheckIn, setDateCheckIn] = useState(props.startDate)
+  const [dateCheckOut, setDateCheckOut] = useState(props.endDate)
+
+  const [runInsertBooking, setRunInsertBooking] = useState(false)
 
   const handleMainButtonClick = () => {
-    const emailInputField = document.getElementById("emailInput");
-    const passwordInputField = document.getElementById("passwordInput");
-
-    const emailInput = emailInputField.value;
-    const passwordInput = passwordInputField.value;
-
-    const errorMessagesDiv = document.getElementById("errorMessagesDiv");
-
-    const errorMessages = document.getElementById("errorMessages");
-
-    let errorStatus = false;
-
+    setRenderError(false)
     // Default values
-    errorMessagesDiv.style.display = "none";
-
-    if (signUp) {
-      const firstNameInputField = document.getElementById("first NameInput");
-      const lastNameInputField = document.getElementById("last NameInput");
-      const addressInputField = document.getElementById("addressInput");
-      const cityInputField = document.getElementById("cityInput");
-      const countryInputField = document.getElementById("countryInput");
-      const postalCodeInputField = document.getElementById("postal CodeInput");
-
-      const firstNameInput = firstNameInputField.value;
-      const lastNameInput = lastNameInputField.value;
-      const addressInput = addressInputField.value;
-      const cityInput = cityInputField.value;
-      const countryInput = countryInputField.value;
-      const postalCodeInput = postalCodeInputField.value;
-
-      if (firstNameInput === "") {
-        errorMessages.innerText = "First name cannot be empty";
-        errorMessagesDiv.style.display = "flex";
-        errorStatus = true;
-      }
-
-      if (lastNameInput === "") {
-        errorMessages.innerText = "Last name cannot be empty";
-        errorMessagesDiv.style.display = "flex";
-        errorStatus = true;
-      }
-
-      if (addressInput === "") {
-        errorMessages.innerText = "Address cannot be empty";
-        errorMessagesDiv.style.display = "flex";
-        errorStatus = true;
-      }
-
-      if (cityInput === "") {
-        errorMessages.innerText = "City cannot be empty";
-        errorMessagesDiv.style.display = "flex";
-        errorStatus = true;
-      }
-
-      if (countryInput === "") {
-        errorMessages.innerText = "Country cannot be empty";
-        errorMessagesDiv.style.display = "flex";
-        errorStatus = true;
-      }
-
-      if (postalCodeInput === "") {
-        errorMessages.innerText = "Postal code cannot be empty";
-        errorMessagesDiv.style.display = "flex";
-        errorStatus = true;
-      }
-
-      if (postalCodeInput.length < 5 || postalCodeInput.length > 10) {
-        errorMessages.innerText = "Invalid postal code";
-        errorMessagesDiv.style.display = "flex";
-        errorStatus = true;
-      }
-    }
-
-    if (passwordInput.length < 8 || passwordInput.length > 20) {
-      errorMessages.innerText = "Password must be between 8 and 20 characters";
-      errorMessagesDiv.style.display = "flex";
-      errorStatus = true;
-    }
-
-    if (passwordInput === "") {
-      errorMessages.innerText = "Password cannot be empty";
-      errorMessagesDiv.style.display = "flex";
-      errorStatus = true;
-
-      if (emailInput.length < 4 || emailInput.length > 30) {
-        errorMessages.innerText = "email must be between 4 and 30 characters";
-        errorMessagesDiv.style.display = "flex";
-        errorStatus = true;
-      }
-
-      if (emailInput === "") {
-        errorMessages.innerText = "email cannot be empty";
-        errorMessagesDiv.style.display = "flex";
-        errorStatus = true;
-      }
+    if (emailInput === "") {
+      setRenderError(true)
+      setMessage("Error: Please enter an email address.")
     } else {
       // authentication database code, check that email and password are in db and the user checks out
+      setRunFetchUseEffect(true)
     }
+  }
 
-    if (!errorStatus) {
-      // authentication database code
-    }
-  };
+  useEffect(() => {
+    if (runFetchUseEffect) {
+      const getData = async (url) => {
+        const res = await fetch(url)
+        const results = await res.json()
+        setCustomerID(results.result[0].customerID)
 
-  const handleChangeAuthenticationMethodButtonClick = (numButton) => {
-    if (numButton === 1) {
-      if (login || signUp) {
-        setLogin(!login);
-        setSignUp(!signUp);
-      } else {
-        setLogin(true);
-        setSignUp(false);
-        setEmployeePopup(false);
+        console.log("Customer ID: " + customerID)
       }
 
-      const employeeBottomMessage = document.getElementById(
-        "employeeBottomMessage"
-      );
-      employeeBottomMessage.style.display = "block";
+      getData(
+        "http://localhost:3000/api/SelectData/SelectCustomerIDFromUsername?userName=" +
+          emailInput
+      )
+
+      setRunFetchBookingID(true)
+
+      setRunFetchUseEffect(false)
     }
+  }, [runFetchUseEffect])
 
-    if (numButton === 2) {
-      setLogin(false);
-      setSignUp(false);
-      setEmployeePopup(true);
+  useEffect(() => {
+    if (runFetchBookingID) {
+      const getData = async (url) => {
+        const res = await fetch(url)
+        const results = await res.json()
+        console.log(results.newBookingID)
 
-      const employeeBottomMessage = document.getElementById(
-        "employeeBottomMessage"
-      );
-      employeeBottomMessage.style.display = "none";
+        setBookingID(results.newBookingID)
+      }
+
+      getData("http://localhost:3000/api/SelectCount/SelectBookingCount")
+
+      setRunInsertBooking(true)
+
+      setRunFetchBookingID(false)
     }
+  }, [runFetchBookingID])
 
-    const errorMessagesDiv = document.getElementById("errorMessagesDiv");
+  useEffect(() => {
+    if (runInsertBooking && !customerID == "" && !bookingID == "") {
+      const getData = async (url) => {
+        const res = await fetch(url)
+        const results = await res.json()
+        console.log(results)
+      }
 
-    errorMessagesDiv.style.display = "none";
-  };
+      console.log(bookingID)
+      console.log(customerID)
+      console.log(hotelRoomID)
+
+      const dateCheckInString = `${dateCheckIn.getFullYear()}-${(
+        dateCheckIn.getMonth() + 1
+      )
+        .toString()
+        .padStart(2, "0")}-${dateCheckIn.getDate().toString().padStart(2, "0")}`
+      const dateCheckOutString = `${dateCheckOut.getFullYear()}-${(
+        dateCheckOut.getMonth() + 1
+      )
+        .toString()
+        .padStart(2, "0")}-${dateCheckOut
+        .getDate()
+        .toString()
+        .padStart(2, "0")}`
+
+      console.log(dateCheckInString)
+      console.log(dateCheckOutString)
+
+      getData(
+        `http://localhost:3000/api/Insert/InsertBooking?bookingID=${bookingID}&customerID=${customerID}&hotelRoomID=${hotelRoomID}&dateCheckIn=${dateCheckInString}&dateCheckOut=${dateCheckOutString}&totalPrice=300.00&currentStatus=Confirmed`
+      )
+
+      setCustomerID("")
+      setBookingID("")
+
+      setRunInsertBooking(false)
+    } else {
+      setMessage("Error: Could not make booking. Try again.")
+    }
+  }, [
+    runInsertBooking,
+    bookingID,
+    customerID,
+    hotelRoomID,
+    dateCheckIn,
+    dateCheckOut,
+  ])
 
   const handleExitButtonClick = () => {
-    props.closePopup();
-  };
+    props.closePopup()
+  }
 
   return (
     <div className={styles.popupContainer}>
@@ -166,68 +139,33 @@ function MakeBookingPopup(props) {
         >
           <AiOutlineClose className={styles.closeButton} />
         </div>
-        <h1 className={styles.header}>
-          {login ? "Login" : ""}
-          {signUp ? "Sign Up" : ""}
-          {employeePopup ? "Employee Access" : ""}
-        </h1>
+        <h1 className={styles.header}>Book Room</h1>
 
-        <PopupInput inputType="email" />
-        <PopupInput inputType="password" />
+        <MakeBookingPopupInput
+          inputType="email"
+          onChangeFunction={setEmailInput}
+        />
 
-        {signUp ? <PopupInput inputType="first Name" /> : null}
+        {renderError && (
+          <div className={styles.errorMessagesDiv} id="errorMessagesDivBooking">
+            <RiErrorWarningFill className={styles.errorIcon} />
+            <p className={styles.errorMessages} id="errorMessagesBooking">
+              {" "}
+              {message}
+            </p>
+          </div>
+        )}
 
-        {signUp ? <PopupInput inputType="last Name" /> : null}
-
-        {signUp ? <PopupInput inputType="address" /> : null}
-
-        {signUp ? <PopupInput inputType="city" /> : null}
-
-        {signUp ? <PopupInput inputType="country" /> : null}
-
-        {signUp ? <PopupInput inputType="postal Code" /> : null}
-
-        <div className={styles.errorMessagesDiv} id="errorMessagesDiv">
-          <RiErrorWarningFill className={styles.errorIcon} />
-          <p className={styles.errorMessages} id="errorMessages">
-            {" "}
-            Hello world
-          </p>
-        </div>
-
+        <hr></hr>
         <button
           className={styles.mainButton}
           onClick={() => handleMainButtonClick()}
         >
-          {login ? "Login" : ""}
-          {signUp ? "Sign Up" : ""}
-          {employeePopup ? "Gain Access" : ""}
+          Make Booking
         </button>
-
-        <hr className={styles.lineBreak}></hr>
-        <div>
-          <p className={styles.popupBottomMessages}>
-            {login ? "Don't have an account? " : "Already a customer? "}{" "}
-            <button
-              className={styles.ChangeAuthenticationMethodButton}
-              onClick={() => handleChangeAuthenticationMethodButtonClick(1)}
-            >
-              <u>{login ? "Sign Up" : "Login"}</u>
-            </button>
-          </p>
-          <p className={styles.popupBottomMessages} id="employeeBottomMessage">
-            Employee?
-            <button
-              className={styles.ChangeAuthenticationMethodButton}
-              onClick={() => handleChangeAuthenticationMethodButtonClick(2)}
-            >
-              <u>Gain Access</u>
-            </button>
-          </p>
-        </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default MakeBookingPopup;
+export default MakeBookingPopup

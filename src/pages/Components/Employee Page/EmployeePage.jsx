@@ -1,85 +1,92 @@
-import NavigationBar from "../Navigation Bar/NavigationBar";
-import { useState, useEffect } from "react";
-import SearchBar from "../Search Bar/SearchBar";
-import styles from "../Styles/Employee Page Styles/EmployeePage.module.css";
-import Title from "../Bookings/Title";
-import HotelChainLogo from "./HotelChainLogo";
-import FilterBox from "../Filter Box/FilterBox";
-import Booking from "../Bookings/Booking";
-import { addDays } from "date-fns";
+import NavigationBar from "../Navigation Bar/NavigationBar"
+import { useState, useEffect } from "react"
+import SearchBar from "../Search Bar/SearchBar"
+import styles from "../Styles/Employee Page Styles/EmployeePage.module.css"
+import Title from "../Bookings/Title"
+import HotelChainLogo from "./HotelChainLogo"
+import FilterBox from "../Filter Box/FilterBox"
+import Booking from "../Bookings/Booking"
+import { addDays } from "date-fns"
+import MakeBookingPopup from "./MakeBookingPopup"
 
 function EmployeePage(props) {
-  const [employeeName, setEmployeeName] = useState(props.employeeName);
+  const [showPopup, setShowPopup] = useState(false)
+
+  const [employeeName, setEmployeeName] = useState(props.employeeName)
   const [employeeHotelChain, setEmployeeHotelChain] = useState(
     props.employeeHotelChain
-  );
-  const [emptyRoomBookings, setEmptyRoomBookings] = useState({});
-  const [filteredEmptyRoomBookings, setFilteredEmptyRoomBookings] = useState(
-    []
-  );
-  const [occupiedRoomBookings, setOccupiedRoomBookings] = useState({});
-  const [occupiedRoomRentings, setOccupiedRoomRentings] = useState({});
+  )
+  const [emptyRoomBookings, setEmptyRoomBookings] = useState({})
+  const [filteredEmptyRoomBookings, setFilteredEmptyRoomBookings] = useState([])
+  const [occupiedRoomBookings, setOccupiedRoomBookings] = useState({})
+  const [occupiedRoomRentings, setOccupiedRoomRentings] = useState({})
 
-  const [emptyRoomNumberOfPeople, setEmptyRoomNumberOfPeople] = useState(0);
-  const [occupiedRoomNumber, setOccupiedRoomNumber] = useState(0);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(addDays(new Date(), 7));
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(1000000);
-  const [minRooms, setMinRooms] = useState(0);
-  const [maxRooms, setMaxRooms] = useState(1000000);
-  const [rating, setRating] = useState(1);
+  const [emptyRoomNumberOfPeople, setEmptyRoomNumberOfPeople] = useState(0)
+  const [occupiedRoomNumber, setOccupiedRoomNumber] = useState(0)
+  const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(addDays(new Date(), 7))
+  const [minPrice, setMinPrice] = useState(0)
+  const [maxPrice, setMaxPrice] = useState(1000000)
+  const [minRooms, setMinRooms] = useState(0)
+  const [maxRooms, setMaxRooms] = useState(1000000)
+  const [rating, setRating] = useState(1)
   const [hotelChains, setHotelChains] = useState([
     "Paradise Hotels",
     "Hyatt Hotel",
     "Elite Hotels",
     "Hotel Grandeur",
     "Capital Hotels",
-  ]);
+  ])
+
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup)
+    console.log("showPopup: " + showPopup)
+  }
 
   const [rentingID, setRentingID] = useState("");
 
   useEffect(() => {
     const getData = async (url) => {
-      const res = await fetch(url);
-      const results = await res.json();
-      setEmptyRoomBookings(results.result);
-      //setFilteredEmptyRoomBookings(results.result);
-    };
+      const res = await fetch(url)
+      const results = await res.json()
+      setEmptyRoomBookings(results.result)
+      console.log(results.result)
+        }
 
-    getData("http://localhost:3000/api//SelectData/SelectHotelRoomsToBook");
-  }, []);
+    getData("http://localhost:3000/api//SelectData/SelectHotelRoomsToBook")
+  }, [])
 
   useEffect(() => {
     const getData = async (url) => {
-      const res = await fetch(url);
-      const results = await res.json();
-      setOccupiedRoomBookings(results.result);
-    };
+      const res = await fetch(url)
+      const results = await res.json()
+      setOccupiedRoomBookings(results.result)
+    }
 
     getData(
       "http://localhost:3000/api/SelectData/SelectRoomsBooking?hotelRoomID=HR" +
         occupiedRoomNumber
-    );
-  }, [occupiedRoomNumber]);
+    )
+  }, [occupiedRoomNumber])
 
   useEffect(() => {
     const getData2 = async (url) => {
-      const res = await fetch(url);
-      const results = await res.json();
-      setOccupiedRoomRentings(results.result);
-    };
+      const res = await fetch(url)
+      const results = await res.json()
+      setOccupiedRoomRentings(results.result)
+    }
 
     getData2(
       "http://localhost:3000/api/SelectData/SelectRoomsRenting?hotelRoomID=HR" +
         occupiedRoomNumber
-    );
-  }, [occupiedRoomNumber]);
+    )
+  }, [occupiedRoomNumber])
 
   useEffect(() => {
     setFilteredEmptyRoomBookings(
       (() => {
-        const elements = [];
+        const elements = []
         for (let i = 0; i < emptyRoomBookings.length; i++) {
           if (
             emptyRoomBookings[i].rating >= rating &&
@@ -90,12 +97,12 @@ function EmployeePage(props) {
             emptyRoomBookings[i].numberOfRooms <= maxRooms &&
             emptyRoomBookings[i].capacity >= emptyRoomNumberOfPeople
           ) {
-            elements.push(emptyRoomBookings[i]);
+            elements.push(emptyRoomBookings[i])
           }
         }
-        return elements;
+        return elements
       })()
-    );
+    )
   }, [
     startDate,
     endDate,
@@ -107,41 +114,41 @@ function EmployeePage(props) {
     rating,
     hotelChains,
     emptyRoomBookings,
-  ]);
+  ])
 
   useEffect(() => {
-    console.log("filteredEmptyRoomBookings: ");
-    console.log(filteredEmptyRoomBookings);
-  }, [filteredEmptyRoomBookings]);
+    console.log("filteredEmptyRoomBookings: ")
+    console.log(filteredEmptyRoomBookings)
+  }, [filteredEmptyRoomBookings])
 
   const calculateDateDifferenceDate = (date1, date2) => {
-    const timeDifference = date2 - date1;
+    const timeDifference = date2 - date1
 
-    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
 
-    return daysDifference;
-  };
+    return daysDifference
+  }
 
   const calculateDateDifference = (dateString1, dateString2) => {
-    const date1 = new Date(dateString1);
-    const date2 = new Date(dateString2);
+    const date1 = new Date(dateString1)
+    const date2 = new Date(dateString2)
 
-    const timeDifference = date2 - date1;
+    const timeDifference = date2 - date1
 
-    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
 
-    return daysDifference;
-  };
+    return daysDifference
+  }
 
   const formatDate = (dateString) => {
-    const [datePart] = dateString.split("T");
-    return datePart;
-  };
+    const [datePart] = dateString.split("T")
+    return datePart
+  }
 
   const formatDate2 = (dateString) => {
-    const [datePart] = dateString.split(",");
-    return datePart;
-  };
+    const [datePart] = dateString.split(",")
+    return datePart
+  }
 
   return (
     <>
@@ -197,45 +204,54 @@ function EmployeePage(props) {
 
           <div className={styles.resultsContainer}>
             {(() => {
-              const elements = [];
+              const elements = []
               for (let i = 0; i < filteredEmptyRoomBookings.length; i++) {
                 elements.push(
-                  <Booking
-                    key={i}
-                    isEmployeeEmptyRoom={true}
-                    titleText={
-                      "Room #" + filteredEmptyRoomBookings[i].roomNumber
-                    }
-                    rating={-1}
-                    city={
-                      filteredEmptyRoomBookings[i].addressOfHotel.split(" ")[3]
-                    }
-                    numberOfNights={calculateDateDifferenceDate(
-                      startDate,
-                      endDate
-                    )}
-                    price={filteredEmptyRoomBookings[i].pricePerNight}
-                    checkInDate={formatDate2(startDate.toLocaleString())}
-                    checkOutDate={formatDate2(endDate.toLocaleString())}
-                    amenities={[
-                      {
-                        id: 1,
-                        text: filteredEmptyRoomBookings[i].firstAmenity,
-                      },
-                      {
-                        id: 2,
-                        text: filteredEmptyRoomBookings[i].secondAmenity,
-                      },
-                      {
-                        id: 3,
-                        text: filteredEmptyRoomBookings[i].thirdAmenity,
-                      },
-                    ]}
-                  />
-                );
+                  <>
+                    {" "}
+                    <Booking
+                      key={i}
+                      isEmployeeEmptyRoom={true}
+                      titleText={
+                        "Room #" + filteredEmptyRoomBookings[i].roomNumber
+                      }
+                      rating={-1}
+                      city={
+                        filteredEmptyRoomBookings[i].addressOfHotel.split(
+                          " "
+                        )[3]
+                      }
+                      numberOfNights={calculateDateDifferenceDate(
+                        startDate,
+                        endDate
+                      )}
+                      price={filteredEmptyRoomBookings[i].pricePerNight}
+                      checkInDate={formatDate2(startDate.toLocaleString())}
+                      checkOutDate={formatDate2(endDate.toLocaleString())}
+                      amenities={[
+                        {
+                          id: 1,
+                          text: filteredEmptyRoomBookings[i].firstAmenity,
+                        },
+                        {
+                          id: 2,
+                          text: filteredEmptyRoomBookings[i].secondAmenity,
+                        },
+                        {
+                          id: 3,
+                          text: filteredEmptyRoomBookings[i].thirdAmenity,
+                        },
+                      ]}
+                      toggleFunction={() => togglePopup()}
+                    />
+                    {showPopup ? (
+                      <MakeBookingPopup closePopup={togglePopup} hotelRoomID={filteredEmptyRoomBookings[i].hotelRoomID} startDate={startDate} endDate={endDate} />
+                    ) : null}
+                  </>
+                )
               }
 
-              return elements;
+              return elements
             })()}
           </div>
         </div>
@@ -251,7 +267,7 @@ function EmployeePage(props) {
           </div>
           <div className={styles.resultsContainer}>
             {(() => {
-              const elements = [];
+              const elements = []
               for (let i = 0; i < occupiedRoomBookings.length; i++) {
                 //// CODE TO CREATE RENTING /////
 
@@ -326,12 +342,12 @@ function EmployeePage(props) {
                     ]}
                     //onClickFunction={makeRenting}
                   />
-                );
+                )
               }
-              return elements;
+              return elements
             })()}
             {(() => {
-              const elements = [];
+              const elements = []
               for (let i = 0; i < occupiedRoomRentings.length; i++) {
                 elements.push(
                   <Booking
@@ -354,15 +370,15 @@ function EmployeePage(props) {
                       { id: 3, text: occupiedRoomRentings[i].thirdAmenity },
                     ]}
                   />
-                );
+                )
               }
-              return elements;
+              return elements
             })()}
           </div>
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default EmployeePage;
+export default EmployeePage
