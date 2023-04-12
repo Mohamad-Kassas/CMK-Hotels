@@ -50,7 +50,10 @@ function Booking(props) {
         />
         <Amenities list={amenities} />
         <div className={styles.button}>
-          <BookingButton buttonText="Book Now" />
+          <BookingButton
+            buttonText="Book Now"
+            onClickFunction={props.onClickFunction}
+          />
         </div>
       </div>
     </div>
@@ -70,7 +73,7 @@ function Booking(props) {
         <Status isCheckedIn={isCheckedIn} />
         <Amenities list={amenities} />
         <div className={styles.button}>
-          <BookingButton buttonText="Cancel" />
+          <BookingButton buttonText="Cancel" onClickFunction={() => {}} />
         </div>
       </div>
     </div>
@@ -91,7 +94,7 @@ function Booking(props) {
         />
         <Amenities list={amenities} />
         <div className={styles.button}>
-          <BookingButton buttonText="Make Booking" />
+          <BookingButton buttonText="Make Booking" onClickFunction={() => {}} />
         </div>
       </div>
     </div>

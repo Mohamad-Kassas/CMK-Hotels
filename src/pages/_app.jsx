@@ -7,6 +7,6 @@ import CustomerPage from "./Components/Customer Page/CustomerPage";
 
 export default function App({ Component, pageProps }) {
   return (
-    <CustomerPage name="Anjali"/>
+    <CustomerPage name="Anjali" customerID="C0001"/>
   );
 }
