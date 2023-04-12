@@ -11,10 +11,8 @@ function Popup(props) {
   const [signUp, setSignUp] = useState(props.signUp);
   const [employeePopup, setEmployeePopup] = useState(props.employeePopup);
 
-  const [customerData, setCustomerData] = useState(null);
   const [shouldFetchCustomerData, setShouldFetchCustomerData] = useState(false);
 
-  const [employeeData, setEmployeeData] = useState(null);
   const [shouldFetchEmployeeData, setShouldFetchEmployeeData] = useState(false);
 
   const [shouldInsertACustomerData, setShouldInsertACustomerData] = useState(false);
@@ -35,6 +33,8 @@ function Popup(props) {
   const [postalCodeInput, setPostalCodeInput] = useState('');
 
   const [newCustomerID, setCustomerID] = useState('');
+
+  console.log(props.count + "lol")
 
 
 
@@ -58,7 +58,8 @@ function Popup(props) {
           //
           if (results.result.length == 1) {
             setCustomerData(results.result[0])
-            console.log(customerData)
+            props.customerDataFunction(results.result[0])
+            //console.log(customerData)
             setWasLoginSuccessful(true)
           }
           //No user found 
@@ -95,6 +96,7 @@ function Popup(props) {
           //
           if (results.result.length == 1) {
             setEmployeeData(results.result[0])
+            props.employeeDataFunction(results.result[0])
             console.log(employeeData)
             setWasLoginSuccessful(true)
           }

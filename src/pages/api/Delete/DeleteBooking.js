@@ -8,6 +8,7 @@ require('dotenv').config()
 export default async function handler (req, res) {
 
     const connection = await mysql.createConnection(process.env.DATABASE_URL)
+    const bookingID  = req.query.bookingID ;
 
     try {
         const query = 'Delete From Booking Where bookingID = ?'
