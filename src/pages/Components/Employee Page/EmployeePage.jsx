@@ -188,6 +188,20 @@ function EmployeePage(props) {
     ).then(alert("Room has been checked in!"));
   };
 
+  const cancelBooking = (bookingID) => {
+    const deleteBooking = async (url) => {
+      const res = await fetch(url);
+      const results = await res.json();
+      console.log(results);
+    };
+
+    console.log(bookingID);
+
+    deleteBooking(
+      "http://localhost:3000/api/Delete/DeleteBooking?bookingID=" + bookingID
+    ).then(alert("Booking has been cancelled!"));
+  };
+
   return (
     <>
       <NavigationBar
@@ -345,6 +359,12 @@ function EmployeePage(props) {
                         occupiedRoomBookings[i].hotelRoomID,
                         new Date(occupiedRoomBookings[i].dateCheckOut)
                       );
+                      cancelBooking(occupiedRoomBookings[i].bookingID);
+                      window.location.reload();
+                    }}
+                    onClickFunction2={() => {
+                      cancelBooking(occupiedRoomBookings[i].bookingID);
+                      window.location.reload();
                     }}
                   />
                 );

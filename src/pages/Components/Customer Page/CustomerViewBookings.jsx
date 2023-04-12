@@ -8,6 +8,7 @@ function CustomerViewBookings(props) {
   const [customerName, setCustomerName] = useState(props.customerName);
   const [customerID, setCustomerID] = useState(props.customerID);
   const [bookings, setBookings] = useState({});
+  const [rentings, setRentings] = useState({});
 
   useEffect(() => {
     const getData = async (url) => {
@@ -18,6 +19,19 @@ function CustomerViewBookings(props) {
 
     getData(
       "http://localhost:3000/api/SelectData/SelectCustomerBookings?customerID=" +
+        customerID
+    );
+  }, []);
+
+  useEffect(() => {
+    const getData = async (url) => {
+      const res = await fetch(url);
+      const results = await res.json();
+      setRentings(results.result);
+    };
+
+    getData(
+      "http://localhost:3000/api/SelectData/SelectCustomerRentings?customerID=" +
         customerID
     );
   }, []);
@@ -46,6 +60,20 @@ function CustomerViewBookings(props) {
     const lastChar = str.slice(-1);
     const lastCharAsInt = parseInt(lastChar, 10);
     return lastCharAsInt;
+  };
+
+  const cancelBooking = (bookingID) => {
+    const deleteBooking = async (url) => {
+      const res = await fetch(url);
+      const results = await res.json();
+      console.log(results);
+    };
+
+    console.log(bookingID);
+
+    deleteBooking(
+      "http://localhost:3000/api/Delete/DeleteBooking?bookingID=" + bookingID
+    ).then(alert("Booking cancelled successfully!"));
   };
 
   return (
@@ -84,6 +112,36 @@ function CustomerViewBookings(props) {
                   { id: 1, text: bookings[i].firstAmenity },
                   { id: 2, text: bookings[i].secondAmenity },
                   { id: 3, text: bookings[i].thirdAmenity },
+                ]}
+                onClickFunction={() => {
+                  cancelBooking(bookings[i].bookingID);
+                  window.location.reload();
+                }}
+              />
+            );
+          }
+
+          return elements;
+        })()}
+        {(() => {
+          const elements = [];
+          for (let i = 0; i < rentings.length; i++) {
+            elements.push(
+              <Booking
+                key={i}
+                isCustomerViewRentings={true}
+                titleText={rentings[i].nameOfChain}
+                rating={rentings[i].rating}
+                city={rentings[i].city}
+                numberOfNights={3}
+                roomNumber={getLastCharacterAsInt(rentings[i].hotelRoomID)}
+                price={rentings[i].pricePerNight}
+                checkOutDate={formatDate(rentings[i].dateCheckOut)}
+                status={rentings[i].currentStatus}
+                amenities={[
+                  { id: 1, text: rentings[i].firstAmenity },
+                  { id: 2, text: rentings[i].secondAmenity },
+                  { id: 3, text: rentings[i].thirdAmenity },
                 ]}
               />
             );
