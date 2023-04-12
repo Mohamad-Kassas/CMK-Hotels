@@ -9,6 +9,7 @@
   width: 65vw;
 }
 
+
 .customerViewBookingsContainer {
   display: flex;
   justify-content: space-around;
@@ -23,6 +24,7 @@
   padding-bottom: 5px;
 }
 
+
 .emptyRoomBookingContainer {
   display: flex;
   justify-content: space-around;
@@ -35,6 +37,7 @@
   margin-bottom: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
+
 }
 
 .bookedRoomBookingContainer {
@@ -49,6 +52,7 @@
   margin-bottom: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
+
 }
 
 .textContainer {

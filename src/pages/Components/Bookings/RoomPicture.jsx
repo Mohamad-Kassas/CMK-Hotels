@@ -5,6 +5,7 @@ import room1 from "../../../images/CMK Hotels Rooms/room_1.jpeg";
 import room2 from "../../../images/CMK Hotels Rooms/room_2.jpeg";
 import room3 from "../../../images/CMK Hotels Rooms/room_3.jpeg";
 import room4 from "../../../images/CMK Hotels Rooms/room_4.jpeg";
+import room5 from "../../../images/CMK Hotels Rooms/room_5.jpeg";
 import room6 from "../../../images/CMK Hotels Rooms/room_6.jpeg";
 import room7 from "../../../images/CMK Hotels Rooms/room_7.jpeg";
 import room8 from "../../../images/CMK Hotels Rooms/room_8.jpeg";

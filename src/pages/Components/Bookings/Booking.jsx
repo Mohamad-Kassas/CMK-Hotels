@@ -1,16 +1,17 @@
-import React, { useState } from "react";
-import Date from "./Date";
-import BookingButton from "./BookingButton";
-import RoomPicture from "./RoomPicture";
-import Subtitle from "./Subtitle";
-import Title from "./Title";
-import Name from "./Name";
-import NumberOfPeople from "./NumberOfPeople";
-import Status from "./Status";
-import styles from "../Styles/Bookings Styles/Booking.module.css";
-import Amenities from "./Amenities";
+import React, { useState } from "react"
+import Date from "./Date"
+import BookingButton from "./BookingButton"
+import RoomPicture from "./RoomPicture"
+import Subtitle from "./Subtitle"
+import Title from "./Title"
+import Name from "./Name"
+import NumberOfPeople from "./NumberOfPeople"
+import Status from "./Status"
+import styles from "../Styles/Bookings Styles/Booking.module.css"
+import Amenities from "./Amenities"
 
 function Booking(props) {
+
   const [isCustomer, setIsCustomer] = useState(props.isCustomer);
   const [isCustomerViewBookings, setIsCustomerViewBookings] = useState(
     props.isCustomerViewBookings
@@ -18,11 +19,13 @@ function Booking(props) {
   const [isCustomerViewRentings, setIsCustomerViewRentings] = useState(
     props.isCustomerViewRentings
   );
+
   const [isEmployeeEmptyRoom, setIsEmployeeEmptyRoom] = useState(
     props.isEmployeeEmptyRoom
-  );
+  )
   const [isEmployeeBookedRoom, setIsEmployeeBookedRoom] = useState(
     props.isEmployeeBookedRoom
+
   );
   const [isEmployeeBookedRoomRenting, setIsEmployeeBookedRoomRenting] =
     useState(props.isEmployeeBookedRoomRenting);
@@ -40,20 +43,33 @@ function Booking(props) {
   const [numberOfPeople, setNumberOfPeople] = useState(props.numberOfPeople);
   const [status, setStatus] = useState(props.status);
 
+
   return isCustomer ? (
     <div className={styles.bookingContainer}>
       <RoomPicture roomNumber={roomNumber} />
       <div className={styles.textContainer}>
         <Title titleText={titleText} size="medium" rating={rating} />
         <Subtitle city={city} numberOfNights={numberOfNights} price={price} />
-        <Date isCheckIn={true} isEditable={false} dateText={checkInDate} />
-        <Date isCheckIn={false} isEditable={false} dateText={checkOutDate} />
+        <Date
+          isCheckIn={true}
+          isEditable={false}
+          dateText={props.checkInDate}
+        />
+        <Date
+          isCheckIn={false}
+          isEditable={false}
+          dateText={props.checkOutDate}
+        />
         <Amenities list={amenities} />
         <div className={styles.button}>
-          <BookingButton buttonText="Book Now" />
+          <BookingButton
+            buttonText="Book Now"
+            onClickFunction={props.onClickFunction}
+          />
         </div>
       </div>
     </div>
+
   ) : isCustomerViewBookings ? (
     <div className={styles.customerViewBookingsContainer}>
       <RoomPicture roomNumber={roomNumber} />
@@ -113,8 +129,16 @@ function Booking(props) {
       <div className={styles.textContainer}>
         <Title titleText={titleText} size="medium" rating={-1} />
         <Subtitle city={city} numberOfNights={numberOfNights} price={price} />
-        <Date isCheckIn={true} isEditable={false} dateText={checkInDate} />
-        <Date isCheckIn={false} isEditable={false} dateText={checkOutDate} />
+        <Date
+          isCheckIn={true}
+          isEditable={false}
+          dateText={props.checkInDate}
+        />
+        <Date
+          isCheckIn={false}
+          isEditable={false}
+          dateText={props.checkOutDate}
+        />
         <Amenities list={amenities} />
         <div className={styles.button}>
           <BookingButton
@@ -137,6 +161,7 @@ function Booking(props) {
       </div>
     </div>
   ) : null;
+
 }
 
-export default Booking;
+export default Booking

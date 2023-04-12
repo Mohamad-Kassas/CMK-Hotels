@@ -1,21 +1,26 @@
 import NavigationBar from "../Navigation Bar/NavigationBar";
+
 import { useState, useEffect } from "react";
+
 import SearchBar from "../Search Bar/SearchBar";
 import styles from "../Styles/Employee Page Styles/EmployeePage.module.css";
 import Title from "../Bookings/Title";
 import HotelChainLogo from "./HotelChainLogo";
 import FilterBox from "../Filter Box/FilterBox";
 import Booking from "../Bookings/Booking";
+
 import { addDays } from "date-fns";
 import MakeBookingPopup from "./MakeBookingPopup";
 
 function EmployeePage(props) {
   const [showPopup, setShowPopup] = useState(false);
 
+
   const [employeeName, setEmployeeName] = useState(props.employeeName);
   const [employeeHotelChain, setEmployeeHotelChain] = useState(
     props.employeeHotelChain
   );
+
   const [emptyRoomBookings, setEmptyRoomBookings] = useState({});
   const [filteredEmptyRoomBookings, setFilteredEmptyRoomBookings] = useState(
     []
@@ -27,11 +32,13 @@ function EmployeePage(props) {
   const [occupiedRoomNumber, setOccupiedRoomNumber] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(addDays(new Date(), 7));
+
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1000000);
   const [minRooms, setMinRooms] = useState(0);
   const [maxRooms, setMaxRooms] = useState(1000000);
   const [rating, setRating] = useState(1);
+
   const [hotelChains, setHotelChains] = useState([
     "Paradise Hotels",
     "Hyatt Hotel",
@@ -39,6 +46,7 @@ function EmployeePage(props) {
     "Hotel Grandeur",
     "Capital Hotels",
   ]);
+
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
@@ -200,6 +208,7 @@ function EmployeePage(props) {
     deleteBooking(
       "http://localhost:3000/api/Delete/DeleteBooking?bookingID=" + bookingID
     ).then(alert("Booking has been cancelled!"));
+
   };
 
   return (
@@ -232,6 +241,7 @@ function EmployeePage(props) {
       </div>
       <div className={styles.searchContainer}>
         <div className={styles.filterBoxContainer}>
+
           <FilterBox
             setMinPrice={setMinPrice}
             setMaxPrice={setMaxPrice}
@@ -240,6 +250,7 @@ function EmployeePage(props) {
             setRating={setRating}
             setHotelChains={setHotelChains}
           />
+
         </div>
         <div className={styles.searchAndResultsContainer}>
           <div className={styles.titleContainer}>
@@ -311,6 +322,7 @@ function EmployeePage(props) {
               return elements;
             })()}
           </div>
+
         </div>
         <div className={styles.searchAndResultsContainer}>
           <div className={styles.titleContainer}>

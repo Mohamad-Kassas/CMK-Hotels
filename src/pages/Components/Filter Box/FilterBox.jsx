@@ -1,33 +1,53 @@
-import React, { useState, useEffect } from "react";
-import Cost from "./Cost";
-import NumberOfRooms from "./NumberOfRooms";
-import HotelChainSelector from "./HotelChainSelector";
-import Rating from "./Rating";
-import BookingButton from "../Bookings/BookingButton";
-import styles from "../Styles/Filter Box Styles/FilterBox.module.css";
+
+import React, { useEffect, useState } from "react"
+import Cost from "./Cost"
+import NumberOfRooms from "./NumberOfRooms"
+import HotelChainSelector from "./HotelChainSelector"
+import Rating from "./Rating"
+import BookingButton from "../Bookings/BookingButton"
+import styles from "../Styles/Filter Box Styles/FilterBox.module.css"
+import { parse } from "date-fns"
 
 function FilterBox(props) {
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(1000000);
-  const [minRooms, setMinRooms] = useState(0);
-  const [maxRooms, setMaxRooms] = useState(1000000);
+  const [minPrice, setMinPrice] = useState(0)
+  const [maxPrice, setMaxPrice] = useState(1000000)
+  const [minRooms, setMinRooms] = useState(0)
+  const [maxRooms, setMaxRooms] = useState(1000000)
   const [hotelChains, setHotelChains] = useState([
     "Paradise Hotels",
     "Hyatt Hotel",
     "Elite Hotels",
     "Hotel Grandeur",
     "Capital Hotels",
-  ]);
-  const [rating, setRating] = useState(0);
+  ])
+  const [rating, setRating] = useState(0)
 
   useEffect(() => {
-    props.setMinPrice(minPrice);
-    props.setMaxPrice(maxPrice);
-    props.setMinRooms(minRooms);
-    props.setMaxRooms(maxRooms);
-    props.setHotelChains(hotelChains);
-    props.setRating(rating);
-  }, [minPrice, maxPrice, minRooms, maxRooms, hotelChains, rating]);
+    props.setMinPrice(minPrice)
+    props.setMaxPrice(maxPrice)
+    props.setMinRooms(minRooms)
+    props.setMaxRooms(maxRooms)
+    props.setHotelChains(hotelChains)
+    props.setRating(rating)
+  }, [minPrice, maxPrice, minRooms, maxRooms, hotelChains, rating])
+
+  const parseHotelChains = (rawHotelChains) => {
+    let parsedHotelChains = []
+    if (rawHotelChains.length > 0) {
+      for (const element of rawHotelChains) {
+        parsedHotelChains.push(element.label)
+      }
+    } else {
+      parsedHotelChains = [
+        "Paradise Hotels",
+        "Hyatt Hotel",
+        "Elite Hotels",
+        "Hotel Grandeur",
+        "Capital Hotels",
+      ]
+    }
+    setHotelChains(parsedHotelChains)
+  }
 
   return (
     <div className={styles.container}>
@@ -42,7 +62,8 @@ function FilterBox(props) {
       {/* <div className={styles.text}>{"Hotel Chain"}</div> */}
       <HotelChainSelector
         isMulti={true}
-        setFilterHotelChains={setHotelChains}
+
+        setFilterHotelChains={parseHotelChains}
         placeHolder="Select Hotel Chain"
         options={[
           { value: "paradise hotels", label: "Paradise Hotels" },
@@ -58,7 +79,7 @@ function FilterBox(props) {
         <BookingButton buttonText="Apply Filters" />
       </div>
     </div>
-  );
+  )
 }
 
-export default FilterBox;
+export default FilterBox

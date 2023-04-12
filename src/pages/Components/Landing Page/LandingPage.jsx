@@ -1,53 +1,58 @@
-import React, { useEffect, useState } from "react";
-import NavigationBar from "../Navigation Bar/NavigationBar";
-import CardGroup from "../Card Group/CardGroup";
-import Title from "../Bookings/Title";
-import styles from "../Styles/Landing Page Styles/LandingPage.module.css";
-import Popup from "../Popup/Popup";
-
-export async function getStaticProps() {
-  const res = await fetch("https://api.example.com/data");
-  const data = await res.json();
-
-  return {
-    props: {
-      data,
-    },
-  };
-}
+import React, { useEffect, useState } from "react"
+import NavigationBar from "../Navigation Bar/NavigationBar"
+import CardGroup from "../Card Group/CardGroup"
+import Title from "../Bookings/Title"
+import styles from "../Styles/Landing Page Styles/LandingPage.module.css"
+import Popup from "../Popup/Popup"
 
 function LandingPage() {
-  const [seen, setSeen] = useState(false);
-  const [login, setLogin] = useState(false);
-  const [signUp, setSignUp] = useState(false);
+  const [seen, setSeen] = useState(false)
+  const [login, setLogin] = useState(false)
+  const [signUp, setSignUp] = useState(false)
+
+  const [testData, setTestData] = useState([])
 
   useEffect(() => {
     const getData = async (url) => {
-      const res = await fetch(url);
-      const results = await res.json();
-      console.log(results);
-    };
+      const res = await fetch(url)
+      const results = await res.json()
 
-    getData("http://localhost:3000/api/Mohamed");
-  }, []);
+      setTestData(results.result)
+
+    }
+
+    getData(
+      "http://localhost:3000/api/SelectData/SelectAllHotelChainsContactInfo"
+    )
+  }, [])
+
+
+
+  useEffect(() => {
+    console.log(testData)
+  }, [testData])
+
+
+
+
 
   const closePopup = () => {
-    setSeen(!seen);
-    setLogin(false);
-    setSignUp(false);
-  };
+    setSeen(!seen)
+    setLogin(false)
+    setSignUp(false)
+  }
 
   const toggleLoginPopup = () => {
-    setSeen(!seen);
-    setLogin(!login);
-    setSignUp(false);
-  };
+    setSeen(!seen)
+    setLogin(!login)
+    setSignUp(false)
+  }
 
   const toggleSignUpPopup = () => {
-    setSeen(!seen);
-    setSignUp(!signUp);
-    setLogin(false);
-  };
+    setSeen(!seen)
+    setSignUp(!signUp)
+    setLogin(false)
+  }
 
   return (
     <>
@@ -72,7 +77,7 @@ function LandingPage() {
         ) : null}
       </div>
     </>
-  );
+  )
 }
 
-export default LandingPage;
+export default LandingPage
