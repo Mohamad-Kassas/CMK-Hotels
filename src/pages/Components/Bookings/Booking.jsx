@@ -71,9 +71,15 @@ function Booking(props) {
         <Name name={name} />
         <NumberOfPeople number={numberOfPeople} />
         <Date isCheckIn={true} isEditable={true} dateText={checkInDate} />
-        <Date isCheckIn={false} isEditable={true} dateText={checkOutDate} />
-        <Status status={status} isEditable={true} />
+        <Date isCheckIn={false} isEditable={false} dateText={checkOutDate} />
+        <Status status={status} isEditable={false} />
         <Amenities list={amenities} />
+        <div className={styles.button}>
+          <BookingButton
+            buttonText="Convert to Renting"
+            onClickFunction={props.onClickFunction}
+          />
+        </div>
         <div className={styles.button}>
           <BookingButton buttonText="Cancel" />
         </div>
@@ -99,8 +105,8 @@ function Booking(props) {
         <Subtitle city={city} numberOfNights={numberOfNights} price={price} />
         <Name name={name} />
         <NumberOfPeople number={numberOfPeople} />
-        <Date isCheckIn={false} isEditable={true} dateText={checkOutDate} />
-        <Status status={status} isEditable={true} />
+        <Date isCheckIn={false} isEditable={false} dateText={checkOutDate} />
+        <Status status={status} isEditable={false} />
         <Amenities list={amenities} />
         <div className={styles.button}>
           <BookingButton buttonText="Cancel" />

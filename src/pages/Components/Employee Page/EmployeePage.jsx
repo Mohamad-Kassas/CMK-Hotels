@@ -37,6 +37,8 @@ function EmployeePage(props) {
     "Capital Hotels",
   ]);
 
+  const [rentingID, setRentingID] = useState("");
+
   useEffect(() => {
     const getData = async (url) => {
       const res = await fetch(url);
@@ -251,6 +253,51 @@ function EmployeePage(props) {
             {(() => {
               const elements = [];
               for (let i = 0; i < occupiedRoomBookings.length; i++) {
+                //// CODE TO CREATE RENTING /////
+
+                // const makeRenting = () => {
+                //   const getData = async (url) => {
+                //     const res = await fetch(url);
+                //     const results = await res.json();
+
+                //     setRentingID(results.newRentingID);
+                //   };
+
+                //   getData(
+                //     "http://localhost:3000/api/SelectCount/SelectRentingCount"
+                //   );
+
+                //   const insertRenting = async () => {
+                //     const url = `http://localhost:3000/api/Insert/InsertRentingForEmployee?bookingID=${
+                //       occupiedRoomBookings[i].bookingID
+                //     }&customerID=${
+                //       occupiedRoomBookings[i].customerID
+                //     }&rentingID=${rentingID}&hotelRoomID=${
+                //       occupiedRoomBookings[i].hotelRoomID
+                //     }&paid=1&dateCheckOut=${new Date(
+                //       occupiedRoomBookings[i].dateCheckOut
+                //     )}&currentStatus=${occupiedRoomBookings[i].currentStatus}`;
+                //     console.log(
+                //       occupiedRoomBookings[i].customerID,
+                //       rentingID,
+                //       occupiedRoomBookings[i].hotelRoomID,
+                //       occupiedRoomBookings[i].dateCheckOut,
+                //       occupiedRoomBookings[i].currentStatus
+                //     );
+                //     try {
+                //       const response = await fetch(url);
+                //       const data = await response.json();
+
+                //       // Handle success
+                //       console.log("Insert renting success:", data);
+                //     } catch (error) {
+                //       // Handle error
+                //       console.error("Insert renting error:", error);
+                //     }
+                //   };
+                //   insertRenting();
+                // };
+
                 elements.push(
                   <Booking
                     key={i}
@@ -277,6 +324,7 @@ function EmployeePage(props) {
                       { id: 2, text: occupiedRoomBookings[i].secondAmenity },
                       { id: 3, text: occupiedRoomBookings[i].thirdAmenity },
                     ]}
+                    //onClickFunction={makeRenting}
                   />
                 );
               }
