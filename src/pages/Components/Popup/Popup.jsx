@@ -20,6 +20,9 @@ function Popup(props) {
   const [shouldInsertACustomerData, setShouldInsertACustomerData] = useState(false);
   const [shouldFindANewCustomerID, setShouldFindANewCustomerID] = useState(false);
 
+  const [wasLoginSuccessful, setWasLoginSuccessful] = useState(null);
+  const [wasSignUpSuccessful, setWasSignUpSuccessful] = useState(null);
+
 
 
   const [emailInput, setEmailInput] = useState("");
@@ -43,6 +46,7 @@ function Popup(props) {
     setEmployeePopup(props.employeePopup);
   }, []);
 
+  //customer login
     useEffect(() => {
 
       if (shouldFetchCustomerData) {
@@ -54,9 +58,16 @@ function Popup(props) {
           //
           if (results.result.length == 1) {
             setCustomerData(results.result[0])
+            console.log(customerData)
+            setWasLoginSuccessful(true)
+          }
+          //No user found 
+          if (results.result.length == 0) {
+            setWasLoginSuccessful(false)
           }
 
           //User not found
+          //I don't think this gets called
           else {
             console.log("Error: No results found.");
           }
@@ -84,6 +95,13 @@ function Popup(props) {
           //
           if (results.result.length == 1) {
             setEmployeeData(results.result[0])
+            console.log(employeeData)
+            setWasLoginSuccessful(true)
+          }
+
+          //No user found 
+          if (results.result.length == 0) {
+            setWasLoginSuccessful(false)
           }
 
           //User not found
@@ -132,9 +150,14 @@ useEffect(() => {
 
       // Handle success
       console.log('Insert customer success:', data);
+      setWasSignUpSuccessful(true)
+
+
     } catch (error) {
       // Handle error
       console.error('Insert customer error:', error);
+      setWasSignUpSuccessful(false)
+
     }
   };
 
@@ -235,6 +258,12 @@ useEffect(() => {
       setShouldFindANewCustomerID(true)
       setShouldInsertACustomerData(true)
 
+      if (wasSignUpSuccessful == false) {
+        errorMessages.innerText = "Invalid Sign Up";
+        errorMessagesDiv.style.display = "flex";
+        errorStatus = true;
+      }
+
 
       
     }
@@ -266,11 +295,19 @@ useEffect(() => {
 
       if (employeePopup) {
         setShouldFetchEmployeeData(true);
+
+        if (wasLoginSuccessful == false) {
+
+        }
       }
 
       //Customer Login 
       else if(login) {
         setShouldFetchCustomerData(true)
+
+        if (wasLoginSuccessful == false) {
+          
+        }
       }
 
     }
