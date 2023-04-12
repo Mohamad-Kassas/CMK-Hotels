@@ -1,0 +1,21 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.titleContainer {
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+
+.resultsContainer {
+  width: 90%;
+  height: 60vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}

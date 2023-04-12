@@ -7,14 +7,17 @@ import { addDays } from "date-fns"
 
 import styles from "../Styles/Customer Page Styles/CustomerPage.module.css"
 
+
 function CustomerPage(props) {
   const [name, setName] = useState(props.name)
   const [customerID, setCustomerID] = useState(props.customerID)
 
   const [city, setCity] = useState("")
+
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(addDays(new Date(), 7))
   const [numberOfPeople, setNumberOfPeople] = useState(0)
+
 
   const [formattedStartDate, setFormattedStartDate] = useState("")
   const [formattedEndDate, setFormattedEndDate] = useState("")
@@ -31,6 +34,7 @@ function CustomerPage(props) {
     "Capital Hotels",
   ])
   const [rating, setRating] = useState(0)
+
 
   const [rooms, setRooms] = useState({})
   const [filteredRooms, setFilteredRooms] = useState([])
@@ -108,6 +112,7 @@ function CustomerPage(props) {
         return elements
       })()
     )
+
   }, [
     city,
     startDate,
@@ -191,6 +196,7 @@ function CustomerPage(props) {
     ).then(alert("Booking successful"))
   }
 
+
   return (
     <>
       <NavigationBar
@@ -272,3 +278,4 @@ function CustomerPage(props) {
 }
 
 export default CustomerPage
+
