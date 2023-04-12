@@ -4,6 +4,7 @@ import Booking from "./Components/Bookings/Booking";
 import FilterBox from "./Components/Filter Box/FilterBox";
 import EmployeePage from "./Components/Employee Page/EmployeePage";
 import CustomerViewBookings from "./Components/Customer Page/CustomerViewBookings";
+import CustomerProfile from "./Components/Customer Page/CustomerProfile";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -35,10 +36,11 @@ export default function App({ Component, pageProps }) {
     //   ]}
     // />
     //<FilterBox />
-    <EmployeePage
-      employeeName={"John Doe"}
-      employeeHotelChain={"Hyatt Hotel"}
-    />
+    // <EmployeePage
+    //   employeeName={"John Doe"}
+    //   employeeHotelChain={"Hyatt Hotel"}
+    // />
     //<CustomerViewBookings customerID={"C0005"} />
+    <CustomerProfile customerID="C0005" />
   );
 }
