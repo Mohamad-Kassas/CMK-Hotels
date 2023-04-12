@@ -176,6 +176,7 @@ function CustomerPage(props) {
     )
       .toString()
       .padStart(2, "0")}-${dateCheckIn.getDate().toString().padStart(2, "0")}`
+
     const dateCheckOutString = `${dateCheckOut.getFullYear()}-${(
       dateCheckOut.getMonth() + 1
     )
