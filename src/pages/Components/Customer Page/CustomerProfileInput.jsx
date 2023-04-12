@@ -15,7 +15,7 @@ function PopupInput(props) {
         defaultValue={value}
         placeholder={inputType.charAt(0).toUpperCase() + inputType.slice(1)}
         onChange={(e) => {
-          props.onChangeFunction(e);
+          props.onChangeFunction(e.target.value);
         }}
       />
       <label className={styles.label} htmlFor={inputType}>

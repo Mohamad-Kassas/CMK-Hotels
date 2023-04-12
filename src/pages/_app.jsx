@@ -41,6 +41,10 @@ export default function App({ Component, pageProps }) {
     //   employeeHotelChain={"Hyatt Hotel"}
     // />
     //<CustomerViewBookings customerID={"C0005"} />
-    <CustomerProfile customerID="C0005" />
+    // <CustomerProfile customerID="C0005" />
+    <EmployeePage
+      employeeName={"John Doe"}
+      employeeHotelChain={"Hyatt Hotel"}
+    />
   );
 }
