@@ -5,50 +5,44 @@ import Title from "../Bookings/Title"
 import styles from "../Styles/Landing Page Styles/LandingPage.module.css"
 import Popup from "../Popup/Popup"
 
-function LandingPage() {
+function LandingPage(props) {
   const [seen, setSeen] = useState(false)
   const [login, setLogin] = useState(false)
   const [signUp, setSignUp] = useState(false)
 
-  const [testData, setTestData] = useState([])
+  const [isCustomerLoggedIn, setIsCustomerLoggedIn] = useState(false)
+  const [isEmployeeLoggedIn, setIsEmployeeLoggedIn] = useState(false)
 
-  const [customerData, setCustomerData] = useState(null);
-  const [employeeData, setEmployeeData] = useState(null);
+  const [customerData, setCustomerData] = useState(null)
+  const [employeeData, setEmployeeData] = useState(null)
 
-  // useEffect(() => {
+  useEffect(() => {
+    props.setIsCustomerLoggedIn(isCustomerLoggedIn)
+    props.setIsEmployeeLoggedIn(isEmployeeLoggedIn)
+  }, [isCustomerLoggedIn, isEmployeeLoggedIn])
 
-  //   const getData = async (url) => {
-  //     const res = await fetch(url)
-  //     const results = await res.json();
-  //     console.log(results);
-    
-  //   }
-
-  //   getData("http://localhost:3000/api/SelectData/SelectAllHotelChainsContactInfo")
-
-  // }, [])
+  useEffect(() => {
+    props.setCustomerData(customerData)
+    props.setEmployeeData(employeeData)
+  }, [customerData, employeeData])
 
   const closePopup = () => {
-    setSeen(!seen);
-    setLogin(false);
-    setSignUp(false);
-
-
-  };
+    setSeen(!seen)
+    setLogin(false)
+    setSignUp(false)
+  }
 
   const toggleLoginPopup = () => {
-    setSeen(!seen);
-    setLogin(!login);
-    setSignUp(false);
-
-  };
+    setSeen(!seen)
+    setLogin(!login)
+    setSignUp(false)
+  }
 
   const toggleSignUpPopup = () => {
-    setSeen(!seen);
-    setSignUp(!signUp);
-    setLogin(false);
-
-  };
+    setSeen(!seen)
+    setSignUp(!signUp)
+    setLogin(false)
+  }
 
   return (
     <>
@@ -71,6 +65,8 @@ function LandingPage() {
             closePopup={closePopup}
             customerDataFunction={setCustomerData}
             employeeDataFunction={setEmployeeData}
+            isCustomerLoggedInFunction={setIsCustomerLoggedIn}
+            isEmployeeLoggedInFunction={setIsEmployeeLoggedIn}
           />
         ) : null}
       </div>

@@ -47,7 +47,6 @@ function DropdownMenu(props) {
       ) : null}
       {employee ? (
         <div className={styles.dropdownEmployeeMenu}>
-          <DropdownItem text={"My Profile"} onClickFunction={employeeProfileOnClick} />
           <DropdownItem text={"Search rooms"} onClickFunction={employeeSearchRoomsOnClick} />
           <DropdownItem text={"Log Out"} onClickFunction={employeeLogOutOnClick} />
         </div>

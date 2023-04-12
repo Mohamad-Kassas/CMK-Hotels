@@ -51,7 +51,7 @@ function MakeBookingPopup(props) {
       getData(
         "http://localhost:3000/api/SelectData/SelectCustomerIDFromUsername?userName=" +
           emailInput
-      )
+      ).then(alert("Booking Successful!"))
 
       setRunFetchBookingID(true)
 

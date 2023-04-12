@@ -7,7 +7,6 @@ import { addDays } from "date-fns"
 
 import styles from "../Styles/Customer Page Styles/CustomerPage.module.css"
 
-
 function CustomerPage(props) {
   const [name, setName] = useState(props.name)
   const [customerID, setCustomerID] = useState(props.customerID)
@@ -48,7 +47,7 @@ function CustomerPage(props) {
     }
 
     getData(
-      `${process.env.NEXT_PUBLIC_API_URL}/api//SelectData/SelectHotelRoomsToBook`
+      "http://localhost:3000/api//SelectData/SelectHotelRoomsToBook"
     )
   }, [])
 
@@ -159,7 +158,7 @@ function CustomerPage(props) {
     dateCheckOut
   ) => {
     const bookingID = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/SelectCount/SelectBookingCount`
+      "http://localhost:3000/api/SelectCount/SelectBookingCount"
     )
       .then((res) => res.json())
       .then((data) => {

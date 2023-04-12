@@ -9,40 +9,44 @@ import NumberOfPeople from "./NumberOfPeople"
 import Status from "./Status"
 import styles from "../Styles/Bookings Styles/Booking.module.css"
 import Amenities from "./Amenities"
+import MakeBookingPopup from "../Employee Page/MakeBookingPopup"
 
 function Booking(props) {
+  const [showPopup, setShowPopup] = useState(false)
 
-  const [isCustomer, setIsCustomer] = useState(props.isCustomer);
+  const [isCustomer, setIsCustomer] = useState(props.isCustomer)
   const [isCustomerViewBookings, setIsCustomerViewBookings] = useState(
     props.isCustomerViewBookings
-  );
+  )
   const [isCustomerViewRentings, setIsCustomerViewRentings] = useState(
     props.isCustomerViewRentings
-  );
+  )
 
   const [isEmployeeEmptyRoom, setIsEmployeeEmptyRoom] = useState(
     props.isEmployeeEmptyRoom
   )
   const [isEmployeeBookedRoom, setIsEmployeeBookedRoom] = useState(
     props.isEmployeeBookedRoom
-
-  );
+  )
   const [isEmployeeBookedRoomRenting, setIsEmployeeBookedRoomRenting] =
-    useState(props.isEmployeeBookedRoomRenting);
-  const [titleText, setTitleText] = useState(props.titleText);
-  const [rating, setRating] = useState(props.rating);
-  const [city, setCity] = useState(props.city);
-  const [numberOfNights, setNumberOfNights] = useState(props.numberOfNights);
-  const [price, setPrice] = useState(props.price);
-  const [checkInDate, setCheckInDate] = useState(props.checkInDate);
-  const [checkOutDate, setCheckOutDate] = useState(props.checkOutDate);
-  const [roomNumber, setRoomNumber] = useState(props.roomNumber);
-  const [amenities, setAmenities] = useState(props.amenities);
+    useState(props.isEmployeeBookedRoomRenting)
+  const [titleText, setTitleText] = useState(props.titleText)
+  const [rating, setRating] = useState(props.rating)
+  const [city, setCity] = useState(props.city)
+  const [numberOfNights, setNumberOfNights] = useState(props.numberOfNights)
+  const [price, setPrice] = useState(props.price)
+  const [checkInDate, setCheckInDate] = useState(props.checkInDate)
+  const [checkOutDate, setCheckOutDate] = useState(props.checkOutDate)
+  const [roomNumber, setRoomNumber] = useState(props.roomNumber)
+  const [amenities, setAmenities] = useState(props.amenities)
 
-  const [name, setName] = useState(props.name);
-  const [numberOfPeople, setNumberOfPeople] = useState(props.numberOfPeople);
-  const [status, setStatus] = useState(props.status);
+  const [name, setName] = useState(props.name)
+  const [numberOfPeople, setNumberOfPeople] = useState(props.numberOfPeople)
+  const [status, setStatus] = useState(props.status)
 
+  const togglePopup = () => {
+    setShowPopup(!showPopup)
+  }
 
   return isCustomer ? (
     <div className={styles.bookingContainer}>
@@ -69,7 +73,6 @@ function Booking(props) {
         </div>
       </div>
     </div>
-
   ) : isCustomerViewBookings ? (
     <div className={styles.customerViewBookingsContainer}>
       <RoomPicture roomNumber={roomNumber} />
@@ -125,29 +128,39 @@ function Booking(props) {
       </div>
     </div>
   ) : isEmployeeEmptyRoom ? (
-    <div className={styles.emptyRoomBookingContainer}>
-      <div className={styles.textContainer}>
-        <Title titleText={titleText} size="medium" rating={-1} />
-        <Subtitle city={city} numberOfNights={numberOfNights} price={price} />
-        <Date
-          isCheckIn={true}
-          isEditable={false}
-          dateText={props.checkInDate}
-        />
-        <Date
-          isCheckIn={false}
-          isEditable={false}
-          dateText={props.checkOutDate}
-        />
-        <Amenities list={amenities} />
-        <div className={styles.button}>
-          <BookingButton
-            buttonText="Make Booking"
-            onClickFunction={() => props.toggleFunction()}
+    <>
+      <div className={styles.emptyRoomBookingContainer}>
+        <div className={styles.textContainer}>
+          <Title titleText={titleText} size="medium" rating={-1} />
+          <Subtitle city={city} numberOfNights={numberOfNights} price={price} />
+          <Date
+            isCheckIn={true}
+            isEditable={false}
+            dateText={props.checkInDate}
           />
+          <Date
+            isCheckIn={false}
+            isEditable={false}
+            dateText={props.checkOutDate}
+          />
+          <Amenities list={amenities} />
+          <div className={styles.button}>
+            <BookingButton
+              buttonText="Make Booking"
+              onClickFunction={() => togglePopup()}
+            />
+          </div>
         </div>
       </div>
-    </div>
+      {showPopup ? (
+        <MakeBookingPopup
+          closePopup={togglePopup}
+          hotelRoomID={props.hotelRoomID}
+          startDate={props.checkInDateObject}
+          endDate={props.checkOutDateObject}
+        />
+      ) : null}
+    </>
   ) : isEmployeeBookedRoomRenting ? (
     <div className={styles.bookedRoomBookingContainer}>
       <div className={styles.textContainer}>
@@ -160,8 +173,7 @@ function Booking(props) {
         <Amenities list={amenities} />
       </div>
     </div>
-  ) : null;
-
+  ) : null
 }
 
 export default Booking

@@ -115,7 +115,6 @@ function CustomerViewBookings(props) {
                 ]}
                 onClickFunction={() => {
                   cancelBooking(bookings[i].bookingID);
-                  window.location.reload();
                 }}
               />
             );
