@@ -7,13 +7,17 @@ import { addDays } from "date-fns"
 
 import styles from "../Styles/Customer Page Styles/CustomerPage.module.css"
 
+
 function CustomerPage(props) {
   const [name, setName] = useState(props.name)
+  const [customerID, setCustomerID] = useState(props.customerID)
 
   const [city, setCity] = useState("")
+
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(addDays(new Date(), 7))
   const [numberOfPeople, setNumberOfPeople] = useState(0)
+
 
   const [formattedStartDate, setFormattedStartDate] = useState("")
   const [formattedEndDate, setFormattedEndDate] = useState("")
@@ -30,6 +34,7 @@ function CustomerPage(props) {
     "Capital Hotels",
   ])
   const [rating, setRating] = useState(0)
+
 
   const [rooms, setRooms] = useState({})
   const [filteredRooms, setFilteredRooms] = useState([])
@@ -83,7 +88,6 @@ function CustomerPage(props) {
     let parsedInputtedCityName = city.split(",")[0]
     console.log(parsedInputtedCityName)
 
-
     setFilteredRooms(
       (() => {
         const elements = []
@@ -108,6 +112,7 @@ function CustomerPage(props) {
         return elements
       })()
     )
+
   }, [
     city,
     startDate,
@@ -146,6 +151,51 @@ function CustomerPage(props) {
     const lastCharAsInt = parseInt(lastChar, 10)
     return lastCharAsInt
   }
+
+  const handleBooking = async (
+    hotelRoomID,
+    customerID,
+    dateCheckIn,
+    dateCheckOut
+  ) => {
+    const bookingID = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/SelectCount/SelectBookingCount`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        return data.newBookingID
+      })
+
+    const insertBooking = async (url) => {
+      const res = await fetch(url)
+      const results = await res.json()
+      console.log(results)
+    }
+
+    console.log(bookingID)
+    console.log(customerID)
+    console.log(hotelRoomID)
+
+    const dateCheckInString = `${dateCheckIn.getFullYear()}-${(
+      dateCheckIn.getMonth() + 1
+    )
+      .toString()
+      .padStart(2, "0")}-${dateCheckIn.getDate().toString().padStart(2, "0")}`
+
+    const dateCheckOutString = `${dateCheckOut.getFullYear()}-${(
+      dateCheckOut.getMonth() + 1
+    )
+      .toString()
+      .padStart(2, "0")}-${dateCheckOut.getDate().toString().padStart(2, "0")}`
+
+    console.log(dateCheckInString)
+    console.log(dateCheckOutString)
+
+    insertBooking(
+      `http://localhost:3000/api/Insert/InsertBooking?bookingID=${bookingID}&customerID=${customerID}&hotelRoomID=${hotelRoomID}&dateCheckIn=${dateCheckInString}&dateCheckOut=${dateCheckOutString}&totalPrice=300.00&currentStatus=Confirmed`
+    ).then(alert("Booking successful"))
+  }
+
 
   return (
     <>
@@ -193,7 +243,7 @@ function CustomerPage(props) {
                     )}
                     price={currentRoom.pricePerNight}
                     checkInDate={formattedStartDate}
-                    checkOutDate={formattedEndDate} // figure this out
+                    checkOutDate={formattedEndDate}
                     amenities={[
                       {
                         id: 1,
@@ -208,6 +258,14 @@ function CustomerPage(props) {
                         text: currentRoom.thirdAmenity,
                       },
                     ]}
+                    onClickFunction={() => {
+                      handleBooking(
+                        currentRoom.hotelRoomID,
+                        customerID,
+                        startDate,
+                        endDate
+                      )
+                    }}
                   />
                 </div>
               </div>
@@ -220,3 +278,4 @@ function CustomerPage(props) {
 }
 
 export default CustomerPage
+

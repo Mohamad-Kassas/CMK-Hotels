@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react"
 import Cost from "./Cost"
 import NumberOfRooms from "./NumberOfRooms"
@@ -61,6 +62,7 @@ function FilterBox(props) {
       {/* <div className={styles.text}>{"Hotel Chain"}</div> */}
       <HotelChainSelector
         isMulti={true}
+
         setFilterHotelChains={parseHotelChains}
         placeHolder="Select Hotel Chain"
         options={[

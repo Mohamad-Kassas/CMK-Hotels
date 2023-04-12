@@ -94,6 +94,7 @@ function HotelChainSelector(props) {
     onChange(newValue)
   }
 
+
   const onItemClick = (option) => {
     let newValue
     if (isMulti) {
@@ -105,10 +106,12 @@ function HotelChainSelector(props) {
     } else {
       newValue = option
     }
+
     setSelectedValue(newValue)
     props.setFilterHotelChains(newValue)
     onChange(newValue)
   }
+
 
   const isSelected = (option) => {
     if (isMulti) {

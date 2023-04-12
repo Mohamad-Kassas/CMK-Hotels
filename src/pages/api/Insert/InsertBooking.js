@@ -19,7 +19,6 @@ export default async function handler(req, res) {
   const connection = await mysql.createConnection(process.env.DATABASE_URL);
 
   try {
-
     // Insert the new customer
     const insertQuery = "INSERT INTO Booking (bookingID, customerID, hotelRoomID, dateCheckIn, dateCheckOut, totalPrice, currentStatus) VALUES (?, ?, ?, ?, ?, ?, ?)";
     const insertValues = [bookingID, customerID, hotelRoomID, dateCheckIn, dateCheckOut, totalPrice, currentStatus];

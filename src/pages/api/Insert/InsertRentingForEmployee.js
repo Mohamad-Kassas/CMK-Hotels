@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   try {
 
     // Insert the new customer
-    const insertQuery = "INSERT INTO Renting (rentingID, bookingID, customerID, hotelRoomID, paid, dateCheckOut, currentStatus)  VALUES (?, ?, ?, ?, ?, ?, ?)";
+    const insertQuery = "INSERT INTO Renting (bookingID, customerID, rentingID, hotelRoomID, paid, dateCheckOut, currentStatus)  VALUES (?, ?, ?, ?, ?, ?, ?)";
     const insertValues = [bookingID, customerID, rentingID, hotelRoomID, paid, dateCheckOut, currentStatus];
     await connection.execute(insertQuery, insertValues);
 

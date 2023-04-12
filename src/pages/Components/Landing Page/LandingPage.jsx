@@ -5,17 +5,6 @@ import Title from "../Bookings/Title"
 import styles from "../Styles/Landing Page Styles/LandingPage.module.css"
 import Popup from "../Popup/Popup"
 
-export async function getStaticProps() {
-  const res = await fetch("http://localhost:3000/api//SelectData/SelectAllHotelChainsContactInfo");
-  const data = await res.json();
-
-  return {
-    props: {
-      data,
-    },
-  }
-}
-
 function LandingPage() {
   const [seen, setSeen] = useState(false)
   const [login, setLogin] = useState(false)

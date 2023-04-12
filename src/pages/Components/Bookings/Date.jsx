@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import styles from "../Styles/Bookings Styles/Date.module.css";
-import { TbEdit } from "react-icons/tb";
 
 function Date(props) {
   const [isCheckIn] = useState(props.isCheckIn);
-  const [isEditable] = useState(props.isEditable);
   const [dateText] = useState(props.dateText);
 
   const getCheckInOrCheckOut = (isCheckIn) => {
@@ -15,27 +13,13 @@ function Date(props) {
     }
   };
 
-  if (isEditable == false) {
-    return (
-      <div className={styles.dateContainer}>
-        <div className={styles.dateTextBold}>
-          {getCheckInOrCheckOut(isCheckIn)}
-        </div>
-        <div className={styles.dateText}>{dateText}</div>
+  return (
+    <div className={styles.dateContainer}>
+      <div className={styles.dateTextBold}>
+        {getCheckInOrCheckOut(isCheckIn)}
       </div>
-    );
-  } else {
-    return (
-      <div className={styles.dateContainer}>
-        <div className={styles.dateTextBold}>
-          {getCheckInOrCheckOut(isCheckIn)}
-        </div>
-        <div className={styles.dateText}>{dateText}</div>
-        <div className={styles.editButton}>
-          <TbEdit color="#864646" />
-        </div>
-      </div>
-    );
-  }
+      <div className={styles.dateText}>{dateText}</div>
+    </div>
+  );
 }
 export default Date;
