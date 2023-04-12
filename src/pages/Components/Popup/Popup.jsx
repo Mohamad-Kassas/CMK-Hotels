@@ -184,7 +184,9 @@ useEffect(() => {
     let errorStatus = false;
 
     // Default values
-    errorMessagesDiv.style.display = "none";
+    errorMessagesDiv.style.display = "none"
+
+
 
     if (signUp) {
       const firstNameInputField = document.getElementById("first NameInput");
@@ -262,6 +264,7 @@ useEffect(() => {
         errorMessages.innerText = "Invalid Sign Up";
         errorMessagesDiv.style.display = "flex";
         errorStatus = true;
+        
       }
 
 
@@ -306,7 +309,9 @@ useEffect(() => {
         setShouldFetchCustomerData(true)
 
         if (wasLoginSuccessful == false) {
-          
+          errorMessages.innerText = "Login failed";
+          errorMessagesDiv.style.display = "flex";
+          errorStatus = true;
         }
       }
 
@@ -319,6 +324,7 @@ useEffect(() => {
 
   //Login or Sign Up Toggle
   const handleChangeAuthenticationMethodButtonClick = (numButton) => {
+
     if (numButton === 1) {
       if (login || signUp) {
         setLogin(!login);
