@@ -14,7 +14,7 @@ export default async function handler (req, res) {
     const connection = await mysql.createConnection(process.env.DATABASE_URL)
 
     try {
-        const query = "SELECT * FROM Booking WHERE customerID = ?"
+        const query = "SELECT Booking.*, HotelChain.nameOfChain, HotelLocation.city, HotelLocation.rating, Amenity.firstAmenity, Amenity.secondAmenity, Amenity.thirdAmenity FROM Booking JOIN HotelRoom ON Booking.hotelRoomID = HotelRoom.hotelRoomID  JOIN HotelLocation ON HotelRoom.hotelLocationID = HotelLocation.hotelLocationID  JOIN HotelChain ON HotelLocation.hotelChainID = HotelChain.hotelChainID  LEFT JOIN Amenity ON HotelRoom.hotelRoomID = Amenity.hotelRoomID WHERE Booking.customerID = ?";
 
         const values = [customerID]
 

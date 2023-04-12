@@ -6,7 +6,7 @@ import styles from "../Styles/Landing Page Styles/LandingPage.module.css";
 import Popup from "../Popup/Popup";
 
 export async function getStaticProps() {
-  const res = await fetch('https://api.example.com/data');
+  const res = await fetch("http://localhost:3000/api//SelectData/SelectAllHotelChainsContactInfo");
   const data = await res.json();
 
   return {
@@ -22,35 +22,42 @@ function LandingPage() {
   const [login, setLogin] = useState(false);
   const [signUp, setSignUp] = useState(false);
 
-  useEffect(() => {
+  const [customerData, setCustomerData] = useState(null);
+  const [employeeData, setEmployeeData] = useState(null);
 
-    const getData = async (url) => {
-      const res = await fetch(url)
-      const results = await res.json();
-      console.log(results);
+  // useEffect(() => {
+
+  //   const getData = async (url) => {
+  //     const res = await fetch(url)
+  //     const results = await res.json();
+  //     console.log(results);
     
-    }
+  //   }
 
-    getData("http://localhost:3000/api/Mohamed")
+  //   getData("http://localhost:3000/api/SelectData/SelectAllHotelChainsContactInfo")
 
-  }, [])
+  // }, [])
 
   const closePopup = () => {
     setSeen(!seen);
     setLogin(false);
     setSignUp(false);
+
+
   };
 
   const toggleLoginPopup = () => {
     setSeen(!seen);
     setLogin(!login);
     setSignUp(false);
+
   };
 
   const toggleSignUpPopup = () => {
     setSeen(!seen);
     setSignUp(!signUp);
     setLogin(false);
+
   };
 
   return (
@@ -70,6 +77,8 @@ function LandingPage() {
             signUp={signUp}
             employeePopup={false}
             closePopup={closePopup}
+            customerDataFunction={setCustomerData}
+            employeeDataFunction={setEmployeeData}
           />
         ) : null}
       </div>
