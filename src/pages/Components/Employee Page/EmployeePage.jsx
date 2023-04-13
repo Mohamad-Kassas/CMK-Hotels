@@ -349,11 +349,9 @@ function EmployeePage(props) {
                         new Date(occupiedRoomBookings[i].dateCheckOut)
                       )
                       cancelBooking(occupiedRoomBookings[i].bookingID)
-                      window.location.reload()
                     }}
                     onClickFunction2={() => {
                       cancelBooking(occupiedRoomBookings[i].bookingID)
-                      window.location.reload()
                     }}
                   />
                 )

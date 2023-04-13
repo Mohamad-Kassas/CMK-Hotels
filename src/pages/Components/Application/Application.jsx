@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react"
 import LandingPage from "../Landing Page/LandingPage"
-import CustomerPage from "../Customer Page/CustomerPage"
 import EmployeePage from "../Employee Page/EmployeePage"
-import CustomerViewBookings from "../Customer Page/CustomerViewBookings"
-import CustomerProfile from "../Customer Page/CustomerProfile"
+import CustomerApplication from "./CustomerApplication"
 
 function Application() {
   const [isCustomerLoggedIn, setIsCustomerLoggedIn] = useState(false)
@@ -33,10 +31,7 @@ function Application() {
         />
       )}
       {isCustomerLoggedIn && !isEmployeeLoggedIn && (
-        <CustomerPage
-          customerID={customerData.customerID}
-          name={customerData.firstName + " " + customerData.lastName}
-        />
+        <CustomerApplication customerData={customerData} />
       )}
       {!isCustomerLoggedIn && isEmployeeLoggedIn && <EmployeePage employeeName={employeeData.firstName + " " + employeeData.lastName} employeeHotelChain={employeeData.hotelChainName} />}
     </>

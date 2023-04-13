@@ -1,80 +1,80 @@
-import React, { useState, useEffect } from "react";
-import NavigationBar from "../Navigation Bar/NavigationBar";
-import Title from "../Bookings/Title";
-import styles from "../Styles/Customer Page Styles/CustomerViewBookings.module.css";
-import Booking from "../Bookings/Booking";
+import React, { useState, useEffect } from "react"
+import NavigationBar from "../Navigation Bar/NavigationBar"
+import Title from "../Bookings/Title"
+import styles from "../Styles/Customer Page Styles/CustomerViewBookings.module.css"
+import Booking from "../Bookings/Booking"
 
 function CustomerViewBookings(props) {
-  const [customerName, setCustomerName] = useState(props.customerName);
-  const [customerID, setCustomerID] = useState(props.customerID);
-  const [bookings, setBookings] = useState({});
-  const [rentings, setRentings] = useState({});
+  const [customerName, setCustomerName] = useState(props.customerName)
+  const [customerID, setCustomerID] = useState(props.customerID)
+  const [bookings, setBookings] = useState({})
+  const [rentings, setRentings] = useState({})
 
   useEffect(() => {
     const getData = async (url) => {
-      const res = await fetch(url);
-      const results = await res.json();
-      setBookings(results.result);
-    };
+      const res = await fetch(url)
+      const results = await res.json()
+      setBookings(results.result)
+    }
 
     getData(
       "http://localhost:3000/api/SelectData/SelectCustomerBookings?customerID=" +
         customerID
-    );
-  }, []);
+    )
+  }, [])
 
   useEffect(() => {
     const getData = async (url) => {
-      const res = await fetch(url);
-      const results = await res.json();
-      setRentings(results.result);
-    };
+      const res = await fetch(url)
+      const results = await res.json()
+      setRentings(results.result)
+    }
 
     getData(
       "http://localhost:3000/api/SelectData/SelectCustomerRentings?customerID=" +
         customerID
-    );
-  }, []);
+    )
+  }, [])
 
   useEffect(() => {
-    console.log(bookings);
-  }, [bookings]);
+    console.log(bookings)
+  }, [bookings])
 
   const formatDate = (dateString) => {
-    const [datePart] = dateString.split("T");
-    return datePart;
-  };
+    const [datePart] = dateString.split("T")
+    return datePart
+  }
 
   const calculateDateDifference = (dateString1, dateString2) => {
-    const date1 = new Date(dateString1);
-    const date2 = new Date(dateString2);
+    const date1 = new Date(dateString1)
+    const date2 = new Date(dateString2)
 
-    const timeDifference = date2 - date1;
+    const timeDifference = date2 - date1
 
-    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
 
-    return daysDifference;
-  };
+    return daysDifference
+  }
 
   const getLastCharacterAsInt = (str) => {
-    const lastChar = str.slice(-1);
-    const lastCharAsInt = parseInt(lastChar, 10);
-    return lastCharAsInt;
-  };
+    const lastChar = str.slice(-1)
+    const lastCharAsInt = parseInt(lastChar, 10)
+    return lastCharAsInt
+  }
 
   const cancelBooking = (bookingID) => {
     const deleteBooking = async (url) => {
-      const res = await fetch(url);
-      const results = await res.json();
-      console.log(results);
-    };
+      const res = await fetch(url)
+      const results = await res.json()
+      console.log(results)
+    }
 
-    console.log(bookingID);
+    console.log(bookingID)
 
     deleteBooking(
       "http://localhost:3000/api/Delete/DeleteBooking?bookingID=" + bookingID
-    ).then(alert("Booking cancelled successfully!"));
-  };
+    ).then(alert("Booking cancelled successfully!"))
+  }
 
   return (
     <div className={styles.pageContainer}>
@@ -83,13 +83,16 @@ function CustomerViewBookings(props) {
         name={customerName}
         customer={true}
         employee={false}
+        showCustomerBookingsFunction={props.showCustomerBookingsFunction}
+        showCustomerProfileFunction={props.showCustomerProfileFunction}
+        showCustomerMainPageFunction={props.showCustomerMainPageFunction}
       ></NavigationBar>
       <div className={styles.titleContainer}>
         <Title titleText="Your Bookings" size={"large"} rating={-1} />
       </div>
       <div className={styles.resultsContainer}>
         {(() => {
-          const elements = [];
+          const elements = []
           for (let i = 0; i < bookings.length; i++) {
             elements.push(
               <Booking
@@ -114,16 +117,16 @@ function CustomerViewBookings(props) {
                   { id: 3, text: bookings[i].thirdAmenity },
                 ]}
                 onClickFunction={() => {
-                  cancelBooking(bookings[i].bookingID);
+                  cancelBooking(bookings[i].bookingID)
                 }}
               />
-            );
+            )
           }
 
-          return elements;
+          return elements
         })()}
         {(() => {
-          const elements = [];
+          const elements = []
           for (let i = 0; i < rentings.length; i++) {
             elements.push(
               <Booking
@@ -143,14 +146,14 @@ function CustomerViewBookings(props) {
                   { id: 3, text: rentings[i].thirdAmenity },
                 ]}
               />
-            );
+            )
           }
 
-          return elements;
+          return elements
         })()}
       </div>
     </div>
-  );
+  )
 }
 
-export default CustomerViewBookings;
+export default CustomerViewBookings

@@ -111,6 +111,9 @@ function CustomerProfile(props) {
         name={fullName}
         customer={true}
         employee={false}
+        showCustomerBookingsFunction={props.showCustomerBookingsFunction}
+        showCustomerProfileFunction={props.showCustomerProfileFunction}
+        showCustomerMainPageFunction={props.showCustomerMainPageFunction}
       />
       <div className={styles.titleContainer}>
         <Title titleText="Your Profile" size={"large"} rating={-1} />

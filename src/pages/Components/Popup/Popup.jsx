@@ -64,6 +64,8 @@ function Popup(props) {
         //No user found
         if (results.result.length == 0) {
           setWasLoginSuccessful(false)
+          props.isCustomerLoggedInFunction(false)
+          props.isEmployeeLoggedInFunction(false)
         }
 
         //User not found
@@ -105,6 +107,8 @@ function Popup(props) {
         //No user found
         if (results.result.length == 0) {
           setWasLoginSuccessful(false)
+          props.isEmployeeLoggedInFunction(false)
+          props.isCustomerLoggedInFunction(false)
         }
 
         //User not found
@@ -396,6 +400,8 @@ function Popup(props) {
         {signUp ? <PopupInput inputType="country" /> : null}
 
         {signUp ? <PopupInput inputType="postal Code" /> : null}
+
+        {signUp ? <PopupInput inputType="sSN" /> : null}
 
         <div className={styles.errorMessagesDiv} id="errorMessagesDiv">
           <RiErrorWarningFill className={styles.errorIcon} />

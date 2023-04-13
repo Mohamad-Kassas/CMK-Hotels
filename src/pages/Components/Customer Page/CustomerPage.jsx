@@ -17,7 +17,6 @@ function CustomerPage(props) {
   const [endDate, setEndDate] = useState(addDays(new Date(), 7))
   const [numberOfPeople, setNumberOfPeople] = useState(0)
 
-
   const [formattedStartDate, setFormattedStartDate] = useState("")
   const [formattedEndDate, setFormattedEndDate] = useState("")
 
@@ -34,7 +33,6 @@ function CustomerPage(props) {
   ])
   const [rating, setRating] = useState(0)
 
-
   const [rooms, setRooms] = useState({})
   const [filteredRooms, setFilteredRooms] = useState([])
 
@@ -46,9 +44,7 @@ function CustomerPage(props) {
       setRooms(results.result)
     }
 
-    getData(
-      "http://localhost:3000/api//SelectData/SelectHotelRoomsToBook"
-    )
+    getData("http://localhost:3000/api//SelectData/SelectHotelRoomsToBook")
   }, [])
 
   const formatDate = (dateString) => {
@@ -111,7 +107,6 @@ function CustomerPage(props) {
         return elements
       })()
     )
-
   }, [
     city,
     startDate,
@@ -195,7 +190,6 @@ function CustomerPage(props) {
     ).then(alert("Booking successful"))
   }
 
-
   return (
     <>
       <NavigationBar
@@ -203,6 +197,9 @@ function CustomerPage(props) {
         name={name}
         customer={true}
         employee={false}
+        showCustomerBookingsFunction={props.showCustomerBookingsFunction}
+        showCustomerProfileFunction={props.showCustomerProfileFunction}
+        showCustomerMainPageFunction={props.showCustomerMainPageFunction}
       />
       <div className={styles.searchBarContainer}>
         <SearchBar
@@ -277,4 +274,3 @@ function CustomerPage(props) {
 }
 
 export default CustomerPage
-

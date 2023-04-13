@@ -1,36 +1,36 @@
-import React, { useState } from "react";
-import styles from "../Styles/Navigation Bar Styles/NavigationBar.module.css";
-import Logo from "./Logo";
-import NavBarButton from "./NavBarButton";
-import UserProfile from "./Dropdown Menu/UserProfile";
-import DropdownMenu from "./Dropdown Menu/DropdownMenu";
+import React, { useState } from "react"
+import styles from "../Styles/Navigation Bar Styles/NavigationBar.module.css"
+import Logo from "./Logo"
+import NavBarButton from "./NavBarButton"
+import UserProfile from "./Dropdown Menu/UserProfile"
+import DropdownMenu from "./Dropdown Menu/DropdownMenu"
 
 function NavigationBar(props) {
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(props.loggedIn);
-  const [name, setName] = useState(props.name);
-  const [customer, setCustomer] = useState(props.customer);
-  const [employee, setEmployee] = useState(props.employee);
+  const [showDropdown, setShowDropdown] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(props.loggedIn)
+  const [name, setName] = useState(props.name)
+  const [customer, setCustomer] = useState(props.customer)
+  const [employee, setEmployee] = useState(props.employee)
 
   const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
-  };
+    setShowDropdown(!showDropdown)
+  }
 
   const toggleLogin = () => {
-    setLoggedIn(!loggedIn);
-  };
+    setLoggedIn(!loggedIn)
+  }
 
   const homeButtonOnClick = () => {
-    console.log("Home button clicked");
-  };
+    console.log("Home button clicked")
+  }
 
   const aboutUsButtonOnClick = () => {
-    console.log("About Us button clicked");
-  };
+    console.log("About Us button clicked")
+  }
 
   const contactUsButtonOnClick = () => {
-    console.log("Contact Us button clicked");
-  };
+    console.log("Contact Us button clicked")
+  }
 
   return (
     <div className={styles.navigationBarContainer}>
@@ -53,7 +53,13 @@ function NavigationBar(props) {
         <>
           <UserProfile name={name} onClickFunction={toggleDropdown} />
           {showDropdown ? (
-            <DropdownMenu customer={customer} employee={employee} />
+            <DropdownMenu
+              customer={customer}
+              employee={employee}
+              showCustomerBookingsFunction={props.showCustomerBookingsFunction}
+              showCustomerProfileFunction={props.showCustomerProfileFunction}
+              showCustomerMainPageFunction={props.showCustomerMainPageFunction}
+            />
           ) : null}
         </>
       ) : (
@@ -70,7 +76,7 @@ function NavigationBar(props) {
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default NavigationBar;
+export default NavigationBar
